@@ -182,4 +182,9 @@ class OpenStack
         $defaults = ['catalogName' => 'glance', 'catalogType' => 'image'];
         return $this->builder->createService('Images\\v2', array_merge($defaults, $options));
     }
+    public function dataProcessingV1(array $options = []): \OpenStack\DataProcessing\v1\Service
+    {
+    	$defaults = ['catalogName' => 'sahara', 'catalogType' => 'dataprocessing'];
+    	return $this->builder->createService('DataProcessing\\v1', array_merge($defaults, $options));
+    }
 }
