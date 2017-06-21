@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace OpenStack\Compute\v2\Models;
+namespace OpenStack\DataProcessing\v1\Models;
 
 use OpenStack\Common\Resource\Creatable;
 use OpenStack\Common\Resource\Deletable;

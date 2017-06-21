@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace OpenStack\Compute\v2;
+namespace OpenStack\DataProcessing\v1;
 
 use OpenStack\Common\Service\AbstractService;
 use OpenStack\DataProcessing\v1\Models\Cluster;
@@ -16,7 +16,7 @@ use OpenStack\DataProcessing\v1\Models\NodeGroupTemplate;
 use OpenStack\DataProcessing\v1\Models\Pluging;
 class Service extends AbstractService
 {
-	public function listFlavors(array $options = [], callable $mapFn = null): \Generator
+	public function listClusters(array $options = [], callable $mapFn = null): \Generator
 	{
 		return $this->model(Cluster::class)->enumerate($this->api->getClusters(), $options, $mapFn);
 	}

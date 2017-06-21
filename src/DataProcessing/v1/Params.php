@@ -1,18 +1,21 @@
 <?php declare(strict_types=1);
 
-namespace OpenStack\DataProcessing\v2;
+namespace OpenStack\DataProcessing\v1;
 
 use OpenStack\Common\Api\AbstractParams;
 
 class Params extends AbstractParams
 {
-	public function getProjectid(): array
+	public function urlId(string $type): array
 	{
-		return [
-				'type'        => self::STRING_TYPE,
-				'location'    => self::URL,
-				'required'    => true,
-				'description' => 'UUID of the project',
-		];
+		return array_merge(parent::id($type), [
+				'required'   => true	,
+				'location'   => self::URL,
+				'documented' => false,
+		]);
 	}
 }
+
+
+
+?>
