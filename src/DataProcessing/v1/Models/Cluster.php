@@ -10,5 +10,7 @@ use OpenStack\Common\Resource\Retrievable;
 
 class Cluster extends OperatorResource implements Listable, Retrievable, Creatable, Deletable
 {
-
+	
 }
+
+?>

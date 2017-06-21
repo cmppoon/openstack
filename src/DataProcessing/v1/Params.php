@@ -6,5 +6,13 @@ use OpenStack\Common\Api\AbstractParams;
 
 class Params extends AbstractParams
 {
-    
+	public function getProjectid(): array
+	{
+		return [
+				'type'        => self::STRING_TYPE,
+				'location'    => self::URL,
+				'required'    => true,
+				'description' => 'UUID of the project',
+		];
+	}
 }

@@ -16,5 +16,10 @@ use OpenStack\DataProcessing\v1\Models\NodeGroupTemplate;
 use OpenStack\DataProcessing\v1\Models\Pluging;
 class Service extends AbstractService
 {
-    
+	public function listFlavors(array $options = [], callable $mapFn = null): \Generator
+	{
+		return $this->model(Cluster::class)->enumerate($this->api->getClusters(), $options, $mapFn);
+	}
 }
+
+?>
