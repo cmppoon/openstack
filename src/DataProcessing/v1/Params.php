@@ -18,7 +18,7 @@ class Params extends AbstractParams
 	public function isPublic(): array
 	{
 		return [
-				'type'        => self::STRING_TYPE,
+				'type'        => self::BOOL_TYPE,
 				'sentAs'      => 'is_public',
 				'location'    => self::JSON
 				
