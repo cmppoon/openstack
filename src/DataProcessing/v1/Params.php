@@ -7,15 +7,24 @@ use OpenStack\Common\Api\AbstractParams;
 class Params extends AbstractParams
 {
 	public function urlId(string $type): array
-	{
-		return array_merge(parent::id($type), [
-				'required'   => true	,
+	{	
+		return array_merge(parent::idPath($type), [
+				'required'   => true,
 				'location'   => self::URL,
-				'documented' => false,
+				'documented' => false
 		]);
 	}
+	
+	public function isPublic(): array
+	{
+		return [
+				'type'        => self::STRING_TYPE,
+				'sentAs'      => 'is_public',
+				'location'    => self::JSON
+				
+		];
+	}
+	
 }
-
-
 
 ?>

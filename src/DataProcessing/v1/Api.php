@@ -15,15 +15,49 @@ class Api extends AbstractApi
 	{
 		return [
 				'method' => 'GET',
-				'path'   => 'v1.1/{id}/clusters',
-				'params' => ['id' => $this->params->urlId('project')]
+				'path'   => 'clusters',
+				'params' => [
+						'limit'        => $this->params->limit(),
+						'marker'       => $this->params->marker()
+				]
 		];
 	}
 	
 	public function getCluster(): array
 	{
-		
+		return [
+				'method' => 'GET',
+				'path'   => 'clusters/{id}',
+				'params' => [
+						'id'           => $this->params->urlId('cluster'),
+						'limit'        => $this->params->limit(),
+						'marker'       => $this->params->marker()
+				]
+		];
 	}
+	
+	public function deleteCluster(): array
+	{
+		return [
+				'method' => 'DELETE',
+				'path'   => 'clusters/{id}',
+				'params' => ['id' => $this->params->urlId('cluster')],
+		];
+	}
+	
+	public function patchCluster(): array
+	{
+		return [
+				'method'  => 'PATCH',
+				'path'    => 'clusters/{id}',
+				'params'  => [
+						'id'   => $this->params->urlId('cluster'),
+						'isPublic' => $this->params->isPublic(),
+						'name' => $this->params->name('cluster'),
+				],
+		];
+	}
+	
 }
 
 ?>
