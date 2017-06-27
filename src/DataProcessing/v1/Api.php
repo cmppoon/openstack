@@ -58,6 +58,34 @@ class Api extends AbstractApi
 		];
 	}
 	
+	public function postCluster(): array
+	{
+		return [
+				'path'    => 'clusters',
+				'method'  => 'POST',
+				'params'  => [
+						'pluginName'            => $this->params->pluginName(),
+						'hadoopVersion'           => $this->params->hadoopVersion(),
+						'clusterTemplateId'        => $this->params->clusterTemplateId(),
+						'defaultImageId'           => $this->params->defaultImageId(),
+						'userKeypairId'               => $this->notRequired($this->params->userKeyPairId()),
+						'name'     => $this->isRequired($this->params->name('cluster')),
+						'neutronManagementNetwork'           => $this->params->neutronManagementNetwork()
+				]
+		];
+	}
+	
+	public function postClusters(): array
+	{
+		$definition = $this->postCluster();
+		$definition['path'] .= '/multiple';
+		$definition['params'] = array_merge($definition['params'],[
+			'count' => $this->params->count(),
+			'clusterConfigs' => $this->params->clusterConfigs()	
+		]);
+		return $definition;
+	}
+	
 }
 
 ?>

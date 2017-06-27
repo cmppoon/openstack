@@ -184,7 +184,7 @@ class OpenStack
     }
     public function dataProcessingV1(array $options = []): \OpenStack\DataProcessing\v1\Service
     {
-    	$defaults = ['catalogName' => 'nova', 'catalogType' => 'compute'];
+    	$defaults = ['catalogName' => 'sahara', 'catalogType' => 'data-processing'];
     	return $this->builder->createService('DataProcessing\\v1', array_merge($defaults, $options));
     }
 }

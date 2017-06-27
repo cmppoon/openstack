@@ -77,7 +77,8 @@ class Cluster extends OperatorResource implements Listable, Retrievable, Creatab
 	 */
 	public function create(array $userOptions): Creatable
 	{
-		
+		($userOptions['multiple'] == true) ? $response=$this->execute($this->api->postClusters(), $userOptions) : $response=$this->execute($this->api->postCluster(), $userOptions);
+		return $this->populateFromResponse($response);
 	}
 	
 	/**

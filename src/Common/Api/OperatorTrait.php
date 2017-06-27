@@ -111,7 +111,6 @@ trait OperatorTrait
         $options = (new RequestSerializer)->serializeOptions($operation, $userValues);
         $method = $async ? 'requestAsync' : 'request';
         $uri = uri_template($operation->getPath(), $userValues);
-
         return $this->client->$method($operation->getMethod(), $uri, $options);
     }
 

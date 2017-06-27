@@ -24,6 +24,86 @@ class Params extends AbstractParams
 				
 		];
 	}
+	public function pluginName(): array
+	{
+		return [
+				'type'        => self::STRING_TYPE,
+				'required'    => true,
+				'sentAs'      => 'plugin_name',
+				'description' => 'The plugin name of cluster'
+		];
+	}
+	
+	public function hadoopVersion(): array
+	{
+		return [
+				'type'        => self::STRING_TYPE,
+				'required'    => true,
+				'sentAs'      => 'hadoop_version',
+				'description' => 'The hadoopversion of cluster'
+		];
+	}
+	
+	public function clusterTemplateId(): array
+	{
+		return [
+				'type'        => self::STRING_TYPE,
+				'required'    => true,
+				'sentAs'      => 'cluster_template_id',
+				'description' => 'The cluster template id'
+		];
+	}
+	
+	public function defaultImageId(): array
+	{
+		return [
+				'type'        => self::STRING_TYPE,
+				'required'    => true,
+				'sentAs'      => 'default_image_id',
+				'description' => 'The default image id'
+		];
+	}
+	
+	public function userKeypairId(): array
+	{
+		return [
+				'type'        => self::STRING_TYPE,
+				'required'    => true,
+				'sentAs'      => 'user_keypair_id',
+				'description' => 'The user keypair id'
+		];
+	}
+	
+	public function neutronManagementNetwork(): array
+	{
+		return [
+				'type'        => self::STRING_TYPE,
+				'required'    => true,
+				'sentAs'      => 'neutron_management_network',
+				'description' => 'The neutron management network'
+		];
+	}
+
+	public function count(): array
+	{
+		return [
+				'type'        => self::INT_TYPE,
+				'required'    => true,
+				'sentAs'      => 'count',
+				'description' => 'Numbers of cluster to be created'
+		];
+	}
+	
+	public function clusterConfigs(): array
+	{
+		return [
+				'type'        => self::OBJECT_TYPE,
+				'required'    => false,
+				'sentAs'      => 'cluster_configs',
+				'description' => 'Configuration of clusters to be created'
+		];
+	}
+	
 	
 }
 

@@ -28,9 +28,9 @@ class Service extends AbstractService
 		return $cluster;
 	}
 	
-	public function createCluster(bool $multiple = false,array $options = []): Cluster
+	public function createCluster(array $options = []): Cluster
 	{
-		return $this->model(Cluster::class)->create($multiple,$options);
+		return $this->model(Cluster::class)->create($options);
 	}
 }
 
