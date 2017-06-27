@@ -20,6 +20,18 @@ class Service extends AbstractService
 	{
 		return $this->model(Cluster::class)->enumerate($this->api->getClusters(), $options, $mapFn);
 	}
+	
+	public function getCluster(array $options = []): Cluster
+	{
+		$cluster = $this->model(Cluster::class);
+		$cluster->populateFromArray($options);
+		return $cluster;
+	}
+	
+	public function createCluster(bool $multiple = false,array $options = []): Cluster
+	{
+		return $this->model(Cluster::class)->create($multiple,$options);
+	}
 }
 
 ?>
