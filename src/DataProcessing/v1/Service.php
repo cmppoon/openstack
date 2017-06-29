@@ -50,6 +50,7 @@ class Service extends AbstractService
 		return $this->model(DataSource::class)->enumerate($this->api->getDataSources(), $options, $mapFn);
 	}
 	
+<<<<<<< HEAD
 	//////--------------- cluster-template --------------------------/////
 	public function createClusterTemplate(array $options = []): ClusterTemplate
 	{
@@ -67,6 +68,8 @@ class Service extends AbstractService
 		return $this->model(ClusterTemplate::class)->enumerate($this->api->getClusterTemplates(), $options, $mapFn);
 	}
 	
+=======
+>>>>>>> 32b45515bbae8db15d5b5647d82e9363a663e8cb
 }
 
 ?>

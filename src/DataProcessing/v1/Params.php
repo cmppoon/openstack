@@ -151,6 +151,7 @@ class Params extends AbstractParams
 				'description' => 'The name of the data source object'
 		];
 	}
+<<<<<<< HEAD
 	
 	//-----------------james edited ---------------------//
 	public function nodeGroups(): array
@@ -163,6 +164,8 @@ class Params extends AbstractParams
 		];
 		
 	}
+=======
+>>>>>>> 32b45515bbae8db15d5b5647d82e9363a663e8cb
 	
 	
 }
