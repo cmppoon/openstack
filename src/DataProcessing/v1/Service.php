@@ -32,6 +32,24 @@ class Service extends AbstractService
 	{
 		return $this->model(Cluster::class)->create($options);
 	}
+	//-----------------------------------------------------------------
+	public function createDataSource(array $options = []): Datasource
+	{
+		return $this->model(DataSource::class)->create($options);
+	}
+	
+	public function getDataSource(array $options = []): Datasource
+	{
+		$source = $this->model(DataSource::class);
+		$source->populateFromArray($options);
+		return $source;
+	}
+	
+	public function listDataSources(array $options = [], callable $mapFn = null): \Generator
+	{
+		return $this->model(DataSource::class)->enumerate($this->api->getDataSources(), $options, $mapFn);
+	}
+	
 }
 
 ?>

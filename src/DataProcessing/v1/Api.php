@@ -85,6 +85,67 @@ class Api extends AbstractApi
 		]);
 		return $definition;
 	}
+	//---------------------------------------------------------------------
+	public function postDataSource(): array
+	{
+		return [
+				'path'    => 'data-sources',
+				'method'  => 'POST',
+				'params'  => [
+						'description'		=> $this->params->dataSourceDescription(),
+						'url'				=> $this->params->url(),
+						'type'				=> $this->params->dataSourceType(),
+						'name'				=> $this->params->dataSourceName()
+				]
+		];
+	}
+	
+	public function deleteDataSource(): array
+	{
+		return [
+				'method' => 'DELETE',
+				'path'   => 'data-sources/{id}',
+				'params' => ['id' => $this->params->urlId('datasource')]
+		];
+	}
+	
+	public function getDataSource(): array
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'data-sources/{id}',
+				'params' => [
+						'id'           => $this->params->urlId('datasource')
+				]
+		];
+	}
+	
+	public function getDataSources(): array
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'data-sources',
+				'params' => [
+						'limit'        => $this->params->limit(),
+						'marker'       => $this->params->marker()
+				]
+		];
+	}
+	
+	public function patchDataSource(): array
+	{
+		return [
+				'method'  => 'PUT',
+				'path'    => 'data-sources/{id}',
+				'params'  => [
+						'id'				=> $this->params->urlId('datasource'),
+						'isPublic'			=> $this->params->isPublic(),
+						'isProtected'		=> $this->params->isProtected(),
+						'name'				=> $this->params->dataSourceName(),
+						'description'		=> $this->params->dataSourceDescription(),
+				],
+		];
+	}
 	
 }
 
