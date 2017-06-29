@@ -103,6 +103,66 @@ class Params extends AbstractParams
 				'description' => 'Configuration of clusters to be created'
 		];
 	}
+//-------------------------------------------------------------------	
+	public function isProtected(): array
+	{
+		return [
+				'type'        => self::BOOL_TYPE,
+				'sentAs'      => 'is_protected',
+				'location'    => self::JSON
+		];
+	}
+
+	public function dataSourceDescription(): array
+	{
+		return [
+				'type'        => self::STRING_TYPE,
+				'sentAs'      => 'description',
+				'description' => 'The description of the data source object'
+		];
+	}
+	
+	public function url(): array
+	{
+		return [
+				'type'        => self::STRING_TYPE,
+				'required'    => true,
+				'sentAs'      => 'url',
+				'description' => 'The url of the data source object'
+		];
+	}
+	
+	public function dataSourceType(): array
+	{
+		return [
+				'type'        => self::STRING_TYPE,
+				'required'    => true,
+				'sentAs'      => 'type',
+				'description' => 'The type of the data source object'
+		];
+	}
+	
+	public function dataSourceName(): array
+	{
+		return [
+				'type'        => self::STRING_TYPE,
+				'required'    => true,
+				'sentAs'      => 'name',
+				'description' => 'The name of the data source object'
+		];
+	}
+	
+	//-----------------james edited ---------------------//
+	public function nodeGroups(): array
+	{
+		return [
+				'type'			=> self::ARRAY_TYPE,
+				'required'		=> false,
+				'sentAs'		=> 'node_groups',
+				'description'	=> 'The associated node groups'
+		];
+		
+	}
 	
 	
 }
