@@ -21,9 +21,10 @@ $openstack = new OpenStack([
 ]);
  
 $sahara = $openstack->dataProcessingV1(['region' => 'RegionOne']);
-$cluster = $sahara->getCluster(['id' => '417ee738-777c-475a-98bc-11738e8b8344']);
-$cluster->name = 'eiei2';
+$cluster = $sahara->getCluster(['id' => '7d29c89f-8ba7-42be-9113-e09fcd57e659']);
+$cluster->name = 'firstder';
 $cluster->isPublic = false;
+$cluster->isProtected = false;
 $cluster->update();
 ?>
 

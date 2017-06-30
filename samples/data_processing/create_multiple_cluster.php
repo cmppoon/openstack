@@ -21,8 +21,22 @@ $openstack = new OpenStack([
 ]);
  
 $sahara = $openstack->dataProcessingV1(['region' => 'RegionOne']);
-$cluster = $sahara->getCluster(['id' => '7d29c89f-8ba7-42be-9113-e09fcd57e659']);
-$cluster->retrieve();
-print_r($cluster);
+
+$options = [
+		'multiple'		=> true,
+		'pluginName'     => 'spark',
+		'hadoopVersion'  => '1.6.2',
+		'clusterTemplateId' => 'cab21f5c-b264-465a-a999-55dfe2fbab94',
+		'defaultImageId' => 'f56cc7c5-9588-49fa-8bcd-5c5d5eda5466',
+		//user keypair id is optional ?
+		'userKeypairId'  => 'phpkey',
+		'name' => 'test',
+		'neutronManagementNetwork' => '10fa537e-dfc6-4f03-aff3-af05380a0be5',
+		'count'		=> 2,
+		//'clusterConfigs' => ["foo"=>"bar"]
+];
+
+$cluster = $sahara->createCluster($options);
+
 ?>
 

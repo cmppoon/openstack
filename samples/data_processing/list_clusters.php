@@ -23,6 +23,7 @@ $openstack = new OpenStack([
 $sahara = $openstack->dataProcessingV1(['region' => 'RegionOne']);
 $clusters = $sahara->listClusters();
 foreach($clusters as $cluster){
+print_r($cluster);
 }
 ?>
 

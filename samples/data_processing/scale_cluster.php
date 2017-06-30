@@ -21,8 +21,22 @@ $openstack = new OpenStack([
 ]);
  
 $sahara = $openstack->dataProcessingV1(['region' => 'RegionOne']);
-$cluster = $sahara->getCluster(['id' => '7d29c89f-8ba7-42be-9113-e09fcd57e659']);
-$cluster->retrieve();
-print_r($cluster);
+
+$options = [
+		'id' => '7d29c89f-8ba7-42be-9113-e09fcd57e659',
+		'addNodeGroups' => [[
+				'count' => 2,
+				'name'  => 'eiei',
+				'nodeGroupTemplateId' => '95586455-8e59-4cca-9a4a-52a8e1cb8a13'
+		]],
+		'resizeNodeGroups' => [[
+				'count' => 1,
+				'name'  => 'worker'
+		]]
+		
+];
+
+$cluster = $sahara->scaleCluster($options);
+
 ?>
 
