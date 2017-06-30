@@ -11,6 +11,7 @@ class Api extends AbstractApi
 		$this->params = new Params();
 	}
 	
+//----------------------CLUSTER -----------------------------------------------//
 	public function getClusters(): array
 	{
 		return [
@@ -54,6 +55,7 @@ class Api extends AbstractApi
 						'id'   => $this->params->urlId('cluster'),
 						'isPublic' => $this->params->isPublic(),
 						'name' => $this->params->name('cluster'),
+						'isProtected' => $this->params->isProtected(),
 				],
 		];
 	}
@@ -84,6 +86,19 @@ class Api extends AbstractApi
 			'clusterConfigs' => $this->params->clusterConfigs()	
 		]);
 		return $definition;
+	}
+	
+	public function putCluster(): array
+	{
+		return [
+				'path'    => 'clusters/{id}',
+				'method'  => 'PUT',
+				'params'  => [
+						'id'           => $this->params->urlId('cluster'),
+						'addNodeGroups' => $this->params->addNodeGroups(),
+						'resizeNodeGroups' => $this->params->resizeNodeGroups()
+				]
+		];
 	}
 	//---------------------------------------------------------------------
 	public function postDataSource(): array

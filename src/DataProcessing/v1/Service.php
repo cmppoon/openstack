@@ -16,6 +16,8 @@ use OpenStack\DataProcessing\v1\Models\NodeGroupTemplate;
 use OpenStack\DataProcessing\v1\Models\Pluging;
 class Service extends AbstractService
 {
+//-----------------------------CLUSTER----------------------------------------
+
 	public function listClusters(array $options = [], callable $mapFn = null): \Generator
 	{
 		return $this->model(Cluster::class)->enumerate($this->api->getClusters(), $options, $mapFn);
@@ -31,6 +33,16 @@ class Service extends AbstractService
 	public function createCluster(array $options = []): Cluster
 	{
 		return $this->model(Cluster::class)->create($options);
+	}
+	
+	public function scaleCluster(array $options = []): Cluster
+	{
+		return $this->model(Cluster::class)->scale($options);
+	}
+	
+	public function listNodeGroupTemplates(array $options = [], callable $mapFn = null): \Generator
+	{
+		return $this->model(NodeGroupTemplate::class)->enumerate($this->api->getNodeGroupTemplates(), $options, $mapFn);
 	}
 	//-----------------------------------------------------------------
 	public function createDataSource(array $options = []): Datasource

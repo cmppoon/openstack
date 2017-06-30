@@ -91,8 +91,14 @@ class Cluster extends OperatorResource implements Listable, Retrievable, Creatab
 	
 	public function update()
 	{
-		$response = $this->execute($this->api->patchCluster(), $this->getAttrs(['id', 'name', 'isPublic']));
+		$response = $this->execute($this->api->patchCluster(), $this->getAttrs(['id', 'name', 'isPublic', 'isProtected']));
 		$this->populateFromResponse($response);
+	}
+	
+	public function scale(array $userOptions)
+	{
+		$response = $this->execute($this->api->putCluster(), $userOptions);
+		return $this->populateFromResponse($response);
 	}
 }
 

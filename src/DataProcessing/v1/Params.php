@@ -6,7 +6,7 @@ use OpenStack\Common\Api\AbstractParams;
 
 class Params extends AbstractParams
 {
-	public function urlId(string $type): array
+public function urlId(string $type): array
 	{	
 		return array_merge(parent::idPath($type), [
 				'required'   => true,
@@ -24,6 +24,7 @@ class Params extends AbstractParams
 				
 		];
 	}
+		
 	public function pluginName(): array
 	{
 		return [
@@ -103,16 +104,49 @@ class Params extends AbstractParams
 				'description' => 'Configuration of clusters to be created'
 		];
 	}
-//-------------------------------------------------------------------	
-	public function isProtected(): array
+	
+	public function addNodeGroups(): array
 	{
 		return [
-				'type'        => self::BOOL_TYPE,
-				'sentAs'      => 'is_protected',
-				'location'    => self::JSON
+				'type'        => self::ARRAY_TYPE,
+				'sentAs'      => 'add_node_groups',
+				'items'       => [
+						'type'       => self::OBJECT_TYPE,
+						'properties' => [
+								'count'     => [
+										'type'        => self::INTEGER_TYPE,
+								],
+								'name' => [
+										'type'        => self::STRING_TYPE,
+								],
+								'nodeGroupTemplateId' => [
+										'type'        => self::STRING_TYPE,
+										'sentAs'	  => 'node_group_template_id'	
+								]
+						]
+				],
 		];
 	}
-
+	
+	public function resizeNodeGroups(): array
+	{
+		return [
+				'type'        => self::ARRAY_TYPE,
+				'sentAs'      => 'resize_node_groups',
+				'items'       => [
+						'type'       => self::OBJECT_TYPE,
+						'properties' => [
+								'count'     => [
+										'type'        => self::INTEGER_TYPE,
+								],
+								'name' => [
+										'type'        => self::STRING_TYPE,
+								]
+						]
+				],
+		];
+	}
+//-------------------------------------------------------------------	
 	public function dataSourceDescription(): array
 	{
 		return [
