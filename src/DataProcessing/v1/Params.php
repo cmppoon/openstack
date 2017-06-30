@@ -165,7 +165,97 @@ class Params extends AbstractParams
 		
 	}
 
-	
+	//--------start------nodegrouptemplate-------------------//
+	public function flavorId(): array
+	{
+		return [
+			'type'        => self::STRING_TYPE,
+			'required'    => true,
+			'sentAs'      => 'flavor_id',
+			'description' => 'flavor id of node group template to be created'
+		];
+	}
+
+	public function nodeProcesses(): array
+	{
+		return [
+			'type'        => self::ARRAY_TYPE,
+			'required'    => true,
+			'sentAs'      => 'node_processes',
+			'description' => '	The list of the processes performed by the node.'
+		];
+	}
+
+	public function description(): array
+	{
+		return [
+			'type'        => self::STRING_TYPE,
+			'required'    => false,
+			'sentAs'      => 'description',
+			'description' => 'description of node group template'
+		];
+	}
+
+	public function availabilityZone(): array
+	{
+		return [
+			'type'        => self::STRING_TYPE,
+			'required'    => false,
+			'sentAs'      => 'availability_zone',
+			'description' => 'The availability of the node in the cluster.'
+		];
+	}
+
+	public function imageId(): array
+	{
+		return [
+			'type'        => self::STRING_TYPE,
+			'required'    => false,
+			'sentAs'      => 'image_id',
+			'description' => 'The UUID of the image'
+		];
+	}
+
+	public function floatingIpPool(): array
+	{
+		return [
+			'type'        => self::STRING_TYPE,
+			'required'    => false,
+			'sentAs'      => 'floating_ip_pool',
+			'description' => 'The UUID of the pool in the template'
+		];
+	}
+
+	public function useAutoconfig(): array
+	{
+		return [
+			'type'        => self::BOOL_TYPE,
+			'required'    => false,
+			'sentAs'      => 'use_autoconfig',
+			'description' => 'If set to true, the cluster is auto configured.'
+		];
+	}
+
+	public function isProxyGateway(): array
+	{
+		return [
+			'type'        => self::BOOL_TYPE,
+			'required'    => false,
+			'sentAs'      => 'is_proxy_gateway',
+			'description' => 'If set to true, the node is the proxy gateway.'
+		];
+	}
+
+	public function isProtected(): array
+	{
+		return [
+			'type'        => self::BOOL_TYPE,
+			'required'    => false,
+			'sentAs'      => 'is_protected',
+			'description' => 'If set to true, the object is protected.'
+		];
+	}
+	//--------end--------nodegrouptemplate-------------------//
 	
 }
 

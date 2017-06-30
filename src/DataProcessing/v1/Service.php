@@ -70,6 +70,27 @@ class Service extends AbstractService
 	
 =======
 >>>>>>> 32b45515bbae8db15d5b5647d82e9363a663e8cb
+
+
+
+	//--------------start----nodegrouptemplate------------------//
+	public function getNodeGroupTemplate(array $options = []): NodeGroupTemplate
+	{
+		$nodeGroupTemplate = $this->model(NodeGroupTemplate::class);
+		$nodeGroupTemplate->populateFromArray($options);
+		return $nodeGroupTemplate;
+	}
+
+	public function listNodeGroupTemplates(array $options = [], callable $mapFn = null): \Generator
+	{
+		return $this->model(NodeGroupTemplate::class)->enumerate($this->api->getNodeGroupTemplates(), $options, $mapFn);
+	}
+
+	public function createNodeGroupTemplate(array $options = []): NodeGroupTemplate
+	{
+		return $this->model(NodeGroupTemplate::class)->create($options);
+	}
+	//--------------end----nodegrouptemplate------------------//
 }
 
 ?>

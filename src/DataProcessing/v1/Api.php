@@ -208,6 +208,81 @@ class Api extends AbstractApi
 				]
 		];
 	}
+	
+	//------------------start---nodegrouptemplate-----------------------//
+	public function getNodeGroupTemplates()
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'node-group-templates',
+				'params' => [
+						'limit'        => $this->params->limit(),
+						'marker'       => $this->params->marker()
+				]
+		];
+	}
+
+	public function postNodeGroupTemplate()
+	{
+		return [
+				'path'    => 'node-group-templates',
+				'method'  => 'POST',
+				'params'  => [
+					'pluginName'            => $this->params->pluginName(),
+					'hadoopVersion'           => $this->params->hadoopVersion(),
+					'nodeProcesses'					=> $this->params->nodeProcesses(),
+					'name'    				 => $this->isRequired($this->params->name('nodeGroupTemplate')),
+					'flavorId'						=> $this->params->flavorId(),
+					'description'			 => $this->params->description(),
+					'availabilityZone' => $this->params->availabilityZone(),
+					'imageId' 				 => $this->params->imageId(),
+					'floatingIpPool' 	 => $this->params->floatingIpPool(),
+					'useAutoconfig' 	 => $this->params->useAutoconfig(),
+					'isProxyGateway'	 => $this->params->isProxyGateway(),
+					'isPublic'				 => $this->params->isPublic(),
+					'isProtected'			 => $this->params->isProtected()
+				]
+		];
+	}
+	public function getNodeGroupTemplate()
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'node-group-templates/{id}',
+				'params' => [
+						'id'           => $this->params->urlId('nodeGroupTemplate')
+				]
+		];
+	}
+	public function deleteNodeGroupTemplate()
+	{
+		return [
+				'method' => 'DELETE',
+				'path'   => 'node-group-templates/{id}',
+				'params' => ['id' => $this->params->urlId('nodeGroupTemplate')]
+		];
+	}
+
+	public function putNodeGroupTemplate()
+	{
+		return [
+				'method'  => 'PUT',
+				'path'    => 'node-group-templates/{id}',
+				'params'  => [
+						'id'  						 => $this->params->urlId('nodeGroupTemplate'),
+						'name'						 => $this->params->name('nodeGroupTemplate'),
+						'description'			 => $this->params->description(),
+						'availabilityZone' => $this->params->availabilityZone(),
+						'imageId' 				 => $this->params->imageId(),
+						'floatingIpPool' 	 => $this->params->floatingIpPool(),
+						'useAutoconfig' 	 => $this->params->useAutoconfig(),
+						'isProxyGateway'	 => $this->params->isProxyGateway(),
+						'isPublic'				 => $this->params->isPublic(),
+						'isProtected'			 => $this->params->isProtected()
+				]
+		];
+	}
+	//-------------------end--nodegrouptemplate--------------------------//
 }
 
 ?>
