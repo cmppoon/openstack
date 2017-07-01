@@ -40,10 +40,7 @@ class Service extends AbstractService
 		return $this->model(Cluster::class)->scale($options);
 	}
 	
-	public function listNodeGroupTemplates(array $options = [], callable $mapFn = null): \Generator
-	{
-		return $this->model(NodeGroupTemplate::class)->enumerate($this->api->getNodeGroupTemplates(), $options, $mapFn);
-	}
+
 	//-----------------------------------------------------------------
 	public function createDataSource(array $options = []): Datasource
 	{
@@ -62,7 +59,7 @@ class Service extends AbstractService
 		return $this->model(DataSource::class)->enumerate($this->api->getDataSources(), $options, $mapFn);
 	}
 	
-<<<<<<< HEAD
+
 	//////--------------- cluster-template --------------------------/////
 	public function createClusterTemplate(array $options = []): ClusterTemplate
 	{
@@ -80,8 +77,7 @@ class Service extends AbstractService
 		return $this->model(ClusterTemplate::class)->enumerate($this->api->getClusterTemplates(), $options, $mapFn);
 	}
 	
-=======
->>>>>>> 32b45515bbae8db15d5b5647d82e9363a663e8cb
+
 
 
 

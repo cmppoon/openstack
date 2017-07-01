@@ -127,6 +127,13 @@ public function urlId(string $type): array
 				],
 		];
 	}
+	public function nodeGroupTemplateId(): array
+	{	
+		return [
+				'type'        => self::STRING_TYPE,
+				'sentAs'      => 'node_group_template_id'
+		];
+	}
 	
 	public function resizeNodeGroups(): array
 	{
@@ -188,16 +195,7 @@ public function urlId(string $type): array
 
 	
 	//-----------------james edited ---------------------//
-	public function nodeGroups(): array
-	{
-		return [
-				'type'			=> self::ARRAY_TYPE,
-				'required'		=> false,
-				'sentAs'		=> 'node_groups',
-				'description'	=> 'The associated node groups'
-		];
-		
-	}
+
 
 	//--------start------nodegrouptemplate-------------------//
 	public function flavorId(): array

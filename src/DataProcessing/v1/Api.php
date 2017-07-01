@@ -170,9 +170,22 @@ class Api extends AbstractApi
 				'method'  => 'POST',
 				'params'  => [
 						'pluginName'            => $this->params->pluginName(),
-						'hadoopVersion'           => $this->params->hadoopVersion(),
-						'nodeGroups'			=> $this->params->nodeGroups(),
-						'name'     			=> $this->isRequired($this->params->name('cluster-template'))
+						'hadoopVersion'      	=> $this->params->hadoopVersion(),
+						'nodeGroups'			=> [
+							'type'        => params::ARRAY_TYPE,
+							'sentAs'	  => 'node_groups',
+							'description' => 'List of nodeGroups',
+							'items'       => [
+								'type'       => params::OBJECT_TYPE,
+								'properties' => [
+									
+									'name'         => $this->params->name('node-group-template'),
+									'count'		   => $this->params->count(),
+									'nodeGroupTemplateId' => $this->params->nodeGroupTemplateId(),
+								],
+							],
+						],
+						'name'     				=> $this->isRequired($this->params->name('cluster-template')),
 				]
 		];
 	}

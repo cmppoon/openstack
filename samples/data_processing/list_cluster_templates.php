@@ -21,7 +21,11 @@ $openstack = new OpenStack([
 ]);
  
 $sahara = $openstack->dataProcessingV1(['region' => 'RegionOne']);
-$clusterTemplates = $sahara->listClusterTemplates();
+$options = [
+		'limit' => 2,
+		'sort_by' => '-name'
+];
+$clusterTemplates = $sahara->listClusterTemplates($options);
 foreach($clusterTemplates as $clusterTemplate){
 	print_r($clusterTemplate);
 }

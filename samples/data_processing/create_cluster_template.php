@@ -25,10 +25,19 @@ $sahara = $openstack->dataProcessingV1(['region' => 'RegionOne']);
 $options = [
 		'pluginName'     => 'vanilla',
 		'hadoopVersion'  => '2.7.1',
-		'name' => 'James-cluster-template-test-create2'
+		'nodeGroups' => [
+				[
+				'name'  => 'lolololona',
+				'count' => 2,
+				'nodeGroupTemplateId' => '95586455-8e59-4cca-9a4a-52a8e1cb8a13'
+				]
+		],
+		'name' => 'PlsPass'
+		
 ];
 
 $clusterTemplate = $sahara->createClusterTemplate($options);
 print_r($clusterTemplate);
+
 ?>
 
