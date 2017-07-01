@@ -23,13 +23,23 @@ $openstack = new OpenStack([
 $sahara = $openstack->dataProcessingV1(['region' => 'RegionOne']);
 
 $options = [
-		'pluginName'     => 'vanilla',
-		'hadoopVersion'  => '2.7.1',
+		'pluginName'     => 'spark',
+		'hadoopVersion'  => '1.6.2',
 		'nodeGroups' => [
 				[
-				'name'  => 'lolololona',
-				'count' => 2,
-				'nodeGroupTemplateId' => '95586455-8e59-4cca-9a4a-52a8e1cb8a13'
+				'name'  => 'master',
+				'count' => 1,
+				'nodeGroupTemplateId' => '1d28c842-b8d9-4ca4-8fe8-1fd586758816'
+				],
+				[
+				'name'  => 'worker',
+				'count' => 1,
+				'nodeGroupTemplateId' => '51401185-468c-4cf7-9d9d-a8ea3ab0d196'
+				],
+				[
+				'name'  => 'core',
+				'count' => 1,
+				'nodeGroupTemplateId' => '7f414a63-7e14-4153-a297-d51dbc3fdcf2'
 				]
 		],
 		'name' => 'PlsPass'
