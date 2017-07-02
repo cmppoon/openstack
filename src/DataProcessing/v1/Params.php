@@ -15,6 +15,24 @@ public function urlId(string $type): array
 		]);
 	}
 	
+	public function url(): array
+	{
+		return [
+				'type'        => self::STRING_TYPE,
+				'required'    => true,
+				'sentAs'      => 'url',
+		];
+	}
+	
+	public function description(): array
+	{
+		return [
+				'type'        => self::STRING_TYPE,
+				'required'    => false,
+				'sentAs'      => 'description',
+		];
+	}
+	
 	public function isPublic(): array
 	{
 		return [
@@ -154,24 +172,6 @@ public function urlId(string $type): array
 		];
 	}
 //-------------------------------------------------------------------	
-	public function dataSourceDescription(): array
-	{
-		return [
-				'type'        => self::STRING_TYPE,
-				'sentAs'      => 'description',
-				'description' => 'The description of the data source object'
-		];
-	}
-	
-	public function url(): array
-	{
-		return [
-				'type'        => self::STRING_TYPE,
-				'required'    => true,
-				'sentAs'      => 'url',
-				'description' => 'The url of the data source object'
-		];
-	}
 	
 	public function dataSourceType(): array
 	{
@@ -218,15 +218,7 @@ public function urlId(string $type): array
 		];
 	}
 
-	public function description(): array
-	{
-		return [
-			'type'        => self::STRING_TYPE,
-			'required'    => false,
-			'sentAs'      => 'description',
-			'description' => 'description of node group template'
-		];
-	}
+	
 
 	public function availabilityZone(): array
 	{
@@ -288,6 +280,26 @@ public function urlId(string $type): array
 		];
 	}
 	//--------end--------nodegrouptemplate-------------------//
+	
+	//--------------start----job bianry------------------//
+	
+	public function extra(): array
+	{
+		return [
+				'type'        => self::OBJECT_TYPE,
+				'required'    => true,
+				'properties' => [
+						'password'     => [
+								'type'        => self::STRING_TYPE,
+						],
+						'user' => [
+								'type'        => self::STRING_TYPE,
+						]
+				]
+		];
+	}
+	
+	//--------------end----job bianry------------------//
 	
 }
 

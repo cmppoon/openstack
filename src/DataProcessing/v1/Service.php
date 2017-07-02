@@ -99,6 +99,26 @@ class Service extends AbstractService
 		return $this->model(NodeGroupTemplate::class)->create($options);
 	}
 	//--------------end----nodegrouptemplate------------------//
+	
+	//--------------start----job bianry------------------//
+	public function listJobBinaries(array $options = [], callable $mapFn = null): \Generator
+	{
+		return $this->model(JobBinary::class)->enumerate($this->api->getJobBinaries(), $options, $mapFn);
+	}
+	
+	public function getJobBinary(array $options = []): JobBinary
+	{
+		$binary = $this->model(JobBinary::class);
+		$binary->populateFromArray($options);
+		return $binary;
+	}
+	
+	public function createJobBinary(array $options = []): JobBinary
+	{
+		return $this->model(JobBinary::class)->create($options);
+	}
+	
+	//--------------end----job bianry------------------//
 }
 
 ?>

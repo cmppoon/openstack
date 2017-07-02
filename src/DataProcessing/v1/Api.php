@@ -107,7 +107,7 @@ class Api extends AbstractApi
 				'path'    => 'data-sources',
 				'method'  => 'POST',
 				'params'  => [
-						'description'		=> $this->params->dataSourceDescription(),
+						'description'		=> $this->params->description(),
 						'url'				=> $this->params->url(),
 						'type'				=> $this->params->dataSourceType(),
 						'name'				=> $this->params->dataSourceName()
@@ -157,7 +157,7 @@ class Api extends AbstractApi
 						'isPublic'			=> $this->params->isPublic(),
 						'isProtected'		=> $this->params->isProtected(),
 						'name'				=> $this->params->dataSourceName(),
-						'description'		=> $this->params->dataSourceDescription(),
+						'description'		=> $this->params->description(),
 				],
 		];
 	}
@@ -311,6 +311,79 @@ class Api extends AbstractApi
 		];
 	}
 	//-------------------end--nodegrouptemplate--------------------------//
+	
+	//--------------start----job bianry------------------//
+	public function getJobBinaries(): array
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'job-binaries',
+				'params' => [
+						'limit'        => $this->params->limit(),
+						'marker'       => $this->params->marker(),
+						'sortKey'      => $this->params->sortKey(),
+						'sortDir'      => $this->params->sortDir()
+				]
+		];
+	}
+	
+	public function getJobBinary(): array
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'job-binaries/{id}',
+				'params' => ['id'=> $this->params->urlId('binary')]
+		];
+	}
+	
+	public function postJobBinary(): array
+	{
+		return [
+				'path'    => 'job-binaries',
+				'method'  => 'POST',
+				'params'  => [
+						'url'             => $this->params->url(),
+						'name'            => $this->params->name('job_binary'),
+						'description'     => $this->params->description(),
+						'extra'           => $this->params->extra()
+				]
+		];
+	}
+	
+	public function deleteJobBinary(): array
+	{
+		return [
+				'method' => 'DELETE',
+				'path'   => 'job-binaries/{id}',
+				'params' => ['id'=> $this->params->urlId('job_binary')]
+		];
+	}
+	
+	public function putJobBinary(): array
+	{
+		return [
+				'method'  => 'PUT',
+				'path'    => 'job-binaries/{id}',
+				'params'  => [
+						'id'          => $this->params->urlId('job_binary'),
+						'url'		  => $this->params->url(),
+						'isPublic'    => $this->params->isPublic(),
+						'name'        => $this->params->name('job_binary'),
+						'isProtected' => $this->params->isProtected(),
+				],
+		];
+	}
+	
+	public function getJobBinaryData(): array
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'job-binaries/{id}/data',
+				'params' => ['id'=> $this->params->urlId('job_binary')]
+		];
+	}
+	
+	//--------------end----job bianry------------------//
 }
 
 ?>
