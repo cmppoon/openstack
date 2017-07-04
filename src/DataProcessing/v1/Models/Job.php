@@ -10,23 +10,15 @@ use OpenStack\Common\Resource\Retrievable;
 
 class Job extends OperatorResource implements Listable, Retrievable, Creatable, Deletable
 {
-	public $neutronManagementNetwork;
     public $description;
-    public $shares;
-    public $clusterConfigs;
     public $createdAt;
-    public $defaultImage;
-    public $updatedAt;
-    public $pluginName;
-    public $domainName;
-    public $isDefault;
+    public $mains;
+    public $libs;
     public $isProtected;
-    public $useAutoconfig;
-    public $antiAffinity;
+    public $interface;
     public $tenantId;
-    public $nodeGroups;
+    public $type;
 	public $isPublic;
-	public $hadoopVersion;
 	public $id;
 	public $name;
 	
@@ -35,21 +27,10 @@ class Job extends OperatorResource implements Listable, Retrievable, Creatable, 
 	protected $resourcesKey = 'jobs';
 	
 	protected $aliases = [
-		'neutron_management_network'		=> 'neutronManagementNetwork',
-		'cluster_configs'					=> 'clusterConfigs',
 		'created_at'						=> 'createdAt',
-		'default_image'						=> 'defaultImage',
-		'updated_at'						=>	'updatedAt',
-		'plugin_name'						=>	'pluginName',
-		'domain_name'						=>	'domainName',
-		'is_default'						=> 	'isDefault',
 		'is_protected'						=>	'isProtected',
-		'use_autoconfig'					=>	'useAutoconfig',
-		'anti_affinity'						=>	'antiAffinity',
 		'tenant_id'							=>	'tenantId',
-		'node_groups'						=>	'nodeGroups',
-		'is_public'							=> 	'isPublic',
-		'hadoop_version'					=>	'hadoopVersion'
+		'is_public'							=> 	'isPublic'
     ];
 	
 		public function retrieve()
@@ -77,7 +58,7 @@ class Job extends OperatorResource implements Listable, Retrievable, Creatable, 
 	
 	public function update()
 	{
-		$response = $this->execute($this->api->putJob(), $this->getAttrs(['id', 'name','isPublic','pluginName','hadoopVersion']));
+		$response = $this->execute($this->api->putJob(), $this->getAttrs(['id', 'name','isPublic','description','isProtected','mains','libs','type']));
 		$this->populateFromResponse($response);
 	}
 }
