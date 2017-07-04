@@ -384,6 +384,81 @@ class Api extends AbstractApi
 	}
 	
 	//--------------end----job bianry------------------//
+	
+	
+	////------------------job(template)-------------------------//
+	public function postJob(): array
+	{
+		return [
+				'path'    => 'jobs',
+				'method'  => 'POST',
+				'params'  => [
+						'description'          	=> $this->params->description(),
+						'mains'      			=> [
+							'type'			=> params:: ARRAY_TYPE,
+							'description'	=> 'The list of the job object and their properties.',
+							'required'		=> true
+						]
+						'libs'					=> [
+							'type'        	=> params::ARRAY_TYPE,
+							'description' 	=> 'The list of the job object properties.',
+							'required'		=> true
+						],
+						'type'					=> [
+							'type'			=> params:: STRING_TYPE,
+							'description'	=> 'The type of the data source object.',
+							'required'		=> true
+						],
+						'name'     				=> $this->isRequired($this->params->name('job'))
+				]
+		];
+	}
+	public function getJobs(): array
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'jobs',
+				'params' => [
+						'limit'        => $this->params->limit(),
+						'marker'       => $this->params->marker(),
+						'sort_by'	   => $this->params->sortkey()
+				]
+		];
+	}
+	
+	public function getJob(): array
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'jobs/{id}',
+				'params' => [
+						'id'           => $this->params->urlId('jobs')
+				]
+		];
+	}
+	
+	public function deleteJob(): array
+	{
+		return [
+				'method' => 'DELETE',
+				'path'   => 'jobs/{id}',
+				'params' => ['id' => $this->params->urlId('jobs')]
+		];
+	}
+	
+	public function patchJob(): array
+	{
+		return [
+				'method'  => 'PATCH',
+				'path'    => 'jobs/{id}',
+				'params'  => [
+						'id'   		=> $this->params->urlId('jobs'),
+						'name' 		=> $this->params->name('job'),
+						'isPublic' 	=> $this->params->isPublic(),
+						'description'=> $this->params->description()
+				]
+		];
+	}
 }
 
 ?>
