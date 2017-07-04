@@ -475,7 +475,7 @@ class Api extends AbstractApi
 							'type'			=> params:: ARRAY_TYPE,
 							'description'	=> 'The list of the job object and their properties.',
 							'required'		=> true
-						]
+						],
 						'libs'					=> [
 							'type'        	=> params::ARRAY_TYPE,
 							'description' 	=> 'The list of the job object properties.',

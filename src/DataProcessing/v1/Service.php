@@ -122,7 +122,7 @@ class Service extends AbstractService
 	//--------------end----job bianry------------------//
 
 	//--------------start----job bianry internal------------------//
-	public function getJobBinaryInternal(array $options = []): JobBinaryInternal
+/*	public function getJobBinaryInternal(array $options = []): JobBinaryInternal
 	{
 		if(!empty($options->$name)){
 			$createoption=[
@@ -133,7 +133,7 @@ class Service extends AbstractService
 		$jobBinaryInternal = $this->model(JobBinaryInternal::class);
 		$jobBinaryInternal->populateFromArray($options);
 		return $jobBinaryInternal;
-	}
+	}*/
 
 	public function listJobBinaryInternals(array $options = [], callable $mapFn = null): \Generator
 	{
@@ -159,9 +159,9 @@ class Service extends AbstractService
 		$Job->populateFromArray($options);
 		return $Job;
 	}
-	public function listJob(array $options = [], callable $mapFn = null): \Generator
+	public function listJobs(array $options = [], callable $mapFn = null): \Generator
 	{
-		return $this->model(Job::class)->enumerate($this->api->getJob(), $options, $mapFn);
+		return $this->model(Job::class)->enumerate($this->api->getJobs(), $options, $mapFn);
 	}
 	
 }
