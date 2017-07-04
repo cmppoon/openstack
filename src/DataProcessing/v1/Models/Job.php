@@ -10,5 +10,55 @@ use OpenStack\Common\Resource\Retrievable;
 
 class Job extends OperatorResource implements Listable, Retrievable, Creatable, Deletable
 {
-
+    public $description;
+    public $createdAt;
+    public $mains;
+    public $libs;
+    public $isProtected;
+    public $interface;
+    public $tenantId;
+    public $type;
+	public $isPublic;
+	public $id;
+	public $name;
+	
+	
+	protected $resourceKey = 'job';
+	protected $resourcesKey = 'jobs';
+	
+	protected $aliases = [
+		'created_at'						=> 'createdAt',
+		'is_protected'						=>	'isProtected',
+		'tenant_id'							=>	'tenantId',
+		'is_public'							=> 	'isPublic'
+    ];
+	
+		public function retrieve()
+	{
+		$response = $this->execute($this->api->getJob(), $this->getAttrs(['id']));
+		$this->populateFromResponse($response);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public function create(array $userOptions): Creatable
+	{
+		$response=$this->execute($this->api->postJob(), $userOptions);
+		return $this->populateFromResponse($response);
+	}
+	
+	/**
+	 * {@inheritDoc}	
+	 */
+	public function delete()
+	{
+		$this->execute($this->api->deleteJob(), $this->getAttrs(['id']));
+	}
+	
+	public function update()
+	{
+		$response = $this->execute($this->api->putJob(), $this->getAttrs(['id', 'name','isPublic','description','isProtected','mains','libs','type']));
+		$this->populateFromResponse($response);
+	}
 }
