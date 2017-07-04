@@ -10,7 +10,7 @@ class Api extends AbstractApi
 	{
 		$this->params = new Params();
 	}
-	
+
 //----------------------CLUSTER -----------------------------------------------//
 	public function getClusters(): array
 	{
@@ -19,11 +19,12 @@ class Api extends AbstractApi
 				'path'   => 'clusters',
 				'params' => [
 						'limit'        => $this->params->limit(),
-						'marker'       => $this->params->marker()
+						'marker'       => $this->params->marker(),
+						'sortKey' => $this->params->sortKey()
 				]
 		];
 	}
-	
+
 	public function getCluster(): array
 	{
 		return [
@@ -36,7 +37,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	public function deleteCluster(): array
 	{
 		return [
@@ -45,7 +46,7 @@ class Api extends AbstractApi
 				'params' => ['id' => $this->params->urlId('cluster')],
 		];
 	}
-	
+
 	public function patchCluster(): array
 	{
 		return [
@@ -59,7 +60,7 @@ class Api extends AbstractApi
 				],
 		];
 	}
-	
+
 	public function postCluster(): array
 	{
 		return [
@@ -76,18 +77,18 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	public function postClusters(): array
 	{
 		$definition = $this->postCluster();
 		$definition['path'] .= '/multiple';
 		$definition['params'] = array_merge($definition['params'],[
 			'count' => $this->params->count(),
-			'clusterConfigs' => $this->params->clusterConfigs()	
+			'clusterConfigs' => $this->params->clusterConfigs()
 		]);
 		return $definition;
 	}
-	
+
 	public function putCluster(): array
 	{
 		return [
@@ -114,7 +115,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	public function deleteDataSource(): array
 	{
 		return [
@@ -123,7 +124,7 @@ class Api extends AbstractApi
 				'params' => ['id' => $this->params->urlId('datasource')]
 		];
 	}
-	
+
 	public function getDataSource(): array
 	{
 		return [
@@ -134,7 +135,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	public function getDataSources(): array
 	{
 		return [
@@ -142,11 +143,12 @@ class Api extends AbstractApi
 				'path'   => 'data-sources',
 				'params' => [
 						'limit'        => $this->params->limit(),
-						'marker'       => $this->params->marker()
+						'marker'       => $this->params->marker(),
+						'sortKey' => $this->params->sortKey()
 				]
 		];
 	}
-	
+
 	public function patchDataSource(): array
 	{
 		return [
@@ -161,7 +163,7 @@ class Api extends AbstractApi
 				],
 		];
 	}
-	
+
 	///////----------------- cluster-template -------------------///////////
 	public function postClusterTemplate(): array
 	{
@@ -178,7 +180,7 @@ class Api extends AbstractApi
 							'items'       => [
 								'type'       => params::OBJECT_TYPE,
 								'properties' => [
-									
+
 									'name'         => $this->params->name('node-group-template'),
 									'count'		   => $this->params->count(),
 									'nodeGroupTemplateId' => $this->params->nodeGroupTemplateId(),
@@ -201,7 +203,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	public function getClusterTemplate(): array
 	{
 		return [
@@ -212,7 +214,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	public function deleteClusterTemplate(): array
 	{
 		return [
@@ -221,7 +223,7 @@ class Api extends AbstractApi
 				'params' => ['id' => $this->params->urlId('cluster-template')],
 		];
 	}
-	
+
 	public function putClusterTemplate(): array
 	{
 		return [
@@ -236,7 +238,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	//------------------start---nodegrouptemplate-----------------------//
 	public function getNodeGroupTemplates()
 	{
@@ -245,7 +247,8 @@ class Api extends AbstractApi
 				'path'   => 'node-group-templates',
 				'params' => [
 						'limit'        => $this->params->limit(),
-						'marker'       => $this->params->marker()
+						'marker'       => $this->params->marker(),
+						'sortKey' => $this->params->sortKey()
 				]
 		];
 	}
@@ -311,7 +314,7 @@ class Api extends AbstractApi
 		];
 	}
 	//-------------------end--nodegrouptemplate--------------------------//
-	
+
 	//--------------start----job bianry------------------//
 	public function getJobBinaries(): array
 	{
@@ -326,7 +329,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	public function getJobBinary(): array
 	{
 		return [
@@ -335,7 +338,7 @@ class Api extends AbstractApi
 				'params' => ['id'=> $this->params->urlId('binary')]
 		];
 	}
-	
+
 	public function postJobBinary(): array
 	{
 		return [
@@ -349,7 +352,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	public function deleteJobBinary(): array
 	{
 		return [
@@ -358,7 +361,7 @@ class Api extends AbstractApi
 				'params' => ['id'=> $this->params->urlId('job_binary')]
 		];
 	}
-	
+
 	public function putJobBinary(): array
 	{
 		return [
@@ -373,7 +376,7 @@ class Api extends AbstractApi
 				],
 		];
 	}
-	
+
 	public function getJobBinaryData(): array
 	{
 		return [
@@ -382,8 +385,80 @@ class Api extends AbstractApi
 				'params' => ['id'=> $this->params->urlId('job_binary')]
 		];
 	}
-	
+
 	//--------------end----job bianry------------------//
+	//---------------start------job binary internal-------//
+	public function putJobBinaryInternal(): array
+	{
+		return [
+				'method' => 'PUT',
+				'path'   => 'job-binary-internals/{name}',
+				'params' => [
+					'name'=> $this->params->name('job_binary_internal')
+			]
+		];
+	}
+
+	public function getJobBinaryInternalData(): array
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'job-binary-internals/{id}/data',
+				'params' => [
+					'id'=> $this->params->urlId('job_binary_internal')
+				]
+		];
+	}
+
+	public function getJobBinaryInternal(): array
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'job-binary-internals/{id}',
+				'params' => [
+					'id'=> $this->params->urlId('job_binary_internal')
+				]
+		];
+	}
+
+	public function getJobBinaryInternals(): array
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'job-binary-internals',
+				'params' => [
+					'limit' => $this->params->limit(),
+					'marker'=> $this->params->marker(),
+					'sortKey' => $this->params->sortKey()
+				]
+		];
+	}
+
+	public function deleteJobBinaryInternal(): array
+	{
+		return [
+				'method' => 'DELETE',
+				'path'   => 'job-binary-internals/{id}',
+				'params' => [
+					'id'=> $this->params->urlId('job_binary_internal')
+				]
+		];
+	}
+
+	public function patchJobBinaryInternals(): array
+	{
+		return [
+				'method' => 'PATCH',
+				'path'   => 'job-binary-internals/{id}',
+				'params' => [
+					'id'=> $this->params->urlId('job_binary_internal'),
+					'name'=> $this->params->name('job_binary_internal'),
+					'isProtected' => $this->params->isProtected(),
+					'isPublic' => $this->params->isProtected()
+			]
+		];
+	}
+	//--------------end-------job binary internal--------//
 }
 
 ?>
