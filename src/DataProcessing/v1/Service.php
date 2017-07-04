@@ -145,6 +145,25 @@ class Service extends AbstractService
 		return $this->model(JobBinaryInternal::class)->create($data);
 	}
 	//--------------end----job bianry internal------------------//
+
+
+	//////--------------- Job--------------------------/////
+	public function createJob(array $options = []): Job
+	{
+		return $this->model(Job::class)->create($options);
+	}
+
+	public function getJob(array $options = []):Job
+	{
+		$Job = $this->model(Job::class);
+		$Job->populateFromArray($options);
+		return $Job;
+	}
+	public function listJob(array $options = [], callable $mapFn = null): \Generator
+	{
+		return $this->model(Job::class)->enumerate($this->api->getJob(), $options, $mapFn);
+	}
+	
 }
 
 ?>
