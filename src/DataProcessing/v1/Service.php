@@ -13,7 +13,7 @@ use OpenStack\DataProcessing\v1\Models\JobConfig;
 use OpenStack\DataProcessing\v1\Models\JobExecution;
 use OpenStack\DataProcessing\v1\Models\NodeGroup;
 use OpenStack\DataProcessing\v1\Models\NodeGroupTemplate;
-use OpenStack\DataProcessing\v1\Models\Pluging;
+use OpenStack\DataProcessing\v1\Models\Plugin;
 class Service extends AbstractService
 {
 //-----------------------------CLUSTER----------------------------------------
@@ -155,6 +155,20 @@ class Service extends AbstractService
 	public function listJobs(array $options = [], callable $mapFn = null): \Generator
 	{
 		return $this->model(Job::class)->enumerate($this->api->getJobs(), $options, $mapFn);
+	}
+	//---------------------------------------------------------
+
+	//--------------------plugin-------------------------------
+	public function getPlugin(array $options = []): Plugin
+	{
+		$plugin = $this->model(Plugin::class);
+		$plugin -> populateFromArray($options);
+		return $plugin;
+	}
+
+	public function listPlugins(array $options = [], callable $mapFn = null): \Generator
+	{
+		return $this->model(Plugin::class)->enumerate($this->api->getPlugins(), $options, $mapFn);
 	}
 
 }

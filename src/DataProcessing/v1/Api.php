@@ -537,6 +537,31 @@ class Api extends AbstractApi
 		];
 	}
 
+//---------------------------plugin-----------------------------------
+	public function getPlugin(): array
+	{
+		return [
+			'method' => 'GET',
+			'path'   => 'plugins/{pluginName}',
+			//'path'   => 'plugins/{pluginName}/{version}',
+			'params' => [
+				'pluginName'          =>	$this->params->pluginName('plugin'),
+				//'version'						=>	$this->params->version('plugin')
+			]
+		];
+	}
+
+	public function getPlugins(): array
+	{
+		return [
+			'method' => 'GET',
+			'path'   => 'plugins',
+			'params' => [
+
+			]
+		];
+	}
 }
+
 
 ?>

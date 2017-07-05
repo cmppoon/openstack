@@ -301,6 +301,17 @@ public function urlId(string $type): array
 
 	//--------------end----job bianry------------------//
 
+	public function version(): array
+	{
+	 return [
+			 'type'        => self::STRING_TYPE,
+			 'location'    => self::URL,
+			 'required'    => true,
+			 'sentAs'      => 'versions',
+			 'description' => 'The version of plugin'
+	 ];
+ }
+
 }
 
 ?>
