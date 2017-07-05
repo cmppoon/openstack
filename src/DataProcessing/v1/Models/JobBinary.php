@@ -9,6 +9,7 @@ use OpenStack\Common\Resource\OperatorResource;
 use OpenStack\Common\Resource\Listable;
 use OpenStack\Common\Resource\Retrievable;
 use Psr\Http\Message\StreamInterface;
+use OpenStack\Common\Transport\Utils;
 
 class JobBinary extends OperatorResource implements Listable, Retrievable, Creatable, Deletable
 {
@@ -73,6 +74,12 @@ class JobBinary extends OperatorResource implements Listable, Retrievable, Creat
 	public function getJobBinaryInternals(array $options = []): array
 	{
 		$response = $this->execute($this->api->getJobBinaryInternals(), $options);
+		return Utils::jsonDecode($response);
+	}
+	
+	public function getJobBinaryInternal(array $options = []): array
+	{
+		$response = $this->execute($this->api->getJobBinaryInternal(), $options);
 		return Utils::jsonDecode($response);
 	}
 }
