@@ -70,4 +70,9 @@ class JobBinary extends OperatorResource implements Listable, Retrievable, Creat
 		return $response->getBody();
 	}
 
+	public function getJobBinaryInternals(array $options = []): array
+	{
+		$response = $this->execute($this->api->getJobBinaryInternals(), $options);
+		return Utils::jsonDecode($response);
+	}
 }
