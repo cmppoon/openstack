@@ -64,14 +64,8 @@ class Job extends OperatorResource implements Listable, Retrievable, Creatable, 
 	
 	public function executeJob(array $options)
     {
-        $options[
-		'clusterId'  		=> 
-		'inputId' 			=>
-		'outputId' 			=> 
-		'job_configs'		=> 
-		];
+        
         $response = $this->execute($this->api->executeJob(), $options);
-		$this->populateFromResponse($response);
     }
 	
 

@@ -22,8 +22,8 @@ $openstack = new OpenStack([
 
 $sahara = $openstack->dataProcessingV1(['region' => 'RegionOne']);
 
-$plugin = $sahara->getPlugin(['plugin_name' => 'spark', 'version' => '1.6.0']);
-$plugin->retrieveDetails();
+$plugin = $sahara->getPlugin(['name' => 'spark', 'versions' => '1.6.0']);
+$plugin->retrieveVersionDetail();
 print_r($plugin);
 
 ?>

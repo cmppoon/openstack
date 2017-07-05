@@ -537,7 +537,7 @@ class Api extends AbstractApi
 		];
 	}
 	
-	public function executeJob(): array
+/*	public function executeJob(): array
 	{
 		return [
 				'method'  => 'POST',
@@ -551,21 +551,32 @@ class Api extends AbstractApi
 				]
 		];
 	}
-}
+*/
+
 
 //---------------------------plugin-----------------------------------
 	public function getPlugin(): array
 	{
 		return [
 			'method' => 'GET',
-			'path'   => 'plugins/{pluginName}',
-			//'path'   => 'plugins/{pluginName}/{version}',
+			'path'   => 'plugins/{name}{/versions}',
 			'params' => [
-				'pluginName'          =>	$this->params->pluginName('plugin'),
-				//'version'						=>	$this->params->version('plugin')
+				'name'          =>[
+							'type'			=> params:: STRING_TYPE,
+							'location'    	=> params::URL,
+							'description'	=> 'plugin name',
+							'required'		=> true
+						],
+				'versions'		=>[
+							'type'			=> params:: STRING_TYPE,
+							'location'    	=> params::URL,
+							'description'	=> 'version for version detail',
+							'required'		=> false
+							]		
 			]
 		];
 	}
+	
 
 	public function getPlugins(): array
 	{
@@ -573,6 +584,7 @@ class Api extends AbstractApi
 			'method' => 'GET',
 			'path'   => 'plugins',
 			'params' => [
+			
 
 			]
 		];

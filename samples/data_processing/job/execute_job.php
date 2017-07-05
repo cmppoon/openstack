@@ -21,16 +21,15 @@ $openstack = new OpenStack([
 ]);
  
 $sahara = $openstack->dataProcessingV1(['region' => 'RegionOne']);
+$options =[
+		'clusterId'  		=> null,
+		'inputId' 			=> null,
+		'outputId' 			=> null,
+		'job_configs'		=> null
+		];
 
-$options = [
-		'clusterId'  		=> 
-		'inputId' 			=>
-		'outputId' 			=> 
-		'job_configs'		=> 
-		
-];
+$job = $sahara->getJob(['id' => {jobId} ]);
+$job ->executeJob($options);
 
-$job= $sahara->executeJob($options);
-print_r($job);
 
 ?>

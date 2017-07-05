@@ -21,8 +21,7 @@ $openstack = new OpenStack([
 ]);
 
 $sahara = $openstack->dataProcessingV1(['region' => 'RegionOne']);
-
-$plugin = $sahara->getPlugin(['plugin_name' => 'spark']);
+$plugin = $sahara->getPlugin(['name' => 'spark']);
 $plugin->retrieve();
 print_r($plugin);
 

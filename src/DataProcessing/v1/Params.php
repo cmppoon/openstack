@@ -310,7 +310,7 @@ public function urlId(string $type): array
 			 'sentAs'      => 'versions',
 			 'description' => 'The version of plugin'
 	 ];
- }
+	}
 
 }
 
