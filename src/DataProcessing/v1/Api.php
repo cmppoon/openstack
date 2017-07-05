@@ -10,7 +10,7 @@ class Api extends AbstractApi
 	{
 		$this->params = new Params();
 	}
-	
+
 //----------------------CLUSTER -----------------------------------------------//
 	public function getClusters(): array
 	{
@@ -23,7 +23,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	public function getCluster(): array
 	{
 		return [
@@ -36,7 +36,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	public function deleteCluster(): array
 	{
 		return [
@@ -45,7 +45,7 @@ class Api extends AbstractApi
 				'params' => ['id' => $this->params->urlId('cluster')],
 		];
 	}
-	
+
 	public function patchCluster(): array
 	{
 		return [
@@ -59,7 +59,7 @@ class Api extends AbstractApi
 				],
 		];
 	}
-	
+
 	public function postCluster(): array
 	{
 		return [
@@ -76,18 +76,18 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	public function postClusters(): array
 	{
 		$definition = $this->postCluster();
 		$definition['path'] .= '/multiple';
 		$definition['params'] = array_merge($definition['params'],[
 			'count' => $this->params->count(),
-			'clusterConfigs' => $this->params->clusterConfigs()	
+			'clusterConfigs' => $this->params->clusterConfigs()
 		]);
 		return $definition;
 	}
-	
+
 	public function putCluster(): array
 	{
 		return [
@@ -114,7 +114,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	public function deleteDataSource(): array
 	{
 		return [
@@ -123,7 +123,7 @@ class Api extends AbstractApi
 				'params' => ['id' => $this->params->urlId('datasource')]
 		];
 	}
-	
+
 	public function getDataSource(): array
 	{
 		return [
@@ -134,7 +134,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	public function getDataSources(): array
 	{
 		return [
@@ -146,7 +146,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	public function patchDataSource(): array
 	{
 		return [
@@ -161,7 +161,7 @@ class Api extends AbstractApi
 				],
 		];
 	}
-	
+
 	///////----------------- cluster-template -------------------///////////
 	public function postClusterTemplate(): array
 	{
@@ -178,7 +178,7 @@ class Api extends AbstractApi
 							'items'       => [
 								'type'       => params::OBJECT_TYPE,
 								'properties' => [
-									
+
 									'name'         => $this->params->name('node-group-template'),
 									'count'		   => $this->params->count(),
 									'nodeGroupTemplateId' => $this->params->nodeGroupTemplateId(),
@@ -201,7 +201,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	public function getClusterTemplate(): array
 	{
 		return [
@@ -212,7 +212,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	public function deleteClusterTemplate(): array
 	{
 		return [
@@ -221,7 +221,7 @@ class Api extends AbstractApi
 				'params' => ['id' => $this->params->urlId('cluster-template')],
 		];
 	}
-	
+
 	public function putClusterTemplate(): array
 	{
 		return [
@@ -236,7 +236,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	//------------------start---nodegrouptemplate-----------------------//
 	public function getNodeGroupTemplates()
 	{
@@ -311,7 +311,7 @@ class Api extends AbstractApi
 		];
 	}
 	//-------------------end--nodegrouptemplate--------------------------//
-	
+
 	//--------------start----job bianry------------------//
 	public function getJobBinaries(): array
 	{
@@ -326,7 +326,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	public function getJobBinary(): array
 	{
 		return [
@@ -335,7 +335,7 @@ class Api extends AbstractApi
 				'params' => ['id'=> $this->params->urlId('binary')]
 		];
 	}
-	
+
 	public function postJobBinary(): array
 	{
 		return [
@@ -349,7 +349,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	public function deleteJobBinary(): array
 	{
 		return [
@@ -358,7 +358,7 @@ class Api extends AbstractApi
 				'params' => ['id'=> $this->params->urlId('job_binary')]
 		];
 	}
-	
+
 	public function putJobBinary(): array
 	{
 		return [
@@ -373,7 +373,7 @@ class Api extends AbstractApi
 				],
 		];
 	}
-	
+
 	public function getJobBinaryData(): array
 	{
 		return [
@@ -382,10 +382,10 @@ class Api extends AbstractApi
 				'params' => ['id'=> $this->params->urlId('job_binary')]
 		];
 	}
-	
+
 	//--------------end----job bianry------------------//
-	
-	
+
+
 	////------------------job(template)-------------------------//
 	public function postJob(): array
 	{
@@ -398,7 +398,7 @@ class Api extends AbstractApi
 							'type'			=> params:: ARRAY_TYPE,
 							'description'	=> 'The list of the job object and their properties.',
 							'required'		=> true
-						]
+						],
 						'libs'					=> [
 							'type'        	=> params::ARRAY_TYPE,
 							'description' 	=> 'The list of the job object properties.',
@@ -425,7 +425,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	public function getJob(): array
 	{
 		return [
@@ -436,7 +436,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	public function deleteJob(): array
 	{
 		return [
@@ -445,7 +445,7 @@ class Api extends AbstractApi
 				'params' => ['id' => $this->params->urlId('jobs')]
 		];
 	}
-	
+
 	public function patchJob(): array
 	{
 		return [
@@ -459,6 +459,32 @@ class Api extends AbstractApi
 				]
 		];
 	}
+
+//---------------------------plugin-----------------------------------
+	public function getPlugin(): array
+	{
+		return [
+			'method' => 'GET',
+			'path'   => 'plugins/{pluginName}',
+			//'path'   => 'plugins/{pluginName}/{version}',
+			'params' => [
+				'pluginName'          =>	$this->params->pluginName('plugin'),
+				//'version'						=>	$this->params->version('plugin')
+			]
+		];
+	}
+
+	public function getPlugins(): array
+	{
+		return [
+			'method' => 'GET',
+			'path'   => 'plugins',
+			'params' => [
+
+			]
+		];
+	}
 }
+
 
 ?>

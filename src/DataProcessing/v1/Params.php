@@ -7,14 +7,14 @@ use OpenStack\Common\Api\AbstractParams;
 class Params extends AbstractParams
 {
 public function urlId(string $type): array
-	{	
+	{
 		return array_merge(parent::idPath($type), [
 				'required'   => true,
 				'location'   => self::URL,
 				'documented' => false
 		]);
 	}
-	
+
 	public function url(): array
 	{
 		return [
@@ -23,7 +23,7 @@ public function urlId(string $type): array
 				'sentAs'      => 'url',
 		];
 	}
-	
+
 	public function description(): array
 	{
 		return [
@@ -32,17 +32,17 @@ public function urlId(string $type): array
 				'sentAs'      => 'description',
 		];
 	}
-	
+
 	public function isPublic(): array
 	{
 		return [
 				'type'        => self::BOOL_TYPE,
 				'sentAs'      => 'is_public',
 				'location'    => self::JSON
-				
+
 		];
 	}
-		
+
 	public function pluginName(): array
 	{
 		return [
@@ -52,7 +52,7 @@ public function urlId(string $type): array
 				'description' => 'The plugin name of cluster'
 		];
 	}
-	
+
 	public function hadoopVersion(): array
 	{
 		return [
@@ -62,7 +62,7 @@ public function urlId(string $type): array
 				'description' => 'The hadoopversion of cluster'
 		];
 	}
-	
+
 	public function clusterTemplateId(): array
 	{
 		return [
@@ -72,7 +72,7 @@ public function urlId(string $type): array
 				'description' => 'The cluster template id'
 		];
 	}
-	
+
 	public function defaultImageId(): array
 	{
 		return [
@@ -82,7 +82,7 @@ public function urlId(string $type): array
 				'description' => 'The default image id'
 		];
 	}
-	
+
 	public function userKeypairId(): array
 	{
 		return [
@@ -92,7 +92,7 @@ public function urlId(string $type): array
 				'description' => 'The user keypair id'
 		];
 	}
-	
+
 	public function neutronManagementNetwork(): array
 	{
 		return [
@@ -112,7 +112,7 @@ public function urlId(string $type): array
 				'description' => 'Numbers of cluster to be created'
 		];
 	}
-	
+
 	public function clusterConfigs(): array
 	{
 		return [
@@ -122,7 +122,7 @@ public function urlId(string $type): array
 				'description' => 'Configuration of clusters to be created'
 		];
 	}
-	
+
 	public function addNodeGroups(): array
 	{
 		return [
@@ -139,20 +139,20 @@ public function urlId(string $type): array
 								],
 								'nodeGroupTemplateId' => [
 										'type'        => self::STRING_TYPE,
-										'sentAs'	  => 'node_group_template_id'	
+										'sentAs'	  => 'node_group_template_id'
 								]
 						]
 				],
 		];
 	}
 	public function nodeGroupTemplateId(): array
-	{	
+	{
 		return [
 				'type'        => self::STRING_TYPE,
 				'sentAs'      => 'node_group_template_id'
 		];
 	}
-	
+
 	public function resizeNodeGroups(): array
 	{
 		return [
@@ -171,8 +171,8 @@ public function urlId(string $type): array
 				],
 		];
 	}
-//-------------------------------------------------------------------	
-	
+//-------------------------------------------------------------------
+
 	public function dataSourceType(): array
 	{
 		return [
@@ -182,7 +182,7 @@ public function urlId(string $type): array
 				'description' => 'The type of the data source object'
 		];
 	}
-	
+
 	public function dataSourceName(): array
 	{
 		return [
@@ -193,7 +193,7 @@ public function urlId(string $type): array
 		];
 	}
 
-	
+
 	//-----------------james edited ---------------------//
 
 
@@ -218,7 +218,7 @@ public function urlId(string $type): array
 		];
 	}
 
-	
+
 
 	public function availabilityZone(): array
 	{
@@ -280,9 +280,9 @@ public function urlId(string $type): array
 		];
 	}
 	//--------end--------nodegrouptemplate-------------------//
-	
+
 	//--------------start----job bianry------------------//
-	
+
 	public function extra(): array
 	{
 		return [
@@ -298,9 +298,20 @@ public function urlId(string $type): array
 				]
 		];
 	}
-	
+
 	//--------------end----job bianry------------------//
-	
+
+	public function version(): array
+	{
+	 return [
+			 'type'        => self::STRING_TYPE,
+			 'location'    => self::URL,
+			 'required'    => true,
+			 'sentAs'      => 'versions',
+			 'description' => 'The version of plugin'
+	 ];
+ }
+
 }
 
 ?>
