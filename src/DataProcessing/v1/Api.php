@@ -388,8 +388,6 @@ class Api extends AbstractApi
 
 	//--------------end----job bianry------------------//
 
-<<<<<<< HEAD
-=======
 	//---------------start------job binary internal-------//
 	public function putJobBinaryInternal(): array
 	{
@@ -464,7 +462,6 @@ class Api extends AbstractApi
 	//--------------end-------job binary internal--------//
 
 
->>>>>>> 3f5d27bf69fca02ab3a57ad4d3e7a8fa9dee3c74
 
 	////------------------job(template)-------------------------//
 	public function postJob(): array
@@ -540,7 +537,6 @@ class Api extends AbstractApi
 		];
 	}
 
-<<<<<<< HEAD
 //---------------------------plugin-----------------------------------
 	public function getPlugin(): array
 	{
@@ -565,8 +561,6 @@ class Api extends AbstractApi
 			]
 		];
 	}
-=======
->>>>>>> 3f5d27bf69fca02ab3a57ad4d3e7a8fa9dee3c74
 }
 
 

@@ -120,8 +120,6 @@ class Service extends AbstractService
 
 	//--------------end----job bianry------------------//
 
-<<<<<<< HEAD
-=======
 	//--------------start----job bianry internal------------------//
 	public function getJobBinaryInternal(array $options = []): JobBinaryInternal
 	{
@@ -142,7 +140,6 @@ class Service extends AbstractService
 	//--------------end----job bianry internal------------------//
 
 
->>>>>>> 3f5d27bf69fca02ab3a57ad4d3e7a8fa9dee3c74
 	//////--------------- Job--------------------------/////
 	public function createJob(array $options = []): Job
 	{
@@ -159,7 +156,6 @@ class Service extends AbstractService
 	{
 		return $this->model(Job::class)->enumerate($this->api->getJobs(), $options, $mapFn);
 	}
-<<<<<<< HEAD
 	//---------------------------------------------------------
 
 	//--------------------plugin-------------------------------
@@ -174,8 +170,6 @@ class Service extends AbstractService
 	{
 		return $this->model(Plugin::class)->enumerate($this->api->getPlugins(), $options, $mapFn);
 	}
-=======
->>>>>>> 3f5d27bf69fca02ab3a57ad4d3e7a8fa9dee3c74
 
 }
 
