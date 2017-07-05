@@ -19,7 +19,8 @@ class Api extends AbstractApi
 				'path'   => 'clusters',
 				'params' => [
 						'limit'        => $this->params->limit(),
-						'marker'       => $this->params->marker()
+						'marker'       => $this->params->marker(),
+						'sortKey' => $this->params->sortKey()
 				]
 		];
 	}
@@ -142,7 +143,8 @@ class Api extends AbstractApi
 				'path'   => 'data-sources',
 				'params' => [
 						'limit'        => $this->params->limit(),
-						'marker'       => $this->params->marker()
+						'marker'       => $this->params->marker(),
+						'sortKey' => $this->params->sortKey()
 				]
 		];
 	}
@@ -245,7 +247,8 @@ class Api extends AbstractApi
 				'path'   => 'node-group-templates',
 				'params' => [
 						'limit'        => $this->params->limit(),
-						'marker'       => $this->params->marker()
+						'marker'       => $this->params->marker(),
+						'sortKey' => $this->params->sortKey()
 				]
 		];
 	}
@@ -385,6 +388,83 @@ class Api extends AbstractApi
 
 	//--------------end----job bianry------------------//
 
+<<<<<<< HEAD
+=======
+	//---------------start------job binary internal-------//
+	public function putJobBinaryInternal(): array
+	{
+		return [
+				'method' => 'PUT',
+				'path'   => 'job-binary-internals/{name}',
+				'params' => [
+					'name'=> $this->params->name('job_binary_internal')
+			]
+		];
+	}
+
+	public function getJobBinaryInternalData(): array
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'job-binary-internals/{id}/data',
+				'params' => [
+					'id'=> $this->params->urlId('job_binary_internal')
+				]
+		];
+	}
+
+	public function getJobBinaryInternal(): array
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'job-binary-internals/{id}',
+				'params' => [
+					'id'=> $this->params->urlId('job_binary_internal')
+				]
+		];
+	}
+
+	public function getJobBinaryInternals(): array
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'job-binary-internals',
+				'params' => [
+					'limit' => $this->params->limit(),
+					'marker'=> $this->params->marker(),
+					'sortKey' => $this->params->sortKey()
+				]
+		];
+	}
+
+	public function deleteJobBinaryInternal(): array
+	{
+		return [
+				'method' => 'DELETE',
+				'path'   => 'job-binary-internals/{id}',
+				'params' => [
+					'id'=> $this->params->urlId('job_binary_internal')
+				]
+		];
+	}
+
+	public function patchJobBinaryInternals(): array
+	{
+		return [
+				'method' => 'PATCH',
+				'path'   => 'job-binary-internals/{id}',
+				'params' => [
+					'id'=> $this->params->urlId('job_binary_internal'),
+					'name'=> $this->params->name('job_binary_internal'),
+					'isProtected' => $this->params->isProtected(),
+					'isPublic' => $this->params->isProtected()
+			]
+		];
+	}
+	//--------------end-------job binary internal--------//
+
+
+>>>>>>> 3f5d27bf69fca02ab3a57ad4d3e7a8fa9dee3c74
 
 	////------------------job(template)-------------------------//
 	public function postJob(): array
@@ -460,6 +540,7 @@ class Api extends AbstractApi
 		];
 	}
 
+<<<<<<< HEAD
 //---------------------------plugin-----------------------------------
 	public function getPlugin(): array
 	{
@@ -484,6 +565,8 @@ class Api extends AbstractApi
 			]
 		];
 	}
+=======
+>>>>>>> 3f5d27bf69fca02ab3a57ad4d3e7a8fa9dee3c74
 }
 
 

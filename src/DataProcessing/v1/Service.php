@@ -120,6 +120,29 @@ class Service extends AbstractService
 
 	//--------------end----job bianry------------------//
 
+<<<<<<< HEAD
+=======
+	//--------------start----job bianry internal------------------//
+	public function getJobBinaryInternal(array $options = []): JobBinaryInternal
+	{
+		$jobBinaryInternal = $this->model(JobBinaryInternal::class);
+		$jobBinaryInternal->populateFromArray($options);
+		return $jobBinaryInternal;
+	}
+
+	public function listJobBinaryInternals(array $options = [], callable $mapFn = null): \Generator
+	{
+		return $this->model(JobBinaryInternal::class)->enumerate($this->api->getJobBinaryInternals(), $options, $mapFn);
+	}
+
+	public function createJobBinaryInternal(array $data): JobBinaryInternal
+	{
+		return $this->model(JobBinary::class)->create($data);
+	}
+	//--------------end----job bianry internal------------------//
+
+
+>>>>>>> 3f5d27bf69fca02ab3a57ad4d3e7a8fa9dee3c74
 	//////--------------- Job--------------------------/////
 	public function createJob(array $options = []): Job
 	{
@@ -132,10 +155,11 @@ class Service extends AbstractService
 		$Job->populateFromArray($options);
 		return $Job;
 	}
-	public function listJob(array $options = [], callable $mapFn = null): \Generator
+	public function listJobs(array $options = [], callable $mapFn = null): \Generator
 	{
-		return $this->model(Job::class)->enumerate($this->api->getJob(), $options, $mapFn);
+		return $this->model(Job::class)->enumerate($this->api->getJobs(), $options, $mapFn);
 	}
+<<<<<<< HEAD
 	//---------------------------------------------------------
 
 	//--------------------plugin-------------------------------
@@ -150,6 +174,8 @@ class Service extends AbstractService
 	{
 		return $this->model(Plugin::class)->enumerate($this->api->getPlugins(), $options, $mapFn);
 	}
+=======
+>>>>>>> 3f5d27bf69fca02ab3a57ad4d3e7a8fa9dee3c74
 
 }
 
