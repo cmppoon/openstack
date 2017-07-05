@@ -536,6 +536,22 @@ class Api extends AbstractApi
 				]
 		];
 	}
+	
+	public function executeJob(): array
+	{
+		return [
+				'method'  => 'POST',
+				'path'    => 'jobs/{id}/execute',
+				'params'  => [
+						'id'   			=> $this->params->urlId('jobs'),
+						'clusterId' 	=> $this->params->
+						'inputId' 		=> $this->params->
+						'outputId'		=> $this->params->
+						'job_configs'	=> $this->params->
+				]
+		];
+	}
+}
 
 //---------------------------plugin-----------------------------------
 	public function getPlugin(): array
