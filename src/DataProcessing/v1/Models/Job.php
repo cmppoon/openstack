@@ -71,14 +71,8 @@ class Job extends OperatorResource implements Listable, Retrievable, Creatable, 
 		'job_configs'		=> 
 		];
         $response = $this->execute($this->api->executeJob(), $options);
-
+		$this->populateFromResponse($response);
     }
-	 public function start()
-    {
-        $this->execute($this->api->startServer(), [
-            'id' => $this->id,
-            'os-start' => null
-        ]);
-    }
+	
 
 }
