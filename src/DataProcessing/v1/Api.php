@@ -446,7 +446,7 @@ class Api extends AbstractApi
 		];
 	}
 
-	public function patchJobBinaryInternals(): array
+	public function patchJobBinaryInternal(): array
 	{
 		return [
 				'method' => 'PATCH',

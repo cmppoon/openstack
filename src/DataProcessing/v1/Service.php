@@ -9,6 +9,7 @@ use OpenStack\DataProcessing\v1\Models\DataSource;
 use OpenStack\DataProcessing\v1\Models\Image;
 use OpenStack\DataProcessing\v1\Models\Job;
 use OpenStack\DataProcessing\v1\Models\JobBinary;
+use OpenStack\DataProcessing\v1\Models\JobBinaryInternal;
 use OpenStack\DataProcessing\v1\Models\JobConfig;
 use OpenStack\DataProcessing\v1\Models\JobExecution;
 use OpenStack\DataProcessing\v1\Models\NodeGroup;
@@ -121,21 +122,22 @@ class Service extends AbstractService
 	//--------------end----job bianry------------------//
 
 	//--------------start----job bianry internal------------------//
-	public function getJobBinaryInternal(array $options = []): array
+	public function getJobBinaryInternal(array $options = []): JobBinaryInternal
 	{
-		$jobBinaryInternal = $this->model(JobBinary::class);
+		$jobBinaryInternal = $this->model(JobBinaryInternal::class);
 		$jobBinaryInternal->populateFromArray($options);
 		return $jobBinaryInternal;
 	}
 
 	public function listJobBinaryInternals(array $options = [], callable $mapFn = null): \Generator
 	{
-		return $this->model(JobBinary::class)->enumerate($this->api->getJobBinaryInternals(), $options, $mapFn);
+		return $this->model(JobBinaryInternal::class)->enumerate($this->api->getJobBinaryInternals(), $options, $mapFn);
 	}
 
-	public function createJobBinaryInternal(array $data): array
+	//not done yet
+	public function createJobBinaryInternal(StreamInterface $stream): JobBinaryInternal
 	{
-		return $this->model(JobBinary::class)->create($data);
+		return $this->model(JobBinaryInternal::class)->create($stream);
 	}
 	//--------------end----job bianry internal------------------//
 
