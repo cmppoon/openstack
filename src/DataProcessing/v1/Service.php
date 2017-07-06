@@ -159,6 +159,19 @@ class Service extends AbstractService
 		return $this->model(Job::class)->enumerate($this->api->getJobs(), $options, $mapFn);
 	}
 	//---------------------------------------------------------
+	//-----------------------Job Execution-----------------------///
+	public function getJob(array $options = []):JobExecution
+	{
+		$JobExecution = $this->model(JobExecution::class);
+		$JobExecution ->populateFromArray($options);
+		return $JobExecution;
+	}
+	public function listJobs(array $options = [], callable $mapFn = null): \Generator
+	{
+		return $this->model(JobExecution::class)->enumerate($this->api->getJobExecutions(), $options, $mapFn);
+	}
+	
+	//---------------------------------------------------------------//
 
 	//--------------------plugin-------------------------------
 	public function getPlugin(array $options = []): Plugin

@@ -552,6 +552,67 @@ class Api extends AbstractApi
 		];
 	}
 */
+//-------------------------Job Execution(Job)-------------------------------
+	public function getJobExecutions(): array
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'job-executions',
+				'params' => [
+						'limit'        => $this->params->limit(),
+						'marker'       => $this->params->marker(),
+						'sort_by'	   => $this->params->sortkey()
+				]
+		];
+	}
+
+public function getJobExecution(): array
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'job-executions/{id}',
+				'params' => [
+						'id'           => $this->params->urlId('jobs')
+				]
+		];
+	}
+
+	public function deleteJob(): array
+	{
+		return [
+				'method' => 'DELETE',
+				'path'   => 'job-executions/{id}',
+				'params' => ['id' => $this->params->urlId('jobs')]
+		];
+	}
+
+	public function patchJob(): array
+	{
+		return [
+				'method'  => 'PATCH',
+				'path'    => 'job-executions/{id}',
+				'params'  => [
+						'id'   		=> $this->params->urlId('jobs'),
+						'name' 		=> $this->params->name('job'),
+						'isPublic' 	=> $this->params->isPublic(),
+						'description'=> $this->params->description()
+				]
+		];
+	}
+	
+	public function cancelJob(): array
+	{
+		return [
+				'method'  => 'POST',
+				'path'    => 'job-executions/{id}/cancel',
+				'params'  => [
+						'id'   			=> $this->params->urlId('jobs')
+				]
+		];
+	}
+
+
+
 
 
 //---------------------------plugin-----------------------------------
