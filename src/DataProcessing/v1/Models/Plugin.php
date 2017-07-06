@@ -13,12 +13,12 @@ class Plugin extends OperatorResource implements Listable, Retrievable
 {
   public $description;
   public $versions;
-  public $versionLabels; 
+  public $versionLabels;
   public $title;
   public $pluginLabels;
   public $name;
-  public $tenant_id;
-  
+  public $tenantId;
+
   protected $resourceKey = 'plugin';
   protected $resourcesKey = 'plugins';
 
@@ -41,7 +41,6 @@ class Plugin extends OperatorResource implements Listable, Retrievable
 		//$this->populateFromResponse($response);
 		//return Utils::jsonDecode($response)['plugin'];
 	}
-	
 
 	public function update()
 	{

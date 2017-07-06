@@ -171,6 +171,18 @@ class Service extends AbstractService
 		return $this->model(Plugin::class)->enumerate($this->api->getPlugins(), $options, $mapFn);
 	}
 
+	//--------------------image--------------------------------
+	public function getImage(array $options = []): Image
+	{
+		$image = $this->model(Image::class);
+		$image -> populateFromArray($options);
+		return $image;
+	}
+
+	public function listImages(array $options = [], callable $mapFn = null): \Generator
+	{
+		return $this->model(Image::class)->enumerate($this->api->getImages(), $options, $mapFn);
+	}
 }
 
 ?>

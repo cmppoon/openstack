@@ -21,8 +21,9 @@ $openstack = new OpenStack([
 ]);
 
 $sahara = $openstack->dataProcessingV1(['region' => '{region}']);
-$plugin = $sahara->getPlugin(['name' => '{name}']);
-$plugin->retrieve();
-print_r($plugin);
+
+$image = $sahara->getImage(['id' => '{iMageId}']);
+$image -> retrieve();
+print_r($image);
 
 ?>

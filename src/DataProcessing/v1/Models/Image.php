@@ -24,7 +24,34 @@ class Image extends OperatorResource implements Listable, Retrievable, Creatable
   public $id;
   public $description;
 
+  protected $resourceKey = 'image';
+	protected $resourcesKey = 'images';
+
   protected $aliases = [
 			'OS-EXT-IMG-SIZE:size'					=>	'OSEXTIMGSIZEsize'
 	];
+
+  public function create(array $userOptions): Creatable
+    {
+        $response = $this->execute($this->api->postImage(), $userOptions);
+        return $this->populateFromResponse($response);
+    }
+
+	public function retrieve()
+	{
+		$response = $this->execute($this->api->getImage(), $this->getAttrs(['id']));
+		$this->populateFromResponse($response);
+	}
+
+	public function delete()
+	{
+		$this->execute($this->api->deleteImage(), $this->getAttrs(['id']));
+	}
+
+	public function update()
+	{
+		$response = $this->execute($this->api->patchImage(), $this->getAttrs(['id', 'description', 'name', 'isPublic', 'isProtected']));
+		$this->populateFromResponse($response);
+	}
+
 }

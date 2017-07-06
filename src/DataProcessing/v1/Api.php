@@ -536,7 +536,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 /*	public function executeJob(): array
 	{
 		return [
@@ -572,11 +572,11 @@ class Api extends AbstractApi
 							'location'    	=> params::URL,
 							'description'	=> 'version for version detail',
 							'required'		=> false
-							]		
+							]
 			]
 		];
 	}
-	
+
 
 	public function getPlugins(): array
 	{
@@ -584,9 +584,31 @@ class Api extends AbstractApi
 			'method' => 'GET',
 			'path'   => 'plugins',
 			'params' => [
-			
+
 
 			]
+		];
+	}
+
+//---------------------------image-----------------------------------
+	public function getImages(): array
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'images',
+				'params' => [
+
+				]
+		];
+	}
+	public function getImage(): array
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'images/{id}',
+				'params' => [
+					'id'           => $this->params->urlId('image')
+				]
 		];
 	}
 }

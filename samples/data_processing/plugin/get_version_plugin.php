@@ -6,23 +6,23 @@ require 'vendor/autoload.php';
 use OpenStack\OpenStack;
 
 $openstack = new OpenStack([
-    'authUrl' => 'http://203.185.71.2:5000/v3/',
-    'user'    => [
-        'name'       => 'siit',
-        'password' => 'Siit#60!',
-        'domain' => [ 'name' => 'Default' ]
-    ],
-    'scope'   => [
-        'project' => [
-             'name' => 'php',
-             'domain' => [ 'name' => 'Default' ]
-        ]
-    ]
+		'authUrl' => '{authUrl}',
+		'user'    => [
+				'name'       => '{userName}',
+				'password' => '{password}',
+				'domain' => [ 'name' => '{userDomain}' ]
+		],
+		'scope'   => [
+				'project' => [
+						'name' => '{projectName}',
+						'domain' => [ 'name' => '{projectDomain}' ]
+				]
+		]
 ]);
 
-$sahara = $openstack->dataProcessingV1(['region' => 'RegionOne']);
+$sahara = $openstack->dataProcessingV1(['region' => '{region}']);
 
-$plugin = $sahara->getPlugin(['name' => 'spark', 'versions' => '1.6.0']);
+$plugin = $sahara->getPlugin(['name' => '{name}', 'versions' => '{versions}']);
 $plugin->retrieveVersionDetail();
 print_r($plugin);
 
