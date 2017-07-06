@@ -185,6 +185,7 @@ class Service extends AbstractService
 	{
 		return $this->model(Image::class)->enumerate($this->api->getImages(), $options, $mapFn);
 	}
+
 }
 
 ?>
