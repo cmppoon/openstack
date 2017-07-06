@@ -21,9 +21,13 @@ $openstack = new OpenStack([
 ]);
 
 $sahara = $openstack->dataProcessingV1(['region' => '{region}']);
-
 $image = $sahara->getImage(['id' => '{imageId}']);
-$image -> retrieve();
+$options = [
+		'id' => '{imageId}',
+		'name' => '{newName}',
+		'description' => '{newDescription}'
+];
+$image -> register($options);
 print_r($image);
 
 ?>

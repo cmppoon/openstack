@@ -54,4 +54,10 @@ class Image extends OperatorResource implements Listable, Retrievable, Creatable
 		$this->populateFromResponse($response);
 	}
 
+  public function register(array $userOptions)
+  {
+    $response = $this->execute($this->api->postImage(), $userOptions);
+    return $this->populateFromResponse($response);
+  }
+
 }
