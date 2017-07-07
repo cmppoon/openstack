@@ -18,20 +18,16 @@ class Plugin extends OperatorResource implements Listable, Retrievable
   public $pluginLabels;
   public $name;
   public $tenantId;
-  // public $node_processes;
-  // public $required_image_tags;
-  // public $configs;
 
   protected $resourceKey = 'plugin';
   protected $resourcesKey = 'plugins';
 
   protected $aliases = [
-			'version_labels'			   =>	'versionLabels',
-			'plugin_labels'				   =>	'pluginLabels',
-			'tenant_id'					     => 'tenantId',
-      'plugin_name'            => 'name',
-      // 'node_processes'			   =>	'nodeProcesses',
-			// 'required_image_tags'	   =>	'requiredImageTags'
+			'version_labels'			   	=>	'versionLabels',
+			'plugin_labels'				   	=>	'pluginLabels',
+			'tenant_id'					    => 'tenantId',
+			'plugin_name'            		=> 'name',
+
 	];
 
 
@@ -43,9 +39,9 @@ class Plugin extends OperatorResource implements Listable, Retrievable
 
  	public function retrieveDetails()
 	{
-    $response = $this->execute($this->api->getPlugin(), $this->getAttrs(['name','versions']));
-		$this->populateFromResponse($response);
-		//return Utils::jsonDecode($response)['plugin'];
+		$response = $this->execute($this->api->getPluginVersion(), $this->getAttrs(['name','versions']));
+
+		return Utils::jsonDecode($response)['plugin'];
 	}
 
 	public function update()
