@@ -135,9 +135,9 @@ class Service extends AbstractService
 	}
 
 	//not done yet
-	public function createJobBinaryInternal(StreamInterface $stream): JobBinaryInternal
+	public function createJobBinaryInternal(array $options): JobBinaryInternal
 	{
-		return $this->model(JobBinaryInternal::class)->create($stream);
+		return $this->model(JobBinaryInternal::class)->create($options);
 	}
 	//--------------end----job bianry internal------------------//
 
@@ -170,7 +170,7 @@ class Service extends AbstractService
 	{
 		return $this->model(JobExecution::class)->enumerate($this->api->getJobExecutions(), $options, $mapFn);
 	}
-	
+
 	//---------------------------------------------------------------//
 
 	//--------------------plugin-------------------------------

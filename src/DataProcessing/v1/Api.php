@@ -395,7 +395,8 @@ class Api extends AbstractApi
 				'method' => 'PUT',
 				'path'   => 'job-binary-internals/{name}',
 				'params' => [
-					'name'=> $this->params->name('job_binary_internal')
+					'name'=> $this->params->name('job_binary_internal'),
+					'data'=> $this->params->data()
 			]
 		];
 	}
@@ -599,7 +600,7 @@ public function getJobExecution(): array
 				]
 		];
 	}
-	
+
 	public function cancelJob(): array
 	{
 		return [

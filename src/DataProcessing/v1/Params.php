@@ -3,6 +3,7 @@
 namespace OpenStack\DataProcessing\v1;
 
 use OpenStack\Common\Api\AbstractParams;
+use Psr\Http\Message\StreamInterface;
 
 class Params extends AbstractParams
 {
@@ -311,6 +312,18 @@ public function urlId(string $type): array
 			 'description' => 'The version of plugin'
 	 ];
 	}
+
+	//-------------start---jobbinaryinternal--------------//
+	public function data(): array
+	{
+			return [
+					'location'   => self::RAW,
+					'type'       => StreamInterface::class,
+					'required'   => true,
+					'documented' => false,
+			];
+	}
+		//-------------end---jobbinaryinternal--------------//
 
 }
 
