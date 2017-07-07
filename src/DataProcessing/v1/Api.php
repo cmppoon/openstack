@@ -578,15 +578,30 @@ public function getJobExecution(): array
 		];
 	}
 
-	public function deleteJob(): array
-	{
-		return [
-				'method' => 'DELETE',
-				'path'   => 'job-executions/{id}',
-				'params' => ['id' => $this->params->urlId('jobs')]
-		];
-	}
+	// public function deleteJob(): array
+	// {
+	// 	return [
+	// 			'method' => 'DELETE',
+	// 			'path'   => 'job-executions/{id}',
+	// 			'params' => ['id' => $this->params->urlId('jobs')]
+	// 	];
+	// }
+	//
+	// public function patchJob(): array
+	// {
+	// 	return [
+	// 			'method'  => 'PATCH',
+	// 			'path'    => 'job-executions/{id}',
+	// 			'params'  => [
+	// 					'id'   		=> $this->params->urlId('jobs'),
+	// 					'name' 		=> $this->params->name('job'),
+	// 					'isPublic' 	=> $this->params->isPublic(),
+	// 					'description'=> $this->params->description()
+	// 			]
+	// 	];
+	// }
 
+<<<<<<< HEAD
 	public function patchJob(): array
 	{
 		return [
@@ -601,6 +616,8 @@ public function getJobExecution(): array
 		];
 	}
 
+=======
+>>>>>>> 1450d8053db7b52eea3a1f286a891b7062cb188e
 	public function cancelJob(): array
 	{
 		return [
@@ -621,18 +638,20 @@ public function getJobExecution(): array
 	{
 		return [
 			'method' => 'GET',
-			'path'   => 'plugins/{name}{/versions}',
+			'path'   => 'plugins/{name}{/version}',
 			'params' => [
 				'name'          =>[
 							'type'			=> params:: STRING_TYPE,
 							'location'    	=> params::URL,
 							'description'	=> 'plugin name',
+							'sentAs'			=> 'plugin_name',
 							'required'		=> true
 						],
-				'versions'		=>[
+				'version'		=>[
 							'type'			=> params:: STRING_TYPE,
 							'location'    	=> params::URL,
 							'description'	=> 'version for version detail',
+							'sentAs'			=> 'versions',
 							'required'		=> false
 							]
 			]
@@ -673,18 +692,43 @@ public function getJobExecution(): array
 				]
 		];
 	}
+	// public function postImage(): array
+	// {
+	// 	return [
+	// 			'method'  => 'POST',
+	// 			'path'    => 'images/{id}',
+	// 			'params'  => [
+	// 				'id'            => $this->params->urlId('image'),
+	// 				'username'			=> $this->params->name('image'),
+	// 				'description'		=> $this->params->description()
+	// 			]
+	// 	];
+	// }
 	public function postImage(): array
 	{
 		return [
-				'method'  => 'POST',
-				'path'    => 'images/{id}',
-				'params'  => [
-					'id'            => $this->params->urlId('image'),
-					'username'			=> $this->params->name('image'),
-					'description'		=> $this->params->description()
-				]
+			'method' => 'POST',
+			'path'   => 'images/{id}{/tag}{/untag}',
+			'params' => [
+				'id'					=> $this->params->urlId('image'),
+				'username'			=> $this->params->name('image'),
+				'description'		=> $this->params->description(),
+				'tag'          =>[
+							'type'					=> STRING_TYPE,
+							'location'    	=> params::URL,
+							'description'		=> 'tag',
+							'required'			=> false
+						],
+				'untag'		=>[
+							'type'					=> STRING_TYPE,
+							'location'    	=> params::URL,
+							'description'		=> 'untag',
+							'required'			=> false
+						]
+			]
 		];
 	}
+
 }
 
 

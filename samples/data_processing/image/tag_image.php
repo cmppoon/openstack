@@ -22,8 +22,7 @@ $openstack = new OpenStack([
 
 $sahara = $openstack->dataProcessingV1(['region' => '{region}']);
 
-$plugin = $sahara->getPlugin(['plugin_name' => '{name}', 'versions' => '{versions}']);
-$plugin->retrieveVersionDetail();
-print_r($plugin);
+$image = $sahara->getImage(['id' => '{imageId}']);
+$image->addTags('spark', '1.6.2');
 
 ?>
