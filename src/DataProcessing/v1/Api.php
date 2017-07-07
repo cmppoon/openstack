@@ -601,23 +601,7 @@ public function getJobExecution(): array
 	// 	];
 	// }
 
-<<<<<<< HEAD
-	public function patchJob(): array
-	{
-		return [
-				'method'  => 'PATCH',
-				'path'    => 'job-executions/{id}',
-				'params'  => [
-						'id'   		=> $this->params->urlId('jobs'),
-						'name' 		=> $this->params->name('job'),
-						'isPublic' 	=> $this->params->isPublic(),
-						'description'=> $this->params->description()
-				]
-		];
-	}
 
-=======
->>>>>>> 1450d8053db7b52eea3a1f286a891b7062cb188e
 	public function cancelJob(): array
 	{
 		return [
