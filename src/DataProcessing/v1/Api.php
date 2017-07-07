@@ -577,29 +577,29 @@ public function getJobExecution(): array
 		];
 	}
 
-	public function deleteJob(): array
-	{
-		return [
-				'method' => 'DELETE',
-				'path'   => 'job-executions/{id}',
-				'params' => ['id' => $this->params->urlId('jobs')]
-		];
-	}
+	// public function deleteJob(): array
+	// {
+	// 	return [
+	// 			'method' => 'DELETE',
+	// 			'path'   => 'job-executions/{id}',
+	// 			'params' => ['id' => $this->params->urlId('jobs')]
+	// 	];
+	// }
+	//
+	// public function patchJob(): array
+	// {
+	// 	return [
+	// 			'method'  => 'PATCH',
+	// 			'path'    => 'job-executions/{id}',
+	// 			'params'  => [
+	// 					'id'   		=> $this->params->urlId('jobs'),
+	// 					'name' 		=> $this->params->name('job'),
+	// 					'isPublic' 	=> $this->params->isPublic(),
+	// 					'description'=> $this->params->description()
+	// 			]
+	// 	];
+	// }
 
-	public function patchJob(): array
-	{
-		return [
-				'method'  => 'PATCH',
-				'path'    => 'job-executions/{id}',
-				'params'  => [
-						'id'   		=> $this->params->urlId('jobs'),
-						'name' 		=> $this->params->name('job'),
-						'isPublic' 	=> $this->params->isPublic(),
-						'description'=> $this->params->description()
-				]
-		];
-	}
-	
 	public function cancelJob(): array
 	{
 		return [
@@ -626,6 +626,7 @@ public function getJobExecution(): array
 							'type'			=> params:: STRING_TYPE,
 							'location'    	=> params::URL,
 							'description'	=> 'plugin name',
+							'sentAs'			=> 'plugin_name',
 							'required'		=> true
 						],
 				'versions'		=>[

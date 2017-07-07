@@ -21,7 +21,7 @@ $openstack = new OpenStack([
 ]);
 
 $sahara = $openstack->dataProcessingV1(['region' => '{region}']);
-$plugin = $sahara->getPlugin(['name' => '{name}']);
+$plugin = $sahara->getPlugin(['plugin_name' => '{name}']);
 $plugin->retrieve();
 print_r($plugin);
 
