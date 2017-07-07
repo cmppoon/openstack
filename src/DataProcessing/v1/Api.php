@@ -620,7 +620,7 @@ public function getJobExecution(): array
 	{
 		return [
 			'method' => 'GET',
-			'path'   => 'plugins/{name}{/versions}',
+			'path'   => 'plugins/{name}{/version}',
 			'params' => [
 				'name'          =>[
 							'type'			=> params:: STRING_TYPE,
@@ -629,10 +629,11 @@ public function getJobExecution(): array
 							'sentAs'			=> 'plugin_name',
 							'required'		=> true
 						],
-				'versions'		=>[
+				'version'		=>[
 							'type'			=> params:: STRING_TYPE,
 							'location'    	=> params::URL,
 							'description'	=> 'version for version detail',
+							'sentAs'			=> 'versions',
 							'required'		=> false
 							]
 			]
@@ -673,18 +674,43 @@ public function getJobExecution(): array
 				]
 		];
 	}
+	// public function postImage(): array
+	// {
+	// 	return [
+	// 			'method'  => 'POST',
+	// 			'path'    => 'images/{id}',
+	// 			'params'  => [
+	// 				'id'            => $this->params->urlId('image'),
+	// 				'username'			=> $this->params->name('image'),
+	// 				'description'		=> $this->params->description()
+	// 			]
+	// 	];
+	// }
 	public function postImage(): array
 	{
 		return [
-				'method'  => 'POST',
-				'path'    => 'images/{id}',
-				'params'  => [
-					'id'            => $this->params->urlId('image'),
-					'username'			=> $this->params->name('image'),
-					'description'		=> $this->params->description()
-				]
+			'method' => 'POST',
+			'path'   => 'images/{id}{/tag}{/untag}',
+			'params' => [
+				'id'					=> $this->params->urlId('image'),
+				'username'			=> $this->params->name('image'),
+				'description'		=> $this->params->description(),
+				'tag'          =>[
+							'type'					=> STRING_TYPE,
+							'location'    	=> params::URL,
+							'description'		=> 'tag',
+							'required'			=> false
+						],
+				'untag'		=>[
+							'type'					=> STRING_TYPE,
+							'location'    	=> params::URL,
+							'description'		=> 'untag',
+							'required'			=> false
+						]
+			]
 		];
 	}
+
 }
 
 

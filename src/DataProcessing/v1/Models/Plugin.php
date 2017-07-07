@@ -44,7 +44,7 @@ class Plugin extends OperatorResource implements Listable, Retrievable
  	public function retrieveDetails()
 	{
     $response = $this->execute($this->api->getPlugin(), $this->getAttrs(['name','versions']));
-		//$this->populateFromResponse($response);
+		$this->populateFromResponse($response);
 		//return Utils::jsonDecode($response)['plugin'];
 	}
 
