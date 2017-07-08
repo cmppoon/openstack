@@ -6,24 +6,24 @@ require 'vendor/autoload.php';
 use OpenStack\OpenStack;
  
 $openstack = new OpenStack([
-    'authUrl' => 'http://203.185.71.2:5000/v3/',
+    'authUrl' => '{authUrl}',
     'user'    => [
-        'name'       => 'siit',
-        'password' => 'Siit#60!',
-        'domain' => [ 'name' => 'Default' ]
+        'name'       => '{userName}',
+        'password' => '{password}',
+        'domain' => [ 'name' => '{userDomain}' ]
     ],
     'scope'   => [
         'project' => [
-             'name' => 'php',
-             'domain' => [ 'name' => 'Default' ]
+             'name' => '{projectName}',
+             'domain' => [ 'name' => '{projectDomain}' ]
         ]
     ]
 ]);
  
-$sahara = $openstack->dataProcessingV1(['region' => 'RegionOne']);
-$job = $sahara->getJob(['id' => '3ef7c915-d7ac-4571-9d88-7ed363219663']);
-$job->description = 'Spark-Job-Sample';
-$job->isPublic = true;
+$sahara = $openstack->dataProcessingV1(['region' => '{region}']);
+$job = $sahara->getJob(['id' => '{jobId}']);
+$job->description = '{description}';
+$job->isPublic = '{trueOrfalse}';
 $job->update();
 print_r($job);
 ?>

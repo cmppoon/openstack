@@ -21,8 +21,8 @@ $openstack = new OpenStack([
 ]);
  
 $sahara = $openstack->dataProcessingV1(['region' => 'RegionOne']);
-$job = $sahara->getJob(['id' => '{job-id}']);
-$job->retrieve();
-print_r($job);
+$jobExecution = $sahara->getJobExecution(['id' => '61154640-ab55-4ab7-9c4b-f65e27ee10e1']);
+$jobExecution->refreshStatus();
+print_r($jobExecution);
 ?>
 

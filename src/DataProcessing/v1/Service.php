@@ -146,7 +146,6 @@ class Service extends AbstractService
 	}
 	//--------------end----job bianry internal------------------//
 
-
 	//////--------------- Job--------------------------/////
 	public function createJob(array $options = []): Job
 	{
@@ -166,16 +165,17 @@ class Service extends AbstractService
 	//---------------------------------------------------------
 	//-----------------------Job Execution-----------------------///
 
-	// public function getJob(array $options = []):JobExecution
-	// {
-	// 	$JobExecution = $this->model(JobExecution::class);
-	// 	$JobExecution ->populateFromArray($options);
-	// 	return $JobExecution;
-	// }
-	// public function listJobs(array $options = [], callable $mapFn = null): \Generator
-	// {
-	// 	return $this->model(JobExecution::class)->enumerate($this->api->getJobExecutions(), $options, $mapFn);
-	// }
+	public function getJobExecution(array $options = []):JobExecution
+	{
+		$JobExecution = $this->model(JobExecution::class);
+	 	$JobExecution ->populateFromArray($options);
+	return $JobExecution;
+	}
+	 
+	public function listJobExecutions(array $options = [], callable $mapFn = null): \Generator
+	{
+	 	return $this->model(JobExecution::class)->enumerate($this->api->getJobExecutions(), $options, $mapFn);
+	}
 
 
 	//---------------------------------------------------------------//

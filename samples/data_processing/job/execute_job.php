@@ -22,13 +22,13 @@ $openstack = new OpenStack([
  
 $sahara = $openstack->dataProcessingV1(['region' => 'RegionOne']);
 $options =[
-		'clusterId'  		=> null,
-		'inputId' 			=> null,
-		'outputId' 			=> null,
-		'job_configs'		=> null
-		];
+		'clusterId'  		=> 'b38c705a-edf0-427e-9e76-8dd2ba3a26b7',
+		'jobConfigs'		=> [
+			'configs'	=> [ 'edp.java.main_class' => 'main.java']
+		]
+];
 
-$job = $sahara->getJob(['id' => {jobId} ]);
+$job = $sahara->getJob(['id' => '3ef7c915-d7ac-4571-9d88-7ed363219663' ]);
 $job ->executeJob($options);
 
 

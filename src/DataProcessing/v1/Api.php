@@ -473,15 +473,16 @@ class Api extends AbstractApi
 				'method'  => 'POST',
 				'params'  => [
 						'description'          	=> $this->params->description(),
+
 						'mains'      			=> [
 							'type'			=> params:: ARRAY_TYPE,
 							'description'	=> 'The list of the job object and their properties.',
-							'required'		=> true
+							'required'		=> false
 						],
 						'libs'					=> [
 							'type'        	=> params::ARRAY_TYPE,
 							'description' 	=> 'The list of the job object properties.',
-							'required'		=> true
+							'required'		=> false
 						],
 						'type'					=> [
 							'type'			=> params:: STRING_TYPE,
@@ -539,21 +540,56 @@ class Api extends AbstractApi
 		];
 	}
 
-/*	public function executeJob(): array
+	public function executeJob(): array
 	{
 		return [
 				'method'  => 'POST',
 				'path'    => 'jobs/{id}/execute',
 				'params'  => [
 						'id'   			=> $this->params->urlId('jobs'),
-						'clusterId' 	=> $this->params->
-						'inputId' 		=> $this->params->
-						'outputId'		=> $this->params->
-						'job_configs'	=> $this->params->
-				]
+						'clusterId' 	=> [
+							'type'       => params::STRING_TYPE,
+							'required'   => true,
+							'sentAs'	 => 'cluster_id'
+						],
+						'inputId' 		=> [
+							'type'       => params::STRING_TYPE,
+							'required'   => false,
+							'sentAs'	 => 'input_id'
+						],
+						'outputId'		=> [
+							'type'       => params::STRING_TYPE,
+							'required'   => false,
+							'sentAs'	 => 'output_id'
+						],
+						'jobConfigs'	=> [
+							'type'       => params::OBJECT_TYPE,
+							'required'   => true,
+							'sentAs'	 => 'job_configs',
+							'items'      => [
+								'type'       => params::OBJECT_TYPE,
+								'properties' => [
+
+									'configs'      => [
+										'type'	   => params::OBJECT_TYPE,
+										'required' => true
+									],
+									'args'		   => [
+										'type'	=> params::ARRAY_TYPE,
+										'required' => false
+									],
+									'params' => [
+										'type'	=> params::OBJECT_TYPE,
+										'required' => false
+									]
+								]
+							]
+						]
+					]
+				
 		];
 	}
-*/
+
 //-------------------------Job Execution(Job)-------------------------------
 	public function getJobExecutions(): array
 	{
@@ -595,23 +631,27 @@ class Api extends AbstractApi
 				'path'    => 'job-executions/{id}',
 				'params'  => [
 	 					'id'   		=> $this->params->urlId('job-executions'),
-	 					'name' 		=> $this->params->name('job-executions'),
 	 					'isPublic' 	=> $this->params->isPublic(),
-	 					'description'=> $this->params->description()
+						'isProtected'=> $this->params->isProtected()
 	 			]
 	 	];
+	}
+	
+	public function refreshStatus(): array
+	{
+		$definition = $this->getJobExecution();
+        $definition['path'] .= '/refresh-status';
+        return $definition;
+		
 	}
 
 
 	public function cancelJob(): array
 	{
-		return [
-				'method'  => 'POST',
-				'path'    => 'job-executions/{id}/cancel',
-				'params'  => [
-						'id'   			=> $this->params->urlId('jobs')
-				]
-		];
+		$definition = $this->getJobExecution();
+        $definition['path'] .= '/cancel';
+        return $definition;
+		
 	}
 
 

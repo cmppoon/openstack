@@ -21,8 +21,13 @@ $openstack = new OpenStack([
 ]);
  
 $sahara = $openstack->dataProcessingV1(['region' => 'RegionOne']);
-$job = $sahara->getJob(['id' => '{job-id}']);
-$job->retrieve();
-print_r($job);
+$options = [
+		'limit' => 2,
+		'sort_by' => 'id'
+];
+$jobExecutions = $sahara->listJobExecutions($options);
+foreach($jobExecutions as $jobExecution){
+	print_r($jobExecution);
+}
 ?>
 

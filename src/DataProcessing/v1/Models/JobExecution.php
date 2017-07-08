@@ -10,34 +10,63 @@ use OpenStack\Common\Resource\Retrievable;
 
 class JobExecution extends OperatorResource implements Listable, Retrievable, Deletable
 {
-	public $info;
-    public $outputId;
-    public $startTime;
-    public $jobId;
-    public $updatedAt;
-    public $tenantId;
-    public $createdAt;
-    public $data_source_urls;
-	public $returnCode;
-	public $oozieJobId;
+	public $jobConfigs;
 	public $isProtected;
-	public $clusterId;
-	public $endTime;
-	public $isPublic;
 	public $inputId;
-	public $configs;
-	public $jobExecution;
+	public $jobId;
+	public $clusterId;
+    public $createdAt;	
+	public $endTime;	
+    public $outputId;
+	public $isPublic;
+    public $updatedAt;
+	public $returnCode;	
+	public $dataSourceUrls;
+	public $tenantId;
+	public $startTime;
 	public $id;
+	public $oozieJobId;
+	public $info;
+	////////no need of AS ////////////////
+	public $createdTime;
+	public $status;
+	public $group;
+	public $externalId;
+	public $acl;
+	public $run;
+	public $appName;
+	public $parentId;
+	public $conf;
+	public $appPath;
+	public $toString;
+	public $lastModTime;
+	public $consoleUrl;
+
 	
 	
 	protected $resourceKey = 'job_execution';
 	protected $resourcesKey = 'job_executions';
 	
 	protected $aliases = [
-		
+				'job_configs' 	=> 'jobConfigs',
+				'is_protected' 	=> 'isProtected',
+				'input_id' 		=>	'inputId',
+				'job_id'		=> 	'jobId',
+				'cluster_id'	=> 	'clusterId',
+				'created_at'	=>	'createdAt',
+				'end_time'		=>	'endTime',
+				'output_id'  	=> 'outputId',
+				'is_public'		=>	'isPublic',
+				'updated_at'	=>	'updatedAt',
+				'reutrn_code'	=>	'returnCode',
+				'data_source_urls'	=>	'dataSourceUrls',
+				'tenant_id'		=>	'tenantId',
+				'start_time'	=> 'startTime',
+				'oozie_job_id'	=>	'oozieJobId',
+				
     ];
 	
-		public function retrieve()
+	public function retrieve()
 	{
 		$response = $this->execute($this->api->getJobExecution(), $this->getAttrs(['id']));
 		$this->populateFromResponse($response);
@@ -55,7 +84,7 @@ class JobExecution extends OperatorResource implements Listable, Retrievable, De
 	
 	public function update()
 	{
-		$response = $this->execute($this->api->patchJobExecution(), $this->getAttrs(['id', 'name','isPublic','description','isProtected']));
+		$response = $this->execute($this->api->patchJobExecution(), $this->getAttrs(['id','isPublic']));
 		$this->populateFromResponse($response);
 	}
 	
@@ -65,4 +94,9 @@ class JobExecution extends OperatorResource implements Listable, Retrievable, De
 		$this->populateFromResponse($response);
 	}
 	
+	public function refreshStatus(){
+		
+		$response = $this->execute($this->api->refreshStatus(), $this->getAttrs(['id']));
+		$this->populateFromResponse($response);
+	}
 }
