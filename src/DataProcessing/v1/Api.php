@@ -568,7 +568,7 @@ class Api extends AbstractApi
 		];
 	}
 
-public function getJobExecution(): array
+	public function getJobExecution(): array
 	{
 		return [
 				'method' => 'GET',
@@ -579,28 +579,28 @@ public function getJobExecution(): array
 		];
 	}
 
-	// public function deleteJob(): array
-	// {
-	// 	return [
-	// 			'method' => 'DELETE',
-	// 			'path'   => 'job-executions/{id}',
-	// 			'params' => ['id' => $this->params->urlId('jobs')]
-	// 	];
-	// }
-	//
-	// public function patchJob(): array
-	// {
-	// 	return [
-	// 			'method'  => 'PATCH',
-	// 			'path'    => 'job-executions/{id}',
-	// 			'params'  => [
-	// 					'id'   		=> $this->params->urlId('jobs'),
-	// 					'name' 		=> $this->params->name('job'),
-	// 					'isPublic' 	=> $this->params->isPublic(),
-	// 					'description'=> $this->params->description()
-	// 			]
-	// 	];
-	// }
+	public function deleteJobExecution(): array
+	{
+	 	return [
+	 			'method' => 'DELETE',
+				'path'   => 'job-executions/{id}',
+				'params' => ['id' => $this->params->urlId('job-executions')]
+		];
+	}
+	
+	public function patchJobExecution(): array
+	{
+		return [
+				'method'  => 'PATCH',
+				'path'    => 'job-executions/{id}',
+				'params'  => [
+	 					'id'   		=> $this->params->urlId('job-executions'),
+	 					'name' 		=> $this->params->name('job-executions'),
+	 					'isPublic' 	=> $this->params->isPublic(),
+	 					'description'=> $this->params->description()
+	 			]
+	 	];
+	}
 
 
 	public function cancelJob(): array
@@ -623,7 +623,24 @@ public function getJobExecution(): array
 	{
 		return [
 			'method' => 'GET',
-			'path'   => 'plugins/{name}{/version}',
+			'path'   => 'plugins/{name}',
+			'params' => [
+				'name'          =>[
+							'type'			=> params:: STRING_TYPE,
+							'location'    	=> params::URL,
+							'description'	=> 'plugin name',
+							'sentAs'			=> 'plugin_name',
+							'required'		=> true
+						]
+			]
+		];
+	}
+	
+	public function getPluginVersion(): array
+	{
+		return [
+			'method' => 'GET',
+			'path'   => 'plugins/{name}/{versions}',
 			'params' => [
 				'name'          =>[
 							'type'			=> params:: STRING_TYPE,
@@ -632,16 +649,18 @@ public function getJobExecution(): array
 							'sentAs'			=> 'plugin_name',
 							'required'		=> true
 						],
-				'version'		=>[
+				'versions'		=>[
 							'type'			=> params:: STRING_TYPE,
 							'location'    	=> params::URL,
 							'description'	=> 'version for version detail',
 							'sentAs'			=> 'versions',
-							'required'		=> false
+							'required'		=> true
 							]
 			]
 		];
 	}
+	
+	
 
 
 	public function getPlugins(): array

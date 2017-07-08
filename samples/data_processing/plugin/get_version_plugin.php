@@ -6,24 +6,29 @@ require 'vendor/autoload.php';
 use OpenStack\OpenStack;
 
 $openstack = new OpenStack([
-		'authUrl' => '{authUrl}',
-		'user'    => [
-				'name'       => '{userName}',
-				'password' => '{password}',
-				'domain' => [ 'name' => '{userDomain}' ]
-		],
-		'scope'   => [
-				'project' => [
-						'name' => '{projectName}',
-						'domain' => [ 'name' => '{projectDomain}' ]
-				]
-		]
+    'authUrl' => 'http://203.185.71.2:5000/v3/',
+    'user'    => [
+        'name'       => 'siit',
+        'password' => 'Siit#60!',
+        'domain' => [ 'name' => 'Default' ]
+    ],
+    'scope'   => [
+        'project' => [
+             'name' => 'php',
+             'domain' => [ 'name' => 'Default' ]
+        ]
+    ]
 ]);
+ 
+$sahara = $openstack->dataProcessingV1(['region' => 'RegionOne']);
+$dataProcessing = $sahara->getPlugin(['plugin_name' => 'spark', 'versions' => '1.6.0']);
+$data = $dataProcessing->retrieveDetails();
+$nodeProcesses = $data['node_processes'];
+$configs = $data['configs'];
+$requiredImageTag = $data['required_image_tags'];
+print_r($configs);
+print_r($nodeProcesses);
+print_r($requiredImageTag);
 
-$sahara = $openstack->dataProcessingV1(['region' => '{region}']);
-
-$plugin = $sahara->getPlugin(['plugin_name' => '{name}', 'versions' => '{versions}']);
-$plugin->retrieveVersionDetail();
-print_r($plugin);
 
 ?>
