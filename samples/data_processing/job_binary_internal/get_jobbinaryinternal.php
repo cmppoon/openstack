@@ -22,7 +22,7 @@ $openstack = new OpenStack([
 
 $sahara = $openstack->dataProcessingV1(['region' => '{region}']);
 
-$internal = $sahara->getJobBinaryInternal(['id' => 'efa7bc15-9264-46e2-ad33-fa415631fe60']);
+$internal = $sahara->getJobBinaryInternal(['id' => '{jobBinaryInternalId}']);
 $internal->retrieve();
 print_r($internal);
 
