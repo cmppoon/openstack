@@ -6,26 +6,28 @@ require 'vendor/autoload.php';
 use OpenStack\OpenStack;
  
 $openstack = new OpenStack([
-    'authUrl' => 'http://203.185.71.2:5000/v3/',
-    'user'    => [
-        'name'       => 'siit',
-        'password' => 'Siit#60!',
-        'domain' => [ 'name' => 'Default' ]
-    ],
-    'scope'   => [
-        'project' => [
-             'name' => 'php',
-             'domain' => [ 'name' => 'Default' ]
-        ]
-    ]
+		'authUrl' => '{authUrl}',
+		'user'    => [
+				'name'       => '{userName}',
+				'password' => '{password}',
+				'domain' => [ 'name' => '{userDomain}' ]
+		],
+		'scope'   => [
+				'project' => [
+						'name' => '{projectName}',
+						'domain' => [ 'name' => '{projectDomain}' ]
+				]
+		]
 ]);
- 
-$sahara = $openstack->dataProcessingV1(['region' => 'RegionOne']);
+
+$sahara = $openstack->dataProcessingV1(['region' => '{region}']);
+
 $options = [
-		'limit' => 2,
-		'sort_by' => 'id'
+		'limit' => {limit},
+		'sort_by' => '{sort_key}'
 ];
 $jobExecutions = $sahara->listJobExecutions($options);
+
 foreach($jobExecutions as $jobExecution){
 	print_r($jobExecution);
 }

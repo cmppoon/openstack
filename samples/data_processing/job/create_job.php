@@ -6,31 +6,30 @@ require 'vendor/autoload.php';
 use OpenStack\OpenStack;
  
 $openstack = new OpenStack([
-    'authUrl' => 'http://203.185.71.2:5000/v3/',
-    'user'    => [
-        'name'       => 'siit',
-        'password' => 'Siit#60!',
-        'domain' => [ 'name' => 'Default' ]
-    ],
-    'scope'   => [
-        'project' => [
-             'name' => 'php',
-             'domain' => [ 'name' => 'Default' ]
-        ]
-    ]
+		'authUrl' => '{authUrl}',
+		'user'    => [
+				'name'       => '{userName}',
+				'password' => '{password}',
+				'domain' => [ 'name' => '{userDomain}' ]
+		],
+		'scope'   => [
+				'project' => [
+						'name' => '{projectName}',
+						'domain' => [ 'name' => '{projectDomain}' ]
+				]
+		]
 ]);
- 
-$sahara = $openstack->dataProcessingV1(['region' => 'RegionOne']);
+
+$sahara = $openstack->dataProcessingV1(['region' => '{region}']);
 
 $options = [
-		'description'  	=> 'Pig Job Sample',
-		'mains' 		=>[ '6f6befc8-fc97-4a14-844a-7ce4d866840b'],
-		'libs' 			=> ['373d640a-d214-43be-8a56-04fac9076049'],
-		'type'			=> 'Pig',
-		'name' 			=> 'Pig'
+		'description'  	=> '{description}',
+		'mains' 		=>[ '{main binary}'],
+		'libs' 			=> ['{library binary}'],
+		'type'			=> '{job-type}',
+		'name' 			=> '{job-name}'
 		
 ];
-
 $job= $sahara->createJob($options);
 print_r($job);
 
