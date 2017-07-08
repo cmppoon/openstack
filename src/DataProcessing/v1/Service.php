@@ -15,6 +15,7 @@ use OpenStack\DataProcessing\v1\Models\JobExecution;
 use OpenStack\DataProcessing\v1\Models\NodeGroup;
 use OpenStack\DataProcessing\v1\Models\NodeGroupTemplate;
 use OpenStack\DataProcessing\v1\Models\Plugin;
+use Psr\Http\Message\StreamInterface;
 class Service extends AbstractService
 {
 //-----------------------------CLUSTER----------------------------------------
@@ -135,8 +136,12 @@ class Service extends AbstractService
 	}
 
 	//not done yet
-	public function createJobBinaryInternal(array $options): JobBinaryInternal
+	public function createJobBinaryInternal(StreamInterface $stream): JobBinaryInternal
 	{
+		$options=[
+		  'name' => $stream->getMetadata('uri'),
+		  'data' => $stream
+		];
 		return $this->model(JobBinaryInternal::class)->create($options);
 	}
 	//--------------end----job bianry internal------------------//

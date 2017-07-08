@@ -22,9 +22,6 @@ $openstack = new OpenStack([
 
 $sahara = $openstack->dataProcessingV1(['region' => '{region}']);
 
-$internal = $sahara->getJobBinaryInternal(['id' => '995d9bad-edc1-4713-aab2-d893ed51d0ba']);
-$internal->name = 'testUpdate';
-$internal->isPublic = false;
-$internal->isProtected = false;
-$internal->update();
+$internal = $sahara->getJobBinaryInternal(['id' => 'e8201b97-d816-4f54-b5bc-67f71c70df12']);
+$internal->delete();
 ?>

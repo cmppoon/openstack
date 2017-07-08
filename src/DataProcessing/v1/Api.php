@@ -390,16 +390,17 @@ class Api extends AbstractApi
 
 	//---------------start------job binary internal-------//
 	public function putJobBinaryInternal(): array
-	{
-		return [
-				'method' => 'PUT',
-				'path'   => 'job-binary-internals/{name}',
-				'params' => [
-					'name'=> $this->params->name('job_binary_internal'),
-					'data'=> $this->params->data()
-			]
-		];
-	}
+ {
+  return [
+    'method' => 'PUT',
+    'path'   => 'job-binary-internals/{name}',
+    'params' => [
+      'name'=> $this->params->urlId('job_binary_internal'),
+      'data'=> $this->params->data(),
+      'contentType' => $this->params->contentType()
+    ]
+  ];
+ }
 
 	public function getJobBinaryInternalData(): array
 	{

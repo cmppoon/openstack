@@ -22,9 +22,16 @@ $openstack = new OpenStack([
 
 $sahara = $openstack->dataProcessingV1(['region' => '{region}']);
 
-$internal = $sahara->getJobBinaryInternal(['id' => '995d9bad-edc1-4713-aab2-d893ed51d0ba']);
-$internal->name = 'testUpdate';
-$internal->isPublic = false;
-$internal->isProtected = false;
-$internal->update();
+$filename = "testfin2.txt";
+$JobBinaryInternal = $sahara->getJobBinaryInternal(['name' => $filename]);
+$stream = \GuzzleHttp\Psr7\stream_for(fopen($filename, 'r'));
+// $options=[
+//   'name' => $filename,
+//   'data' => $stream
+// ];
+$JobBinaryInternal = $sahara->createJobBinaryInternal($stream);
+
+// print_r($stream->getMetadata('uri')); //filename
+// print_r($stream->__toString()); //data
+
 ?>

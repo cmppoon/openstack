@@ -38,10 +38,13 @@ class JobBinaryInternal extends OperatorResource implements Listable, Retrievabl
     $this->populateFromResponse($response);
   }
 
-	public function create(array $userOptions): Creatable
+  public function create(array $userOptions): Creatable
   {
-    $response=$this->execute($this->api->putJobBinaryInternal(), $userOptions);
-		return $this->populateFromResponse($response);
+    $options = array_merge($userOptions,[
+      'contentType' => 'application/octet-stream'
+    ]);
+    $response=$this->execute($this->api->putJobBinaryInternal(), $options);
+  return $this->populateFromResponse($response);
   }
 
   public function delete()
@@ -61,4 +64,6 @@ class JobBinaryInternal extends OperatorResource implements Listable, Retrievabl
       $response = $this->executeWithState($this->api->getJobBinaryInternalData());
       return $response->getBody();
   }
+
+
 }

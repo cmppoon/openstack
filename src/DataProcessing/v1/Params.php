@@ -323,6 +323,15 @@ public function urlId(string $type): array
 					'documented' => false,
 			];
 	}
+
+	public function contentType(): array
+	{
+	 return [
+		 'location' => self::HEADER,
+		 'type'     => self::STRING_TYPE,
+		 'sentAs'   => 'Content-Type',
+	 ];
+	}
 		//-------------end---jobbinaryinternal--------------//
 
 }
