@@ -64,9 +64,8 @@ class Job extends OperatorResource implements Listable, Retrievable, Creatable, 
 	
 	public function executeJob(array $options)
     {
-        $options = array_merge($options, $this->getAttrs(['id']));
+        //$options = array_merge($options, $this->getAttrs(['id']));
         $this->execute($this->api->executeJob(), $options);
-		
 		
     }	
 

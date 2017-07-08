@@ -177,6 +177,9 @@ class Service extends AbstractService
 	 	return $this->model(JobExecution::class)->enumerate($this->api->getJobExecutions(), $options, $mapFn);
 	}
 
+	public function runJob(array $options = []){
+		$this->getJob($options)->executeJob($options);
+	}
 
 	//---------------------------------------------------------------//
 
