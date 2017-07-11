@@ -480,7 +480,6 @@ class Api extends AbstractApi
 				'method'  => 'POST',
 				'params'  => [
 						'description'          	=> $this->params->description(),
-
 						'mains'      			=> [
 							'type'			=> params:: ARRAY_TYPE,
 							'description'	=> 'The list of the job object and their properties.',
@@ -541,6 +540,7 @@ class Api extends AbstractApi
 				'params'  => [
 						'id'   		=> $this->params->urlId('jobs'),
 						'name' 		=> $this->params->name('job'),
+						'isProtected'=> $this->params->isProtected(),
 						'isPublic' 	=> $this->params->isPublic(),
 						'description'=> $this->params->description()
 				]
@@ -554,6 +554,8 @@ class Api extends AbstractApi
 				'path'    => 'jobs/{id}/execute',
 				'params'  => [
 						'id'   			=> $this->params->urlId('jobs'),
+						'isProtected'	=> $this->params->isProtected(),
+						'isPublic'		=> $this->params->isPublic(),
 						'clusterId' 	=> [
 							'type'       => params::STRING_TYPE,
 							'required'   => true,
