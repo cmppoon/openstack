@@ -173,21 +173,18 @@ class Api extends AbstractApi
 				'params'  => [
 						'pluginName'            => $this->params->pluginName(),
 						'hadoopVersion'      	=> $this->params->hadoopVersion(),
-						'nodeGroups'			=> [
-							'type'        => params::ARRAY_TYPE,
-							'sentAs'	  => 'node_groups',
-							'description' => 'List of nodeGroups',
-							'items'       => [
-								'type'       => params::OBJECT_TYPE,
-								'properties' => [
-
-									'name'         => $this->params->name('node-group-template'),
-									'count'		   => $this->params->count(),
-									'nodeGroupTemplateId' => $this->params->nodeGroupTemplateId(),
-								],
-							],
-						],
 						'name'     				=> $this->isRequired($this->params->name('cluster-template')),
+						'nodeGroups'			=> $this->params->nodeGroups(),
+						'neutronManagementNetwork' => $this-> notRequired($this->params->neutronManagementNetwork()),
+						'description'			=> $this->params->description(),
+						'shares'				=> $this->params->shares(),
+						'clusterConfigs'		=> $this->params->clusterConfigs(),
+						'defaultImageId'		=> $this-> notRequired($this->params->defaultImageId()),
+						'domainName'			=> $this->params->domainName(),
+						'isProtected'			=> $this->params->isProtected(),
+						'useAutoconfig'			=> $this->params->useAutoconfig(),
+						'antiAffinity'			=> $this->params->antiAffinity(),
+						'isPublic'				=> $this->params->isPublic()		
 				]
 		];
 	}
@@ -231,10 +228,20 @@ class Api extends AbstractApi
 				'path'    => 'cluster-templates/{id}',
 				'params'  => [
 						'id'   		=> $this->params->urlId('cluster-template'),
-						'name' 		=> $this->params->name('cluster-template'),
-						'isPublic' 	=> $this->params->isPublic(),
-						'pluginName'=> $this->notRequired($this->params->pluginName()),
-						'hadoopVersion' => $this->notRequired($this->params->hadoopVersion())
+						'nodeGroups'			=> $this->params->nodeGroups(),
+						'neutronManagementNetwork' => $this-> notRequired($this->params->neutronManagementNetwork()),
+						'description'			=> $this->params->description(),
+						'shares'				=> $this->params->shares(),
+						'clusterConfigs'		=> $this->params->clusterConfigs(),
+						'defaultImageId'		=> $this->notRequired($this->params->defaultImageId()),
+						'pluginName'            => $this->notRequired($this->params->pluginName()),
+						'domainName'			=> $this->params->domainName(),
+						'isProtected'			=> $this->params->isProtected(),
+						'useAutoconfig'			=> $this->params->useAutoconfig(),
+						'antiAffinity'			=> $this->params->antiAffinity(),
+						'isPublic'				=> $this->params->isPublic(),
+						'hadoopVersion'      	=> $this->notRequired($this->params->hadoopVersion()),						
+						'name'     				=> $this->$this->params->name('cluster-template')
 				]
 		];
 	}

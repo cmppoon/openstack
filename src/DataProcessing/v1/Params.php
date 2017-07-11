@@ -3,7 +3,6 @@
 namespace OpenStack\DataProcessing\v1;
 
 use OpenStack\Common\Api\AbstractParams;
-use Psr\Http\Message\StreamInterface;
 
 class Params extends AbstractParams
 {
@@ -195,8 +194,51 @@ public function urlId(string $type): array
 	}
 
 
-	//-----------------james edited ---------------------//
-
+	//-----------------james edited for cluster template ---------------------//
+	public function nodeGroups(): array
+	{
+		return	[
+					'type'        => self::ARRAY_TYPE,
+					'sentAs'	  => 'node_groups',
+					'required'	  => false,
+					'description' => 'List of nodeGroups',
+					'items'       => [
+						'type'       => self::OBJECT_TYPE,
+						'properties' => [
+							'name'         => $this->name('node-group-template'),
+							'count'		   => $this->count(),
+							'nodeGroupTemplateId' => $this->nodeGroupTemplateId()
+						]
+					]
+		];
+	}
+	
+	public function shares(): array
+	{
+		return	[
+					'type'			=> self::ARRAY_TYPE,
+					'desciption'	=> 'shares',
+					'required'		=> false
+		];
+	}
+	
+	public function domainName(): array
+	{
+		return	[
+					'type'			=> self:STRING_TYPE,
+					'required'		=> false,
+					'sentAs'		=> 'domain_name'
+		];
+	}
+	
+	public function antiAffinity(): array
+	{
+		return	[
+					'type'			=> self:ARRAY_TYPE,
+					'required'		=> false,
+					'sentAs'		=> 'anti_affinity'
+		];
+	}
 
 	//--------start------nodegrouptemplate-------------------//
 	public function flavorId(): array
@@ -306,33 +348,11 @@ public function urlId(string $type): array
 	{
 	 return [
 			 'type'        => self::STRING_TYPE,
-			 'location'    => self::URL,
 			 'required'    => true,
 			 'sentAs'      => 'versions',
 			 'description' => 'The version of plugin'
 	 ];
-	}
-
-	//-------------start---jobbinaryinternal--------------//
-	public function data(): array
-	{
-			return [
-					'location'   => self::RAW,
-					'type'       => StreamInterface::class,
-					'required'   => true,
-					'documented' => false,
-			];
-	}
-
-	public function contentType(): array
-	{
-	 return [
-		 'location' => self::HEADER,
-		 'type'     => self::STRING_TYPE,
-		 'sentAs'   => 'Content-Type',
-	 ];
-	}
-		//-------------end---jobbinaryinternal--------------//
+ }
 
 }
 
