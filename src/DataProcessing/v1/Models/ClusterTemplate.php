@@ -77,7 +77,8 @@ class ClusterTemplate extends OperatorResource implements Listable, Retrievable,
 	
 	public function update()
 	{
-		$response = $this->execute($this->api->putClusterTemplate(), $this->getAttrs(['id', 'name','isPublic','pluginName','hadoopVersion']));
+		$response = $this->execute($this->api->putClusterTemplate(), $this->getAttrs(['id', 'name','pluginName','hadoopVersion','neutronManagementNetwork','description'
+		,'shares','clusterConfigs','defaultImage','pluginName','domainName','isProtected','useAutoconfig','antiAffinity','nodeGroups','isPublic']));
 		$this->populateFromResponse($response);
 	}
 }

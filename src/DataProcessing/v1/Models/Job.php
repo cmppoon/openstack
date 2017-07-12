@@ -58,7 +58,7 @@ class Job extends OperatorResource implements Listable, Retrievable, Creatable, 
 	
 	public function update()
 	{
-		$response = $this->execute($this->api->patchJob(), $this->getAttrs(['id', 'name','isPublic','description','isProtected','mains','libs','type']));
+		$response = $this->execute($this->api->patchJob(), $this->getAttrs(['id', 'name','isPublic','description','isProtected']));
 		$this->populateFromResponse($response);
 	}
 	
