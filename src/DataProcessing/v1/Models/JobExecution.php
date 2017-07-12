@@ -84,7 +84,7 @@ class JobExecution extends OperatorResource implements Listable, Retrievable, De
 	
 	public function update()
 	{
-		$response = $this->execute($this->api->patchJobExecution(), $this->getAttrs(['id','isPublic']));
+		$response = $this->execute($this->api->patchJobExecution(), $this->getAttrs(['id','isPublic','isProtected']));
 		$this->populateFromResponse($response);
 	}
 	
