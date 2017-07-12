@@ -212,7 +212,7 @@ public function urlId(string $type): array
 					]
 		];
 	}
-	
+
 	public function shares(): array
 	{
 		return	[
@@ -221,20 +221,20 @@ public function urlId(string $type): array
 					'required'		=> false
 		];
 	}
-	
+
 	public function domainName(): array
 	{
 		return	[
-					'type'			=> self:STRING_TYPE,
+					'type'			=> self::STRING_TYPE,
 					'required'		=> false,
 					'sentAs'		=> 'domain_name'
 		];
 	}
-	
+
 	public function antiAffinity(): array
 	{
 		return	[
-					'type'			=> self:ARRAY_TYPE,
+					'type'			=> self::ARRAY_TYPE,
 					'required'		=> false,
 					'sentAs'		=> 'anti_affinity'
 		];

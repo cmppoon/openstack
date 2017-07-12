@@ -184,7 +184,7 @@ class Api extends AbstractApi
 						'isProtected'			=> $this->params->isProtected(),
 						'useAutoconfig'			=> $this->params->useAutoconfig(),
 						'antiAffinity'			=> $this->params->antiAffinity(),
-						'isPublic'				=> $this->params->isPublic()		
+						'isPublic'				=> $this->params->isPublic()
 				]
 		];
 	}
@@ -240,7 +240,7 @@ class Api extends AbstractApi
 						'useAutoconfig'			=> $this->params->useAutoconfig(),
 						'antiAffinity'			=> $this->params->antiAffinity(),
 						'isPublic'				=> $this->params->isPublic(),
-						'hadoopVersion'      	=> $this->notRequired($this->params->hadoopVersion()),						
+						'hadoopVersion'      	=> $this->notRequired($this->params->hadoopVersion()),
 						'name'     				=> $this->$this->params->name('cluster-template')
 				]
 		];
@@ -595,7 +595,7 @@ class Api extends AbstractApi
 							]
 						]
 					]
-				
+
 		];
 	}
 
@@ -632,7 +632,7 @@ class Api extends AbstractApi
 				'params' => ['id' => $this->params->urlId('job-executions')]
 		];
 	}
-	
+
 	public function patchJobExecution(): array
 	{
 		return [
@@ -645,13 +645,13 @@ class Api extends AbstractApi
 	 			]
 	 	];
 	}
-	
+
 	public function refreshStatus(): array
 	{
 		$definition = $this->getJobExecution();
         $definition['path'] .= '/refresh-status';
         return $definition;
-		
+
 	}
 
 
@@ -660,7 +660,7 @@ class Api extends AbstractApi
 		$definition = $this->getJobExecution();
         $definition['path'] .= '/cancel';
         return $definition;
-		
+
 	}
 
 
@@ -684,7 +684,7 @@ class Api extends AbstractApi
 			]
 		];
 	}
-	
+
 	public function getPluginVersion(): array
 	{
 		return [
@@ -708,9 +708,48 @@ class Api extends AbstractApi
 			]
 		];
 	}
-	
-	
 
+	public function patchPlugin(): array
+	{
+		return [
+				'method'  => 'PATCH',
+				'path'    => 'plugins/{name}',
+				'params' => [
+					'name'          =>[
+								'type'				=> params:: STRING_TYPE,
+								'location'    => params::URL,
+								'description'	=> 'plugin name',
+								'sentAs'			=> 'plugin_name',
+								'required'		=> true
+							],
+					'pluginLabels' =>[
+								'type'       		=> params::OBJECT_TYPE,
+								'required'   		=> true,
+								'sentAs'	 			=> 'plugin_labels',
+								'items'      		=> [
+									'type'       	=> params::OBJECT_TYPE,
+									'properties' 	=> [
+
+										'enabled'     => [
+											'type'	   	=> params::OBJECT_TYPE,
+											'required' 	=> true,
+											'items' 		=> [
+												'properties' 	=> [
+													//'type'       	=> params::OBJECT_TYPE,
+													'status' =>[
+														'type'      => params::BOOL_TYPE,
+														'required' 	=> true,
+													]
+											]
+										]
+									]
+								]
+							]
+					]
+
+				]
+		];
+	}
 
 	public function getPlugins(): array
 	{

@@ -46,7 +46,7 @@ class Plugin extends OperatorResource implements Listable, Retrievable
 
 	public function update()
 	{
-	 	$response = $this->execute($this->api->patchPlugin(), $this->getAttrs([]));
+	 	$response = $this->execute($this->api->patchPlugin(), $this->getAttrs(['name','pluginLabels']));
 	 	$this->populateFromResponse($response);
 	 }
 
