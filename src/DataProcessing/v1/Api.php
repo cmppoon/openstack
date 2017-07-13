@@ -803,25 +803,24 @@ class Api extends AbstractApi
 	{
 		return [
 			'method' => 'POST',
-			'path'   => 'images/{id}{/tag}{/untag}',
+			'path'   => 'images/{id}',
 			'params' => [
 				'id'					=> $this->params->urlId('image'),
 				'username'			=> $this->params->name('image'),
-				'description'		=> $this->params->description(),
-				'tag'          =>[
-							'type'					=> STRING_TYPE,
-							'location'    	=> params::URL,
-							'description'		=> 'tag',
-							'required'			=> false
-						],
-				'untag'		=>[
-							'type'					=> STRING_TYPE,
-							'location'    	=> params::URL,
-							'description'		=> 'untag',
-							'required'			=> false
-						],
+				'description'		=> $this->params->description()
+			]
+		];
+	}
+
+	public function postImageTag(): array
+	{
+		return [
+			'method' => 'POST',
+			'path'   => 'images/{id}/tag',
+			'params' => [
+				'id'					=> $this->params->urlId('image'),
 				'tags'		=>[
-							'type'					=> ARRAY_TYPE,
+							'type'					=> params::ARRAY_TYPE,
 							'description'		=> 'tags array for image',
 							'required'			=> false
 						]
@@ -829,7 +828,22 @@ class Api extends AbstractApi
 		];
 	}
 
-<<<<<<< HEAD
+	public function postImageUntag(): array
+	{
+		return [
+			'method' => 'POST',
+			'path'   => 'images/{id}/untag',
+			'params' => [
+				'id'					=> $this->params->urlId('image'),
+				'tags'		=>[
+							'type'					=> params::ARRAY_TYPE,
+							'description'		=> 'tags array for image',
+							'required'			=> false
+						]
+			]
+		];
+	}
+
 	public function deleteImage(): array
 	{
 		return [
@@ -840,7 +854,6 @@ class Api extends AbstractApi
 		];
 	}
 
-=======
 	//-------------------job-types---------------------------//
 	public function getJobTypes(): array
 	{
@@ -855,7 +868,6 @@ class Api extends AbstractApi
 				]
 		];
 	}
->>>>>>> 7db5d7a68f2c2fb768e11da6a3d527395f7dcf27
 }
 
 

@@ -23,6 +23,15 @@ $openstack = new OpenStack([
 $sahara = $openstack->dataProcessingV1(['region' => '{region}']);
 
 $image = $sahara->getImage(['id' => '{imageId}']);
-$image->removeTags('centos', '6.8');
 
+// $image->removeTags('centos', '6.8');
+// print_r($image);
+
+$options = [
+		'id' => '{imageId}',
+		'tags' => ['centos','6.8']
+		];
+
+$image->removeTags($options);
+print_r($image);
 ?>
