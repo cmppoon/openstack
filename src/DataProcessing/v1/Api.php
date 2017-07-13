@@ -576,7 +576,7 @@ class Api extends AbstractApi
 							'required'   => true,
 							'sentAs'	 => 'job_configs',
 							'items'      => [
-								'type'       => params::OBJECT_TYPE,
+								
 								'properties' => [
 
 									'configs'      => [
@@ -744,10 +744,11 @@ class Api extends AbstractApi
 									]
 								]
 					],
+					///the sub parameter above can be remove 	
 					'versionLabels' =>[
 									'type'			=> params::OBJECT_TYPE,
 									'required'		=> false,
-									'sentAS'		=> 'version_labels'
+									'sentAs'		=> 'version_labels'
 								]
 
 				]
