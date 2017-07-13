@@ -354,6 +354,57 @@ public function urlId(string $type): array
 	 ];
  }
 
+ //-------------job-types----------------------//
+ public function title(): array
+ {
+	return [
+			'type'        => self::STRING_TYPE,
+			'required'    => false,
+			'sentAs'      => 'title',
+			'description' => 'The title of plugin'
+	];
+ }
+
+ public function version_filter(): array
+ {
+	return [
+			'type'        => self::ARRAY_TYPE,
+			'required'    => false,
+			'sentAs'      => 'version',
+			'description' => 'The versions of plugin'
+	];
+ }
+
+ public function plugin_filter(): array
+ {
+	 return [
+			 'type'        => self::STRING_TYPE,
+			 'required'    => false,
+			 'sentAs'      => 'plugin',
+			 'description' => 'Filters the response of job types by a plugin name'
+	 ];
+ }
+
+ public function type(): array
+ {
+	return [
+			'type'        => self::STRING_TYPE,
+			'required'    => false,
+			'sentAs'      => 'type',
+			'description' => 'The type of the data source object.'
+	];
+ }
+
+ public function hints() :array
+ {
+	 return [
+		 'type'        => self::BOOL_TYPE,
+		 'required'    => false,
+		 'sentAs'      => 'hints',
+		 'description' => 'Includes configuration hints in the response.'
+	 ];
+ }
+//------------end-job-types----------------------//
 }
 
 ?>

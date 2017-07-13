@@ -821,6 +821,20 @@ class Api extends AbstractApi
 		];
 	}
 
+	//-------------------job-types---------------------------//
+	public function getJobTypes(): array
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'job-types',
+				'params' => [
+					'plugin' => $this->params->plugin_filter(),
+					'version' => $this->params->version_filter(),
+					'type' => $this->params->type(),
+					'hints' => $this->params->hints()
+				]
+		];
+	}
 }
 
 
