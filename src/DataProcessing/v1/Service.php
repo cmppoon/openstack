@@ -171,7 +171,7 @@ class Service extends AbstractService
 	 	$JobExecution ->populateFromArray($options);
 	return $JobExecution;
 	}
-	 
+
 	public function listJobExecutions(array $options = [], callable $mapFn = null): \Generator
 	{
 	 	return $this->model(JobExecution::class)->enumerate($this->api->getJobExecutions(), $options, $mapFn);
@@ -209,6 +209,16 @@ class Service extends AbstractService
 		return $this->model(Image::class)->enumerate($this->api->getImages(), $options, $mapFn);
 	}
 
+	//---------------------job-types---------------------------------//
+	public function listJobTypes(array $options = [], callable $mapFn = null): array
+	{
+		return $this->model(Job::class)->getJobTypes($options);
+	}
+
+	public function listJobTypes2(array $options = [], callable $mapFn = null): \Generator
+	{
+		return $this->model(Job::class)->enumerate($this->api->getJobTypes(), $options, $mapFn);
+	}
 }
 
 ?>

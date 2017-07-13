@@ -21,27 +21,9 @@ $openstack = new OpenStack([
 ]);
 
 $sahara = $openstack->dataProcessingV1(['region' => '{region}']);
-$plugin = $sahara->getPlugin(['plugin_name' => '{name}']);
 
-$plugin->pluginLabels = [
-							'enabled' => [
-											'status' => true 
-							]
-						];
-
-// $options = [
-// 		'id' => '{clusterId}',
-// 		'addNodeGroups' => [[
-// 				'count' =>'{count}',
-// 				'name'  => '{name}',
-// 				'nodeGroupTemplateId' => '{nodeGroupTemplateId}'
-// 		]],
-// 		'resizeNodeGroups' => [[
-// 				'count' => '{count}',
-// 				'name'  => '{name}'
-// 		]]
-// ];
-
-$plugin->update();
-
+$jobtypes = $sahara->listJobTypes();
+foreach($jobtypes as $jobtype){
+  print_r($jobtype);
+}
 ?>

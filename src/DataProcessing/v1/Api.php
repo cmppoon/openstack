@@ -721,31 +721,34 @@ class Api extends AbstractApi
 								'description'	=> 'plugin name',
 								'sentAs'			=> 'plugin_name',
 								'required'		=> true
-							],
+					],
 					'pluginLabels' =>[
 								'type'       		=> params::OBJECT_TYPE,
-								'required'   		=> true,
-								'sentAs'	 			=> 'plugin_labels',
+								'required'   		=> false,
+								'sentAs'	 		=> 'plugin_labels',
 								'items'      		=> [
-									'type'       	=> params::OBJECT_TYPE,
 									'properties' 	=> [
 
 										'enabled'     => [
 											'type'	   	=> params::OBJECT_TYPE,
-											'required' 	=> true,
+											'required' 	=> false,
 											'items' 		=> [
 												'properties' 	=> [
-													//'type'       	=> params::OBJECT_TYPE,
 													'status' =>[
 														'type'      => params::BOOL_TYPE,
-														'required' 	=> true,
+														'required' 	=> false,
 													]
+												]
 											]
 										]
 									]
 								]
-							]
-					]
+					],
+					'versionLabels' =>[
+									'type'			=> params::OBJECT_TYPE,
+									'required'		=> false,
+									'sentAS'		=> 'version_labels'
+								]
 
 				]
 		];
@@ -826,6 +829,7 @@ class Api extends AbstractApi
 		];
 	}
 
+<<<<<<< HEAD
 	public function deleteImage(): array
 	{
 		return [
@@ -836,6 +840,22 @@ class Api extends AbstractApi
 		];
 	}
 
+=======
+	//-------------------job-types---------------------------//
+	public function getJobTypes(): array
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'job-types',
+				'params' => [
+					'plugin' => $this->params->plugin_filter(),
+					'version' => $this->params->version_filter(),
+					'type' => $this->params->type(),
+					'hints' => $this->params->hints()
+				]
+		];
+	}
+>>>>>>> 7db5d7a68f2c2fb768e11da6a3d527395f7dcf27
 }
 
 
