@@ -816,8 +816,23 @@ class Api extends AbstractApi
 							'location'    	=> params::URL,
 							'description'		=> 'untag',
 							'required'			=> false
+						],
+				'tags'		=>[
+							'type'					=> ARRAY_TYPE,
+							'description'		=> 'tags array for image',
+							'required'			=> false
 						]
 			]
+		];
+	}
+
+	public function deleteImage(): array
+	{
+		return [
+				'method' => 'DELETE',
+				'path'   => 'images/{id}',
+				'params' => [
+					'id' => $this->params->urlId('datasource')]
 		];
 	}
 

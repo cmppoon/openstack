@@ -21,8 +21,7 @@ $openstack = new OpenStack([
 ]);
 
 $sahara = $openstack->dataProcessingV1(['region' => '{region}']);
-
 $image = $sahara->getImage(['id' => '{imageId}']);
-$image->removeTags('centos', '6.8');
+$image->unregister();
 
 ?>

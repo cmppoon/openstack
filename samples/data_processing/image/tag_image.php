@@ -23,6 +23,6 @@ $openstack = new OpenStack([
 $sahara = $openstack->dataProcessingV1(['region' => '{region}']);
 
 $image = $sahara->getImage(['id' => '{imageId}']);
-$image->addTags('spark', '1.6.2');
+$image->addTags('centos', '6.8');
 
 ?>
