@@ -721,31 +721,34 @@ class Api extends AbstractApi
 								'description'	=> 'plugin name',
 								'sentAs'			=> 'plugin_name',
 								'required'		=> true
-							],
+					],
 					'pluginLabels' =>[
 								'type'       		=> params::OBJECT_TYPE,
-								'required'   		=> true,
-								'sentAs'	 			=> 'plugin_labels',
+								'required'   		=> false,
+								'sentAs'	 		=> 'plugin_labels',
 								'items'      		=> [
-									'type'       	=> params::OBJECT_TYPE,
 									'properties' 	=> [
 
 										'enabled'     => [
 											'type'	   	=> params::OBJECT_TYPE,
-											'required' 	=> true,
+											'required' 	=> false,
 											'items' 		=> [
 												'properties' 	=> [
-													//'type'       	=> params::OBJECT_TYPE,
 													'status' =>[
 														'type'      => params::BOOL_TYPE,
-														'required' 	=> true,
+														'required' 	=> false,
 													]
+												]
 											]
 										]
 									]
 								]
-							]
-					]
+					],
+					'versionLabels' =>[
+									'type'			=> params::OBJECT_TYPE,
+									'required'		=> false,
+									'sentAS'		=> 'version_labels'
+								]
 
 				]
 		];
