@@ -346,13 +346,75 @@ public function urlId(string $type): array
 
 	public function version(): array
 	{
-	 return [
-			 'type'        => self::STRING_TYPE,
-			 'required'    => true,
-			 'sentAs'      => 'versions',
-			 'description' => 'The version of plugin'
-	 ];
- }
+		return [
+				'type'        => self::STRING_TYPE,
+				'required'    => true,
+				'location'   => self::URL,
+				'sentAs'      => 'versions',
+				'description' => 'The version of plugin'
+		];
+	}
+	
+	public function pluginLabels(): array
+	{
+		return [
+				'type'       		=> self::OBJECT_TYPE,
+				'required'   		=> false,
+				'sentAs'	 		=> 'plugin_labels',
+				'items'      		=> [
+						'type'	   	=> self::OBJECT_TYPE,
+						'properties' 	=> [
+								'enabled'     => $this -> enable()
+						]
+				]
+		];
+	}
+	
+	public function versionLabels(): array
+	{
+		return [
+				'type'       		=> self::OBJECT_TYPE,
+				'required'   		=> false,
+				'sentAs'	 		=> 'version_labels',
+				'items'      		=> [
+						'type'	   	=> self::OBJECT_TYPE,
+						'properties' 	=> [
+								'enabled'     => $this -> enable()
+						]
+				]
+		];
+	}
+	
+	public function pluginVersion(): array
+	{
+		return [
+				'type'       		=> self::OBJECT_TYPE,
+				'required'   		=> false,
+				'items'      		=> [
+						'type'	   	=> self::OBJECT_TYPE,
+						'properties' 	=> [
+								'enabled'     => $this -> enable()
+						]
+				]
+		];
+		
+	}
+	
+	public function enable(): array
+	{
+		return [
+				'type'	   	=> params::OBJECT_TYPE,
+				'required' 	=> false,
+				'items' 		=> [
+						'properties' 	=> [
+								'status' =>[
+										'type'      => params::BOOL_TYPE,
+										'required' 	=> false,
+								]
+						]
+				]
+		];
+	}
 
  //-------------job-types----------------------//
  public function title(): array

@@ -671,101 +671,55 @@ class Api extends AbstractApi
 	public function getPlugin(): array
 	{
 		return [
-			'method' => 'GET',
-			'path'   => 'plugins/{name}',
-			'params' => [
-				'name'          =>[
-							'type'			=> params:: STRING_TYPE,
-							'location'    	=> params::URL,
-							'description'	=> 'plugin name',
-							'sentAs'			=> 'plugin_name',
-							'required'		=> true
-						]
-			]
+				'method' => 'GET',
+				'path'   => 'plugins/{name}',
+				'params' => [
+						'name'          => $this->params->urlId('plugin')
+				]
 		];
 	}
-
+	
 	public function getPluginVersion(): array
 	{
 		return [
-			'method' => 'GET',
-			'path'   => 'plugins/{name}/{versions}',
-			'params' => [
-				'name'          =>[
-							'type'			=> params:: STRING_TYPE,
-							'location'    	=> params::URL,
-							'description'	=> 'plugin name',
-							'sentAs'			=> 'plugin_name',
-							'required'		=> true
-						],
-				'versions'		=>[
-							'type'			=> params:: STRING_TYPE,
-							'location'    	=> params::URL,
-							'description'	=> 'version for version detail',
-							'sentAs'			=> 'versions',
-							'required'		=> true
-							]
-			]
+				'method' => 'GET',
+				'path'   => 'plugins/{name}/{versions}',
+				'params' => [
+						'name'          => $this->params->urlId('plugin'),
+						'versions'		=> $this->params->version()
+				]
 		];
 	}
-
+	
 	public function patchPlugin(): array
 	{
 		return [
 				'method'  => 'PATCH',
 				'path'    => 'plugins/{name}',
 				'params' => [
-					'name'          =>[
-								'type'				=> params:: STRING_TYPE,
-								'location'    => params::URL,
-								'description'	=> 'plugin name',
-								'sentAs'			=> 'plugin_name',
-								'required'		=> true
-					],
-					'pluginLabels' =>[
-								'type'       		=> params::OBJECT_TYPE,
-								'required'   		=> false,
-								'sentAs'	 		=> 'plugin_labels',
-								'items'      		=> [
-									'properties' 	=> [
-
-										'enabled'     => [
-											'type'	   	=> params::OBJECT_TYPE,
-											'required' 	=> false,
-											'items' 		=> [
-												'properties' 	=> [
-													'status' =>[
-														'type'      => params::BOOL_TYPE,
-														'required' 	=> false,
-													]
-												]
-											]
-										]
-									]
-								]
-					],
-					///the sub parameter above can be remove 	
-					'versionLabels' =>[
-									'type'			=> params::OBJECT_TYPE,
-									'required'		=> false,
-									'sentAs'		=> 'version_labels'
-								]
-
+						'name'          => $this->params->urlId('plugin'),
+						'pluginLabels' =>  $this->params->pluginLabels(),
+						///the sub parameter above can be remove
+						'versionLabels' => $this->params->versionlabels()
+						
+						
 				]
 		];
 	}
-
+	
+	
 	public function getPlugins(): array
 	{
 		return [
-			'method' => 'GET',
-			'path'   => 'plugins',
-			'params' => [
-
-
-			]
+				'method' => 'GET',
+				'path'   => 'plugins',
+				'params' => [
+						
+						
+				]
 		];
 	}
+	
 
 //---------------------------image-----------------------------------
 	public function getImages(): array
