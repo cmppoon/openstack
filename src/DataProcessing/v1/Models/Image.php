@@ -60,16 +60,22 @@ class Image extends OperatorResource implements Listable, Retrievable, Creatable
     return $this->populateFromResponse($response);
   }
 
+  public function unregister()
+  {
+    $this->execute($this->api->deleteImage(), $this->getAttrs(['id']));
+  }
+
   public function addTags(array $userOptions)
   {
-    $response = $this->execute($this->api->postImage(), $userOptions);
+    $response = $this->execute($this->api->postImageTag(), $userOptions);
     return $this->populateFromResponse($response);
   }
 
   public function removeTags(array $userOptions)
   {
-    $response = $this->execute($this->api->postImage(), $userOptions);
+    $response = $this->execute($this->api->postImageUntag(), $userOptions);
     return $this->populateFromResponse($response);
+
   }
 
 }

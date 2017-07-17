@@ -576,7 +576,7 @@ class Api extends AbstractApi
 							'required'   => true,
 							'sentAs'	 => 'job_configs',
 							'items'      => [
-								'type'       => params::OBJECT_TYPE,
+								
 								'properties' => [
 
 									'configs'      => [
@@ -671,100 +671,55 @@ class Api extends AbstractApi
 	public function getPlugin(): array
 	{
 		return [
-			'method' => 'GET',
-			'path'   => 'plugins/{name}',
-			'params' => [
-				'name'          =>[
-							'type'			=> params:: STRING_TYPE,
-							'location'    	=> params::URL,
-							'description'	=> 'plugin name',
-							'sentAs'			=> 'plugin_name',
-							'required'		=> true
-						]
-			]
+				'method' => 'GET',
+				'path'   => 'plugins/{name}',
+				'params' => [
+						'name'          => $this->params->urlId('plugin')
+				]
 		];
 	}
-
+	
 	public function getPluginVersion(): array
 	{
 		return [
-			'method' => 'GET',
-			'path'   => 'plugins/{name}/{versions}',
-			'params' => [
-				'name'          =>[
-							'type'			=> params:: STRING_TYPE,
-							'location'    	=> params::URL,
-							'description'	=> 'plugin name',
-							'sentAs'			=> 'plugin_name',
-							'required'		=> true
-						],
-				'versions'		=>[
-							'type'			=> params:: STRING_TYPE,
-							'location'    	=> params::URL,
-							'description'	=> 'version for version detail',
-							'sentAs'			=> 'versions',
-							'required'		=> true
-							]
-			]
+				'method' => 'GET',
+				'path'   => 'plugins/{name}/{versions}',
+				'params' => [
+						'name'          => $this->params->urlId('plugin'),
+						'versions'		=> $this->params->version()
+				]
 		];
 	}
-
+	
 	public function patchPlugin(): array
 	{
 		return [
 				'method'  => 'PATCH',
 				'path'    => 'plugins/{name}',
 				'params' => [
-					'name'          =>[
-								'type'				=> params:: STRING_TYPE,
-								'location'    => params::URL,
-								'description'	=> 'plugin name',
-								'sentAs'			=> 'plugin_name',
-								'required'		=> true
-					],
-					'pluginLabels' =>[
-								'type'       		=> params::OBJECT_TYPE,
-								'required'   		=> false,
-								'sentAs'	 		=> 'plugin_labels',
-								'items'      		=> [
-									'properties' 	=> [
-
-										'enabled'     => [
-											'type'	   	=> params::OBJECT_TYPE,
-											'required' 	=> false,
-											'items' 		=> [
-												'properties' 	=> [
-													'status' =>[
-														'type'      => params::BOOL_TYPE,
-														'required' 	=> false,
-													]
-												]
-											]
-										]
-									]
-								]
-					],
-					'versionLabels' =>[
-									'type'			=> params::OBJECT_TYPE,
-									'required'		=> false,
-									'sentAS'		=> 'version_labels'
-								]
-
+						'name'          => $this->params->urlId('plugin'),
+						'pluginLabels' =>  $this->params->pluginLabels(),
+						///the sub parameter above can be remove
+						'versionLabels' => $this->params->versionlabels()
+						
+						
 				]
 		];
 	}
-
+	
+	
 	public function getPlugins(): array
 	{
 		return [
-			'method' => 'GET',
-			'path'   => 'plugins',
-			'params' => [
-
-
-			]
+				'method' => 'GET',
+				'path'   => 'plugins',
+				'params' => [
+						
+						
+				]
 		];
 	}
+	
 
 //---------------------------image-----------------------------------
 	public function getImages(): array
@@ -803,24 +758,54 @@ class Api extends AbstractApi
 	{
 		return [
 			'method' => 'POST',
-			'path'   => 'images/{id}{/tag}{/untag}',
+			'path'   => 'images/{id}',
 			'params' => [
 				'id'					=> $this->params->urlId('image'),
 				'username'			=> $this->params->name('image'),
-				'description'		=> $this->params->description(),
-				'tag'          =>[
-							'type'					=> STRING_TYPE,
-							'location'    	=> params::URL,
-							'description'		=> 'tag',
-							'required'			=> false
-						],
-				'untag'		=>[
-							'type'					=> STRING_TYPE,
-							'location'    	=> params::URL,
-							'description'		=> 'untag',
+				'description'		=> $this->params->description()
+			]
+		];
+	}
+
+	public function postImageTag(): array
+	{
+		return [
+			'method' => 'POST',
+			'path'   => 'images/{id}/tag',
+			'params' => [
+				'id'					=> $this->params->urlId('image'),
+				'tags'		=>[
+							'type'					=> params::ARRAY_TYPE,
+							'description'		=> 'tags array for image',
 							'required'			=> false
 						]
 			]
+		];
+	}
+
+	public function postImageUntag(): array
+	{
+		return [
+			'method' => 'POST',
+			'path'   => 'images/{id}/untag',
+			'params' => [
+				'id'					=> $this->params->urlId('image'),
+				'tags'		=>[
+							'type'					=> params::ARRAY_TYPE,
+							'description'		=> 'tags array for image',
+							'required'			=> false
+						]
+			]
+		];
+	}
+
+	public function deleteImage(): array
+	{
+		return [
+				'method' => 'DELETE',
+				'path'   => 'images/{id}',
+				'params' => [
+					'id' => $this->params->urlId('datasource')]
 		];
 	}
 
