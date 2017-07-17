@@ -219,6 +219,16 @@ class Service extends AbstractService
 	{
 		return $this->model(Job::class)->enumerate($this->api->getJobTypes(), $options, $mapFn);
 	}
+
+	//--------------node-groups--------------------------//
+	public function listNodeGroups(array $options = [], callable $mapFn = null): \Generator
+	{
+		return $this->model(Cluster::class)->enumerate($this->api->getNodeGroups(), $options, $mapFn);
+		// return $this->model(Cluster::class)->getNodeGroups($options);
+		// $clusters = $this->model(Cluster::class)->enumerate($this->api->getClusters(), $options, $mapFn);
+		// return $clusters->nodegroups;
+	}
+
 }
 
 ?>

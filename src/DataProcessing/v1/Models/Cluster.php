@@ -7,6 +7,7 @@ use OpenStack\Common\Resource\Deletable;
 use OpenStack\Common\Resource\OperatorResource;
 use OpenStack\Common\Resource\Listable;
 use OpenStack\Common\Resource\Retrievable;
+use OpenStack\Common\Transport\Utils;
 
 class Cluster extends OperatorResource implements Listable, Retrievable, Creatable, Deletable
 {
@@ -38,10 +39,10 @@ class Cluster extends OperatorResource implements Listable, Retrievable, Creatab
 	public $createdAt;
 	public $isProtected;
 	public $verification;
-	
+
 	protected $resourceKey = 'cluster';
 	protected $resourcesKey = 'clusters';
-	
+
 	protected $aliases = [
 			'is_transient'                  => 'isTransient',
 			'user_keypair_id'               => 'userKeypairId',
@@ -65,13 +66,13 @@ class Cluster extends OperatorResource implements Listable, Retrievable, Creatab
 			'created_at'                    => 'createdAt',
 			'is_protected'                  => 'isProtected'
 	];
-	
+
 	public function retrieve()
 	{
 		$response = $this->execute($this->api->getCluster(), $this->getAttrs(['id']));
 		$this->populateFromResponse($response);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -80,26 +81,37 @@ class Cluster extends OperatorResource implements Listable, Retrievable, Creatab
 		($userOptions['multiple'] == true) ? $response=$this->execute($this->api->postClusters(), $userOptions) : $response=$this->execute($this->api->postCluster(), $userOptions);
 		return $this->populateFromResponse($response);
 	}
-	
+
 	/**
-	 * {@inheritDoc}	
+	 * {@inheritDoc}
 	 */
 	public function delete()
 	{
 		$this->execute($this->api->deleteCluster(), $this->getAttrs(['id']));
 	}
-	
+
 	public function update()
 	{
 		$response = $this->execute($this->api->patchCluster(), $this->getAttrs(['id', 'name', 'isPublic', 'isProtected']));
 		$this->populateFromResponse($response);
 	}
-	
+
 	public function scale(array $userOptions)
 	{
 		$response = $this->execute($this->api->putCluster(), $userOptions);
 		return $this->populateFromResponse($response);
 	}
+
+	public function getNodeGroups(array $options = []): array
+	{
+		$response = $this->execute($this->api->getNodeGroups(), $options);
+		return Utils::jsonDecode($response);
+	}
+
+	// public function getNG(): array
+	// {
+	// 	return $this->$nodeGroups;
+	// }
 }
 
 ?>

@@ -838,6 +838,18 @@ class Api extends AbstractApi
 				]
 		];
 	}
+
+	//---------------node-group--------------------------//
+	public function getNodeGroups(): array
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'clusters',
+				'params' => [
+
+				]
+		];
+	}
 }
 
 
