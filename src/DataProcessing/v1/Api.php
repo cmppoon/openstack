@@ -576,7 +576,7 @@ class Api extends AbstractApi
 							'required'   => true,
 							'sentAs'	 => 'job_configs',
 							'items'      => [
-								
+
 								'properties' => [
 
 									'configs'      => [
@@ -678,7 +678,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	public function getPluginVersion(): array
 	{
 		return [
@@ -690,7 +690,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	public function patchPlugin(): array
 	{
 		return [
@@ -701,25 +701,25 @@ class Api extends AbstractApi
 						'pluginLabels' =>  $this->params->pluginLabels(),
 						///the sub parameter above can be remove
 						'versionLabels' => $this->params->versionlabels()
-						
-						
+
+
 				]
 		];
 	}
-	
-	
+
+
 	public function getPlugins(): array
 	{
 		return [
 				'method' => 'GET',
 				'path'   => 'plugins',
 				'params' => [
-						
-						
+
+
 				]
 		];
 	}
-	
+
 
 //---------------------------image-----------------------------------
 	public function getImages(): array
@@ -805,7 +805,7 @@ class Api extends AbstractApi
 				'method' => 'DELETE',
 				'path'   => 'images/{id}',
 				'params' => [
-					'id' => $this->params->urlId('datasource')]
+					'id' => $this->params->urlId('image')]
 		];
 	}
 
