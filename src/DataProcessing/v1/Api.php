@@ -470,8 +470,6 @@ class Api extends AbstractApi
 	}
 	//--------------end-------job binary internal--------//
 
-
-
 	////------------------job(template)-------------------------//
 	public function postJob(): array
 	{
@@ -595,7 +593,6 @@ class Api extends AbstractApi
 							]
 						]
 					]
-
 		];
 	}
 
@@ -654,7 +651,6 @@ class Api extends AbstractApi
 
 	}
 
-
 	public function cancelJob(): array
 	{
 		$definition = $this->getJobExecution();
@@ -662,10 +658,6 @@ class Api extends AbstractApi
         return $definition;
 
 	}
-
-
-
-
 
 //---------------------------plugin-----------------------------------
 	public function getPlugin(): array
@@ -707,7 +699,6 @@ class Api extends AbstractApi
 		];
 	}
 
-
 	public function getPlugins(): array
 	{
 		return [
@@ -719,7 +710,6 @@ class Api extends AbstractApi
 				]
 		];
 	}
-
 
 //---------------------------image-----------------------------------
 	public function getImages(): array
@@ -742,18 +732,7 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	// public function postImage(): array
-	// {
-	// 	return [
-	// 			'method'  => 'POST',
-	// 			'path'    => 'images/{id}',
-	// 			'params'  => [
-	// 				'id'            => $this->params->urlId('image'),
-	// 				'username'			=> $this->params->name('image'),
-	// 				'description'		=> $this->params->description()
-	// 			]
-	// 	];
-	// }
+
 	public function postImage(): array
 	{
 		return [
@@ -836,6 +815,5 @@ class Api extends AbstractApi
 		];
 	}
 }
-
 
 ?>
