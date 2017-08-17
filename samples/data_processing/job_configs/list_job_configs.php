@@ -21,12 +21,16 @@ $openstack = new OpenStack([
 ]);
 
 $sahara = $openstack->dataProcessingV1(['region' => '{region}']);
-$image = $sahara->getImage(['id' => '{imageId}']);
-$options = [
-		'name' => '{imageName}',
-		'description' => '{newDescription}'
-];
-$image -> register($options);
-print_r($image);
 
+
+$options = [
+		
+];
+
+$jobConfigs = $sahara->listJobConfigs($options);
+
+foreach($jobConfigs as $jobConfig){
+	print_r($jobConfig);
+}
 ?>
+

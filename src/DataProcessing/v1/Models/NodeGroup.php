@@ -2,13 +2,20 @@
 
 namespace OpenStack\DataProcessing\v1\Models;
 
-use OpenStack\Common\Resource\Creatable;
-use OpenStack\Common\Resource\Deletable;
 use OpenStack\Common\Resource\OperatorResource;
 use OpenStack\Common\Resource\Listable;
-use OpenStack\Common\Resource\Retrievable;
 
-class NodeGroup extends OperatorResource implements Listable, Retrievable, Creatable, Deletable
+
+class NodeGroup extends OperatorResource implements Listable
 {
+	public $nodeGroups;
 
+	protected $resourceKey = 'cluster';
+	protected $resourcesKey = 'clusters';
+	
+	protected $aliases = [
+			'node_groups'  => 'nodeGroups',
+	];
+	
+	
 }

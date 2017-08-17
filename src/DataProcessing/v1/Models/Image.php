@@ -56,7 +56,7 @@ class Image extends OperatorResource implements Listable, Retrievable, Creatable
 
   public function register(array $userOptions)
   {
-    $response = $this->execute($this->api->postImage(), $userOptions);
+  	$response = $this->execute($this->api->postImage(), array_merge($this->getAttrs(['id']),$userOptions));
     return $this->populateFromResponse($response);
   }
 
@@ -75,7 +75,7 @@ class Image extends OperatorResource implements Listable, Retrievable, Creatable
   public function removeTags(string $username, string $tag)
   {
     $userOptions = array_merge($this->getAttrs(['id']),array('tags'=>array($username,$tag)));
-    $response = $this->execute($this->api->postImageTag(), $userOptions);
+    $response = $this->execute($this->api->unPostImageTag(), $userOptions);
     return $this->populateFromResponse($response);
   }
 

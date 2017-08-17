@@ -43,7 +43,7 @@ class NodeGroupTemplate extends OperatorResource implements Listable, Retrievabl
     protected $resourcesKey = 'node_group_templates';
 
     protected $aliases = [
-  			'volume_local_to_instance' => 'volumeLocalToInstance',
+  		'volume_local_to_instance' => 'volumeLocalToInstance',
         'availability_zone' => 'availabilityZone',
         'updated_at' => 'updatedAt',
         'use_autoconfig' => 'useAutoconfig',
@@ -69,7 +69,6 @@ class NodeGroupTemplate extends OperatorResource implements Listable, Retrievabl
         'flavor_id' => 'flavorId'
   	];
 
-    //continue writing function hereeeeeeeeeeeeeeeeee
     public function retrieve()
     {
       $response = $this->execute($this->api->getNodeGroupTemplate(), $this->getAttrs(['id']));

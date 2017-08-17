@@ -73,18 +73,12 @@ class Cluster extends OperatorResource implements Listable, Retrievable, Creatab
 		$this->populateFromResponse($response);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public function create(array $userOptions): Creatable
 	{
 		($userOptions['multiple'] == true) ? $response=$this->execute($this->api->postClusters(), $userOptions) : $response=$this->execute($this->api->postCluster(), $userOptions);
 		return $this->populateFromResponse($response);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public function delete()
 	{
 		$this->execute($this->api->deleteCluster(), $this->getAttrs(['id']));
@@ -98,7 +92,7 @@ class Cluster extends OperatorResource implements Listable, Retrievable, Creatab
 
 	public function scale(array $userOptions)
 	{
-		$response = $this->execute($this->api->putCluster(), $userOptions);
+		$response = $this->execute($this->api->putCluster(),  array_merge($this->getAttrs(['id']),$userOptions));
 		return $this->populateFromResponse($response);
 	}
 
@@ -108,10 +102,6 @@ class Cluster extends OperatorResource implements Listable, Retrievable, Creatab
 		return Utils::jsonDecode($response);
 	}
 
-	// public function getNG(): array
-	// {
-	// 	return $this->$nodeGroups;
-	// }
 }
 
 ?>

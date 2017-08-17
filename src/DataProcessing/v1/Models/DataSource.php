@@ -12,7 +12,7 @@ class DataSource extends OperatorResource implements Listable, Retrievable, Crea
 {
 	public $description;
 	public $url;
-	public $tenantID;
+	public $tenantId;
 	public $createdAt;
 	public $updatedAt;
 	public $isProtected;
@@ -25,7 +25,7 @@ class DataSource extends OperatorResource implements Listable, Retrievable, Crea
 	protected $resourcesKey = 'data_sources';
 	
 	protected $aliases = [
-			'tenant_id'					=>	'tenantID',
+			'tenant_id'					=>	'tenantId',
 			'created_at'				=>	'createdAt',
 			'updated_at'				=>	'updatedAt',
 			'is_protected'				=>	'isProtected',
@@ -51,7 +51,7 @@ class DataSource extends OperatorResource implements Listable, Retrievable, Crea
  	
 	public function update()
 	{
-		$response = $this->execute($this->api->patchDataSource(), $this->getAttrs(['id', 'description', 'name', 'isPublic', 'isProtected']));
+		$response = $this->execute($this->api->patchDataSource(), $this->getAttrs(['id', 'description', 'name', 'isPublic', 'isProtected', 'url', 'type']));
 		$this->populateFromResponse($response);
 	}
 

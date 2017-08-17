@@ -15,7 +15,7 @@ class ClusterTemplate extends OperatorResource implements Listable, Retrievable,
     public $shares;
     public $clusterConfigs;
     public $createdAt;
-    public $defaultImage;
+    public $defaultImageId;
     public $updatedAt;
     public $pluginName;
     public $domainName;
@@ -38,7 +38,7 @@ class ClusterTemplate extends OperatorResource implements Listable, Retrievable,
 		'neutron_management_network'		=> 'neutronManagementNetwork',
 		'cluster_configs'					=> 'clusterConfigs',
 		'created_at'						=> 'createdAt',
-		'default_image'						=> 'defaultImage',
+		'default_image_id'					=> 'defaultImageId',
 		'updated_at'						=>	'updatedAt',
 		'plugin_name'						=>	'pluginName',
 		'domain_name'						=>	'domainName',
@@ -58,18 +58,12 @@ class ClusterTemplate extends OperatorResource implements Listable, Retrievable,
 		$this->populateFromResponse($response);
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	public function create(array $userOptions): Creatable
 	{
 		$response=$this->execute($this->api->postClusterTemplate(), $userOptions);
 		return $this->populateFromResponse($response);
 	}
 	
-	/**
-	 * {@inheritDoc}	
-	 */
 	public function delete()
 	{
 		$this->execute($this->api->deleteClusterTemplate(), $this->getAttrs(['id']));

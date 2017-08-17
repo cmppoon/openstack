@@ -23,7 +23,6 @@ $openstack = new OpenStack([
 $sahara = $openstack->dataProcessingV1(['region' => '{region}']);
 
 $options = [
-		'id' => '{clusterId}',
 		'addNodeGroups' => [[
 				'count' =>'{count}',
 				'name'  => '{name}',

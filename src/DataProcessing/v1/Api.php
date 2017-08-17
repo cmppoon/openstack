@@ -73,7 +73,10 @@ class Api extends AbstractApi
 						'defaultImageId'           => $this->params->defaultImageId(),
 						'userKeypairId'               => $this->notRequired($this->params->userKeyPairId()),
 						'name'     => $this->isRequired($this->params->name('cluster')),
-						'neutronManagementNetwork'           => $this->params->neutronManagementNetwork()
+						'neutronManagementNetwork'           => $this->params->neutronManagementNetwork(),
+						'description'		=> $this->params->description(),
+						'isPublic'			=> $this->params->isPublic(),
+						'isProtected'		=> $this->params->isProtected()
 				]
 		];
 	}
@@ -160,6 +163,8 @@ class Api extends AbstractApi
 						'isProtected'		=> $this->params->isProtected(),
 						'name'				=> $this->params->dataSourceName(),
 						'description'		=> $this->params->description(),
+						'url'				=> $this->params->url(),
+						'type'				=> $this->params->dataSourceType(),
 				],
 		];
 	}
@@ -241,7 +246,7 @@ class Api extends AbstractApi
 						'antiAffinity'			=> $this->params->antiAffinity(),
 						'isPublic'				=> $this->params->isPublic(),
 						'hadoopVersion'      	=> $this->notRequired($this->params->hadoopVersion()),
-						'name'     				=> $this->$this->params->name('cluster-template')
+						'name'     				=> $this->params->name('cluster-template')
 				]
 		];
 	}
@@ -380,6 +385,7 @@ class Api extends AbstractApi
 						'isPublic'    => $this->params->isPublic(),
 						'name'        => $this->params->name('job_binary'),
 						'isProtected' => $this->params->isProtected(),
+						'descripTion' => $this->params->description()
 				],
 		];
 	}
@@ -739,7 +745,7 @@ class Api extends AbstractApi
 			'method' => 'POST',
 			'path'   => 'images/{id}',
 			'params' => [
-				'id'					=> $this->params->urlId('image'),
+				'id'				=> $this->params->urlId('image'),
 				'username'			=> $this->params->name('image'),
 				'description'		=> $this->params->description()
 			]
@@ -759,6 +765,22 @@ class Api extends AbstractApi
 							'required'			=> false
 						]
 			]
+		];
+	}
+	
+	public function unPostImageTag(): array
+	{
+		return [
+				'method' => 'POST',
+				'path'   => 'images/{id}/untag',
+				'params' => [
+						'id'					=> $this->params->urlId('image'),
+						'tags'		=>[
+								'type'					=> params::ARRAY_TYPE,
+								'description'		=> 'tags array for image',
+								'required'			=> false
+						]
+				]
 		];
 	}
 
@@ -811,6 +833,40 @@ class Api extends AbstractApi
 				'path'   => 'clusters',
 				'params' => [
 
+				]
+		];
+	}
+	
+	public function getNodeGroup(): array
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'clusters',
+				'params' => [
+						
+				]
+		];
+	}
+	
+	//---------------job-configs--------------------------//
+	public function getJobConfigs(): array
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'job-executions',
+				'params' => [
+						
+				]
+		];
+	}
+	
+	public function getJobConfig(): array
+	{
+		return [
+				'method' => 'GET',
+				'path'   => 'job-executions/{id}',
+				'params' => [
+						'id' => $this->params->urlId('jobConfigs')
 				]
 		];
 	}

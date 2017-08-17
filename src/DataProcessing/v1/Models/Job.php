@@ -12,12 +12,13 @@ use OpenStack\Common\Transport\Utils;
 class Job extends OperatorResource implements Listable, Retrievable, Creatable, Deletable
 {
     public $description;
+    public $tenantId;
     public $createdAt;
     public $mains;
+    public $updatedAt;
     public $libs;
     public $isProtected;
     public $interface;
-    public $tenantId;
     public $type;
 	public $isPublic;
 	public $id;
@@ -29,6 +30,7 @@ class Job extends OperatorResource implements Listable, Retrievable, Creatable, 
 
 	protected $aliases = [
 		'created_at'						=> 'createdAt',
+		'updated_at'						=> 'updatedAt',
 		'is_protected'						=>	'isProtected',
 		'tenant_id'							=>	'tenantId',
 		'is_public'							=> 	'isPublic'
@@ -40,18 +42,13 @@ class Job extends OperatorResource implements Listable, Retrievable, Creatable, 
 		$this->populateFromResponse($response);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public function create(array $userOptions): Creatable
 	{
 		$response=$this->execute($this->api->postJob(), $userOptions);
 		return $this->populateFromResponse($response);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+
 	public function delete()
 	{
 		$this->execute($this->api->deleteJob(), $this->getAttrs(['id']));

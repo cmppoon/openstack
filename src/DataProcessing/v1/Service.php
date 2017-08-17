@@ -103,7 +103,7 @@ class Service extends AbstractService
 	//--------------end----nodegrouptemplate------------------//
 
 	//--------------start----job bianry------------------//
-	public function listJobBinaries(array $options = [], callable $mapFn = null): \Generator
+	public function listJobBinarys(array $options = [], callable $mapFn = null): \Generator
 	{
 		return $this->model(JobBinary::class)->enumerate($this->api->getJobBinaries(), $options, $mapFn);
 	}
@@ -223,12 +223,35 @@ class Service extends AbstractService
 	//--------------node-groups--------------------------//
 	public function listNodeGroups(array $options = [], callable $mapFn = null): \Generator
 	{
-		return $this->model(Cluster::class)->enumerate($this->api->getNodeGroups(), $options, $mapFn);
-		// return $this->model(Cluster::class)->getNodeGroups($options);
-		// $clusters = $this->model(Cluster::class)->enumerate($this->api->getClusters(), $options, $mapFn);
-		// return $clusters->nodegroups;
+		return $this->model(NodeGroup::class)->enumerate($this->api->getNodeGroups(), $options, $mapFn);
 	}
-
+	
+	public function getNodeGroup(array $options = [], callable $mapFn = null): array
+	{
+		$nodeGroups = $this->model(NodeGroup::class)->enumerate($this->api->getNodeGroup(), $options, $mapFn);
+		foreach ($nodeGroups as $nodeGroup){
+			$nodegroups = $nodeGroup->nodeGroups;
+ 			foreach ($nodegroups as $nodegroup){
+ 				if($nodegroup['id'] == $options['id']){
+ 					return $nodegroup;
+ 				}
+ 			}
+		}
+		return [];
+	}
+	
+	//--------------job-configs--------------------------//
+	public function listJobConfigs(array $options = [], callable $mapFn = null): \Generator
+	{
+		return $this->model(JobConfig::class)->enumerate($this->api->getJobConfigs(), $options, $mapFn);
+	}
+	
+	public function getJobConfig(array $options = []): JobConfig
+	{
+		$jobConfig = $this->model(JobConfig::class);
+		$jobConfig -> populateFromArray($options);
+		return $jobConfig;
+	}
 }
 
 ?>

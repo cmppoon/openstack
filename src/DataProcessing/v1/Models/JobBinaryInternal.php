@@ -8,13 +8,12 @@ use OpenStack\Common\Resource\OperatorResource;
 use OpenStack\Common\Resource\Listable;
 use OpenStack\Common\Resource\Retrievable;
 use Psr\Http\Message\StreamInterface;
-use OpenStack\Common\Transport\Utils;
 
 class JobBinaryInternal extends OperatorResource implements Listable, Retrievable, Creatable, Deletable
 {
   public $name;
   public $tenantId;
-  public $createdId;
+  public $createdAt;
   public $updatedAt;
   public $isProtected;
   public $isPublic;
@@ -26,7 +25,7 @@ class JobBinaryInternal extends OperatorResource implements Listable, Retrievabl
 
   protected $aliases = [
     'tenant_id' => 'tenantId',
-    'created_id' => 'createdId',
+    'created_at' => 'createdAt',
     'updated_at' => 'updatedAt',
     'is_protected' => 'isProtected',
     'is_public' => 'isPublic'
@@ -52,7 +51,7 @@ class JobBinaryInternal extends OperatorResource implements Listable, Retrievabl
     $this->execute($this->api->deleteJobBinaryInternal(), $this->getAttrs(['id']));
   }
 
-  //---------please check attribute again-------------
+  
   public function update()
   {
     $response = $this->execute($this->api->patchJobBinaryInternal(), $this->getAttrs(['id','name','isProtected','isPublic']));

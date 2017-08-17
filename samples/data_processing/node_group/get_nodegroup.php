@@ -21,12 +21,9 @@ $openstack = new OpenStack([
 ]);
 
 $sahara = $openstack->dataProcessingV1(['region' => '{region}']);
-$image = $sahara->getImage(['id' => '{imageId}']);
-$options = [
-		'name' => '{imageName}',
-		'description' => '{newDescription}'
-];
-$image -> register($options);
-print_r($image);
 
+$nodegroup = $sahara->getNodeGroup(['id' => '{nodegroupId}']);
+
+print_r($nodegroup);
 ?>
+
