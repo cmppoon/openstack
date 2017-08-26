@@ -470,7 +470,7 @@ class Api extends AbstractApi
 					'id'=> $this->params->urlId('job_binary_internal'),
 					'name'=> $this->params->name('job_binary_internal'),
 					'isProtected' => $this->params->isProtected(),
-					'isPublic' => $this->params->isProtected()
+					'isPublic' => $this->params->isPublic()
 			]
 		];
 	}
@@ -767,7 +767,7 @@ class Api extends AbstractApi
 			]
 		];
 	}
-	
+
 	public function unPostImageTag(): array
 	{
 		return [
@@ -836,18 +836,18 @@ class Api extends AbstractApi
 				]
 		];
 	}
-	
+
 	public function getNodeGroup(): array
 	{
 		return [
 				'method' => 'GET',
 				'path'   => 'clusters',
 				'params' => [
-						
+
 				]
 		];
 	}
-	
+
 	//---------------job-configs--------------------------//
 	public function getJobConfigs(): array
 	{
@@ -855,11 +855,11 @@ class Api extends AbstractApi
 				'method' => 'GET',
 				'path'   => 'job-executions',
 				'params' => [
-						
+
 				]
 		];
 	}
-	
+
 	public function getJobConfig(): array
 	{
 		return [
