@@ -3,6 +3,7 @@
 namespace OpenStack\DataProcessing\v1;
 
 use OpenStack\Common\Api\AbstractParams;
+use Psr\Http\Message\StreamInterface;
 
 class Params extends AbstractParams
 {
@@ -354,7 +355,7 @@ public function urlId(string $type): array
 				'description' => 'The version of plugin'
 		];
 	}
-	
+
 	public function pluginLabels(): array
 	{
 		return [
@@ -369,7 +370,7 @@ public function urlId(string $type): array
 				]
 		];
 	}
-	
+
 	public function versionLabels(): array
 	{
 		return [
@@ -384,7 +385,7 @@ public function urlId(string $type): array
 				]
 		];
 	}
-	
+
 	public function pluginVersion(): array
 	{
 		return [
@@ -397,9 +398,9 @@ public function urlId(string $type): array
 						]
 				]
 		];
-		
+
 	}
-	
+
 	public function enable(): array
 	{
 		return [
@@ -467,6 +468,26 @@ public function urlId(string $type): array
 	 ];
  }
 //------------end-job-types----------------------//
+//-------------start---jobbinaryinternal--------------//
+public function data(): array
+{
+		return [
+				'location'   => self::RAW,
+				'type'       => StreamInterface::class,
+				'required'   => true,
+				'documented' => false,
+		];
+}
+
+public function contentType(): array
+{
+ return [
+	 'location' => self::HEADER,
+	 'type'     => self::STRING_TYPE,
+	 'sentAs'   => 'Content-Type',
+ ];
+}
+	//-------------end---jobbinaryinternal--------------//
 }
 
 ?>
