@@ -201,7 +201,7 @@ class Api extends AbstractApi
 				'params' => [
 						'limit'        => $this->params->limit(),
 						'marker'       => $this->params->marker(),
-						'sort_by'	   => $this->params->sortkey(),
+						'sortBy'	   => $this->params->sortkey(),
 				]
 		];
 	}
@@ -511,7 +511,7 @@ class Api extends AbstractApi
 				'params' => [
 						'limit'        => $this->params->limit(),
 						'marker'       => $this->params->marker(),
-						'sort_by'	   => $this->params->sortkey()
+						'sortBy'	   => $this->params->sortkey()
 				]
 		];
 	}
@@ -611,7 +611,7 @@ class Api extends AbstractApi
 				'params' => [
 						'limit'        => $this->params->limit(),
 						'marker'       => $this->params->marker(),
-						'sort_by'	   => $this->params->sortkey()
+						'sortBy'	   => $this->params->sortkey()
 				]
 		];
 	}
