@@ -23,7 +23,7 @@ $openstack = new OpenStack([
 $sahara = $openstack->dataProcessingV1(['region' => '{region}']);
 
 $options = [
-		'limit' => {limit},
+		'limit' => '{limit}',
 		'sort_by' => '{sort_key}'
 ];
 $jobExecutions = $sahara->listJobExecutions($options);

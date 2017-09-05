@@ -9,43 +9,42 @@ use OpenStack\Common\Transport\Utils;
 
 class Plugin extends OperatorResource implements Listable, Retrievable
 {
-  public $description;
-  public $versions;
-  public $versionLabels;
-  public $title;
-  public $pluginLabels;
-  public $name;
-  public $tenantId;
+    public $description;
+    public $versions;
+    public $versionLabels;
+    public $title;
+    public $pluginLabels;
+    public $name;
+    public $tenantId;
 
-  protected $resourceKey = 'plugin';
-  protected $resourcesKey = 'plugins';
+    protected $resourceKey = 'plugin';
+    protected $resourcesKey = 'plugins';
 
-  protected $aliases = [
-			'version_labels'			   	=>	'versionLabels',
-			'plugin_labels'				   	=>	'pluginLabels',
-			'tenant_id'					    => 'tenantId',
-			'plugin_name'            		=> 'name',
+    protected $aliases = [
+            'version_labels'     =>    'versionLabels',
+            'plugin_labels'      =>    'pluginLabels',
+            'tenant_id'          => 'tenantId',
+            'plugin_name'        => 'name',
 
-	];
+    ];
 
 
-  	public function retrieve()
-	{
-		$response = $this->execute($this->api->getPlugin(), $this->getAttrs(['name']));
-		$this->populateFromResponse($response);
-	}
+    public function retrieve()
+    {
+        $response = $this->execute($this->api->getPlugin(), $this->getAttrs(['name']));
+        $this->populateFromResponse($response);
+    }
 
- 	public function retrieveDetails()
-	{
-		$response = $this->execute($this->api->getPluginVersion(), $this->getAttrs(['name','versions']));
+    public function retrieveDetails()
+    {
+        $response = $this->execute($this->api->getPluginVersion(), $this->getAttrs(['name','versions']));
 
-		return Utils::jsonDecode($response)['plugin'];
-	}
+        return Utils::jsonDecode($response)['plugin'];
+    }
 
-	public function update()
-	{
-	 	$response = $this->execute($this->api->patchPlugin(), $this->getAttrs(['name','pluginLabels','versionLabels']));
-	 	$this->populateFromResponse($response);
-	 }
-
+    public function update()
+    {
+        $response = $this->execute($this->api->patchPlugin(), $this->getAttrs(['name','pluginLabels','versionLabels']));
+        $this->populateFromResponse($response);
+    }
 }
