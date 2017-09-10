@@ -1,11 +1,23 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace OpenStack\DataProcessing\v1\Models;
 
 use OpenStack\Common\Resource\Creatable;
 use OpenStack\Common\Resource\Deletable;
-use OpenStack\Common\Resource\OperatorResource;
 use OpenStack\Common\Resource\Listable;
+use OpenStack\Common\Resource\OperatorResource;
 use OpenStack\Common\Resource\Retrievable;
 
 class ClusterTemplate extends OperatorResource implements Listable, Retrievable, Creatable, Deletable
@@ -30,26 +42,25 @@ class ClusterTemplate extends OperatorResource implements Listable, Retrievable,
     public $id;
     public $name;
 
-
     protected $resourceKey = 'cluster_template';
     protected $resourcesKey = 'cluster_templates';
 
     protected $aliases = [
-        'neutron_management_network'      => 'neutronManagementNetwork',
-        'cluster_configs'                 => 'clusterConfigs',
-        'created_at'                      => 'createdAt',
-        'default_image_id'                => 'defaultImageId',
-        'updated_at'                      =>    'updatedAt',
-        'plugin_name'                     =>    'pluginName',
-        'domain_name'                     =>    'domainName',
-        'is_default'                      =>    'isDefault',
-        'is_protected'                    =>    'isProtected',
-        'use_autoconfig'                  =>    'useAutoconfig',
-        'anti_affinity'                   =>    'antiAffinity',
-        'tenant_id'                       =>    'tenantId',
-        'node_groups'                     =>    'nodeGroups',
-        'is_public'                       =>    'isPublic',
-        'hadoop_version'                  =>    'hadoopVersion'
+        'neutron_management_network' => 'neutronManagementNetwork',
+        'cluster_configs' => 'clusterConfigs',
+        'created_at' => 'createdAt',
+        'default_image_id' => 'defaultImageId',
+        'updated_at' => 'updatedAt',
+        'plugin_name' => 'pluginName',
+        'domain_name' => 'domainName',
+        'is_default' => 'isDefault',
+        'is_protected' => 'isProtected',
+        'use_autoconfig' => 'useAutoconfig',
+        'anti_affinity' => 'antiAffinity',
+        'tenant_id' => 'tenantId',
+        'node_groups' => 'nodeGroups',
+        'is_public' => 'isPublic',
+        'hadoop_version' => 'hadoopVersion',
     ];
 
     public function retrieve()
@@ -60,7 +71,8 @@ class ClusterTemplate extends OperatorResource implements Listable, Retrievable,
 
     public function create(array $userOptions): Creatable
     {
-        $response=$this->execute($this->api->postClusterTemplate(), $userOptions);
+        $response = $this->execute($this->api->postClusterTemplate(), $userOptions);
+
         return $this->populateFromResponse($response);
     }
 
@@ -71,8 +83,7 @@ class ClusterTemplate extends OperatorResource implements Listable, Retrievable,
 
     public function update()
     {
-        $response = $this->execute($this->api->putClusterTemplate(), $this->getAttrs(['id', 'name','pluginName','hadoopVersion','neutronManagementNetwork','description'
-        ,'shares','clusterConfigs','defaultImage','pluginName','domainName','isProtected','useAutoconfig','antiAffinity','nodeGroups','isPublic']));
+        $response = $this->execute($this->api->putClusterTemplate(), $this->getAttrs(['id', 'name', 'pluginName', 'hadoopVersion', 'neutronManagementNetwork', 'description', 'shares', 'clusterConfigs', 'defaultImage', 'pluginName', 'domainName', 'isProtected', 'useAutoconfig', 'antiAffinity', 'nodeGroups', 'isPublic']));
         $this->populateFromResponse($response);
     }
 }

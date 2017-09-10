@@ -1,4 +1,16 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace OpenStack\DataProcessing\v1;
 
@@ -14,634 +26,631 @@ class Api extends AbstractApi
     public function getClusters(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'clusters',
-                'params' => [
-                        'limit'        => $this->params->limit(),
-                        'marker'       => $this->params->marker(),
-                        'sortKey'      => $this->params->sortKey()
-                ]
+            'method' => 'GET',
+            'path' => 'clusters',
+            'params' => [
+                'limit' => $this->params->limit(),
+                'marker' => $this->params->marker(),
+                'sortKey' => $this->params->sortKey(),
+            ],
         ];
     }
 
     public function getCluster(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'clusters/{id}',
-                'params' => [
-                        'id'           => $this->params->urlId('cluster'),
-                        'limit'        => $this->params->limit(),
-                        'marker'       => $this->params->marker()
-                ]
+            'method' => 'GET',
+            'path' => 'clusters/{id}',
+            'params' => [
+                'id' => $this->params->urlId('cluster'),
+                'limit' => $this->params->limit(),
+                'marker' => $this->params->marker(),
+            ],
         ];
     }
 
     public function deleteCluster(): array
     {
         return [
-                'method' => 'DELETE',
-                'path'   => 'clusters/{id}',
-                'params' => ['id' => $this->params->urlId('cluster')],
+            'method' => 'DELETE',
+            'path' => 'clusters/{id}',
+            'params' => ['id' => $this->params->urlId('cluster')],
         ];
     }
 
     public function patchCluster(): array
     {
         return [
-                'method'  => 'PATCH',
-                'path'    => 'clusters/{id}',
-                'params'  => [
-                        'id'           => $this->params->urlId('cluster'),
-                        'isPublic'     => $this->params->isPublic(),
-                        'name'         => $this->params->name('cluster'),
-                        'isProtected'  => $this->params->isProtected(),
-                        'description'  => $this->params->description()
-                ],
+            'method' => 'PATCH',
+            'path' => 'clusters/{id}',
+            'params' => [
+                'id' => $this->params->urlId('cluster'),
+                'isPublic' => $this->params->isPublic(),
+                'name' => $this->params->name('cluster'),
+                'isProtected' => $this->params->isProtected(),
+                'description' => $this->params->description(),
+            ],
         ];
     }
 
     public function postCluster(): array
     {
         return [
-                'path'    => 'clusters',
-                'method'  => 'POST',
-                'params'  => [
-                        'pluginName'                  => $this->params->pluginName(),
-                        'hadoopVersion'               => $this->params->hadoopVersion(),
-                        'clusterTemplateId'           => $this->params->clusterTemplateId(),
-                        'defaultImageId'              => $this->params->defaultImageId(),
-                        'userKeypairId'               => $this->notRequired($this->params->userKeyPairId()),
-                        'name'                        => $this->isRequired($this->params->name('cluster')),
-                        'neutronManagementNetwork'    => $this->params->neutronManagementNetwork(),
-                        'description'                 => $this->params->description(),
-                        'isPublic'                    => $this->params->isPublic(),
-                        'isProtected'        => $this->params->isProtected()
-                ]
+            'path' => 'clusters',
+            'method' => 'POST',
+            'params' => [
+                'pluginName' => $this->params->pluginName(),
+                'hadoopVersion' => $this->params->hadoopVersion(),
+                'clusterTemplateId' => $this->params->clusterTemplateId(),
+                'defaultImageId' => $this->params->defaultImageId(),
+                'userKeypairId' => $this->notRequired($this->params->userKeyPairId()),
+                'name' => $this->isRequired($this->params->name('cluster')),
+                'neutronManagementNetwork' => $this->params->neutronManagementNetwork(),
+                'description' => $this->params->description(),
+                'isPublic' => $this->params->isPublic(),
+                'isProtected' => $this->params->isProtected(),
+            ],
         ];
     }
 
     public function postClusters(): array
     {
-        $definition             = $this->postCluster();
-        $definition['path']    .= '/multiple';
-        $definition['params']   = array_merge($definition['params'], [
-            'count'             => $this->params->count(),
-            'clusterConfigs'    => $this->params->clusterConfigs()
+        $definition = $this->postCluster();
+        $definition['path'] .= '/multiple';
+        $definition['params'] = array_merge($definition['params'], [
+            'count' => $this->params->count(),
+            'clusterConfigs' => $this->params->clusterConfigs(),
         ]);
+
         return $definition;
     }
 
     public function putCluster(): array
     {
         return [
-                'path'    => 'clusters/{id}',
-                'method'  => 'PUT',
-                'params'  => [
-                        'id'               => $this->params->urlId('cluster'),
-                        'addNodeGroups'    => $this->params->addNodeGroups(),
-                        'resizeNodeGroups' => $this->params->resizeNodeGroups()
-                ]
+            'path' => 'clusters/{id}',
+            'method' => 'PUT',
+            'params' => [
+                'id' => $this->params->urlId('cluster'),
+                'addNodeGroups' => $this->params->addNodeGroups(),
+                'resizeNodeGroups' => $this->params->resizeNodeGroups(),
+            ],
         ];
     }
 
     public function postDataSource(): array
     {
         return [
-                'path'    => 'data-sources',
-                'method'  => 'POST',
-                'params'  => [
-                        'description'         => $this->params->description(),
-                        'url'                 => $this->params->url(),
-                        'type'                => $this->params->dataSourceType(),
-                        'name'                => $this->params->dataSourceName()
-                ]
+            'path' => 'data-sources',
+            'method' => 'POST',
+            'params' => [
+                'description' => $this->params->description(),
+                'url' => $this->params->url(),
+                'type' => $this->params->dataSourceType(),
+                'name' => $this->params->dataSourceName(),
+            ],
         ];
     }
 
     public function deleteDataSource(): array
     {
         return [
-                'method' => 'DELETE',
-                'path'   => 'data-sources/{id}',
-                'params' => ['id' => $this->params->urlId('datasource')]
+            'method' => 'DELETE',
+            'path' => 'data-sources/{id}',
+            'params' => ['id' => $this->params->urlId('datasource')],
         ];
     }
 
     public function getDataSource(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'data-sources/{id}',
-                'params' => [
-                        'id'    => $this->params->urlId('datasource')
-                ]
+            'method' => 'GET',
+            'path' => 'data-sources/{id}',
+            'params' => [
+                'id' => $this->params->urlId('datasource'),
+            ],
         ];
     }
 
     public function getDataSources(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'data-sources',
-                'params' => [
-                        'limit'        => $this->params->limit(),
-                        'marker'       => $this->params->marker(),
-                        'sortKey'      => $this->params->sortKey()
-                ]
+            'method' => 'GET',
+            'path' => 'data-sources',
+            'params' => [
+                'limit' => $this->params->limit(),
+                'marker' => $this->params->marker(),
+                'sortKey' => $this->params->sortKey(),
+            ],
         ];
     }
 
     public function putDataSource(): array
     {
         return [
-                'method'  => 'PUT',
-                'path'    => 'data-sources/{id}',
-                'params'  => [
-                        'id'                => $this->params->urlId('datasource'),
-                        'isPublic'          => $this->params->isPublic(),
-                        'isProtected'       => $this->params->isProtected(),
-                        'name'              => $this->params->dataSourceName(),
-                        'description'       => $this->params->description(),
-                        'url'               => $this->params->url(),
-                        'type'              => $this->params->dataSourceType(),
-                ],
+            'method' => 'PUT',
+            'path' => 'data-sources/{id}',
+            'params' => [
+                'id' => $this->params->urlId('datasource'),
+                'isPublic' => $this->params->isPublic(),
+                'isProtected' => $this->params->isProtected(),
+                'name' => $this->params->dataSourceName(),
+                'description' => $this->params->description(),
+                'url' => $this->params->url(),
+                'type' => $this->params->dataSourceType(),
+            ],
         ];
     }
-
 
     public function postClusterTemplate(): array
     {
         return [
-                'path'    => 'cluster-templates',
-                'method'  => 'POST',
-                'params'  => [
-                        'pluginName'               => $this->params->pluginName(),
-                        'hadoopVersion'            => $this->params->hadoopVersion(),
-                        'name'                     => $this->isRequired($this->params->name('cluster-template')),
-                        'nodeGroups'               => $this->params->nodeGroups(),
-                        'neutronManagementNetwork' => $this-> notRequired($this->params->neutronManagementNetwork()),
-                        'description'              => $this->params->description(),
-                        'shares'                   => $this->params->shares(),
-                        'clusterConfigs'           => $this->params->clusterConfigs(),
-                        'defaultImageId'           => $this-> notRequired($this->params->defaultImageId()),
-                        'domainName'               => $this->params->domainName(),
-                        'isProtected'              => $this->params->isProtected(),
-                        'useAutoconfig'            => $this->params->useAutoconfig(),
-                        'antiAffinity'             => $this->params->antiAffinity(),
-                        'isPublic'                 => $this->params->isPublic()
-                ]
+            'path' => 'cluster-templates',
+            'method' => 'POST',
+            'params' => [
+                'pluginName' => $this->params->pluginName(),
+                'hadoopVersion' => $this->params->hadoopVersion(),
+                'name' => $this->isRequired($this->params->name('cluster-template')),
+                'nodeGroups' => $this->params->nodeGroups(),
+                'neutronManagementNetwork' => $this->notRequired($this->params->neutronManagementNetwork()),
+                'description' => $this->params->description(),
+                'shares' => $this->params->shares(),
+                'clusterConfigs' => $this->params->clusterConfigs(),
+                'defaultImageId' => $this->notRequired($this->params->defaultImageId()),
+                'domainName' => $this->params->domainName(),
+                'isProtected' => $this->params->isProtected(),
+                'useAutoconfig' => $this->params->useAutoconfig(),
+                'antiAffinity' => $this->params->antiAffinity(),
+                'isPublic' => $this->params->isPublic(),
+            ],
         ];
     }
+
     public function getClusterTemplates(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'cluster-templates',
-                'params' => [
-                        'limit'        => $this->params->limit(),
-                        'marker'       => $this->params->marker(),
-                        'sortBy'       => $this->params->sortkey(),
-                ]
+            'method' => 'GET',
+            'path' => 'cluster-templates',
+            'params' => [
+                'limit' => $this->params->limit(),
+                'marker' => $this->params->marker(),
+                'sortBy' => $this->params->sortkey(),
+            ],
         ];
     }
 
     public function getClusterTemplate(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'cluster-templates/{id}',
-                'params' => [
-                        'id'    => $this->params->urlId('cluster-templates')
-                ]
+            'method' => 'GET',
+            'path' => 'cluster-templates/{id}',
+            'params' => [
+                'id' => $this->params->urlId('cluster-templates'),
+            ],
         ];
     }
 
     public function deleteClusterTemplate(): array
     {
         return [
-                'method' => 'DELETE',
-                'path'   => 'cluster-templates/{id}',
-                'params' => ['id' => $this->params->urlId('cluster-template')],
+            'method' => 'DELETE',
+            'path' => 'cluster-templates/{id}',
+            'params' => ['id' => $this->params->urlId('cluster-template')],
         ];
     }
 
     public function putClusterTemplate(): array
     {
         return [
-                'method'  => 'PUT',
-                'path'    => 'cluster-templates/{id}',
-                'params'  => [
-                        'id'                        => $this->params->urlId('cluster-template'),
-                        'nodeGroups'                => $this->params->nodeGroups(),
-                        'neutronManagementNetwork'  => $this-> notRequired($this->params->neutronManagementNetwork()),
-                        'description'               => $this->params->description(),
-                        'shares'                    => $this->params->shares(),
-                        'clusterConfigs'            => $this->params->clusterConfigs(),
-                        'defaultImageId'            => $this->notRequired($this->params->defaultImageId()),
-                        'pluginName'                => $this->notRequired($this->params->pluginName()),
-                        'domainName'                => $this->params->domainName(),
-                        'isProtected'               => $this->params->isProtected(),
-                        'useAutoconfig'             => $this->params->useAutoconfig(),
-                        'antiAffinity'              => $this->params->antiAffinity(),
-                        'isPublic'                  => $this->params->isPublic(),
-                        'hadoopVersion'             => $this->notRequired($this->params->hadoopVersion()),
-                        'name'                      => $this->params->name('cluster-template')
-                ]
+            'method' => 'PUT',
+            'path' => 'cluster-templates/{id}',
+            'params' => [
+                'id' => $this->params->urlId('cluster-template'),
+                'nodeGroups' => $this->params->nodeGroups(),
+                'neutronManagementNetwork' => $this->notRequired($this->params->neutronManagementNetwork()),
+                'description' => $this->params->description(),
+                'shares' => $this->params->shares(),
+                'clusterConfigs' => $this->params->clusterConfigs(),
+                'defaultImageId' => $this->notRequired($this->params->defaultImageId()),
+                'pluginName' => $this->notRequired($this->params->pluginName()),
+                'domainName' => $this->params->domainName(),
+                'isProtected' => $this->params->isProtected(),
+                'useAutoconfig' => $this->params->useAutoconfig(),
+                'antiAffinity' => $this->params->antiAffinity(),
+                'isPublic' => $this->params->isPublic(),
+                'hadoopVersion' => $this->notRequired($this->params->hadoopVersion()),
+                'name' => $this->params->name('cluster-template'),
+            ],
         ];
     }
-
 
     public function getNodeGroupTemplates()
     {
         return [
-                'method' => 'GET',
-                'path'   => 'node-group-templates',
-                'params' => [
-                        'limit'        => $this->params->limit(),
-                        'marker'       => $this->params->marker(),
-                        'sortKey'      => $this->params->sortKey()
-                ]
+            'method' => 'GET',
+            'path' => 'node-group-templates',
+            'params' => [
+                'limit' => $this->params->limit(),
+                'marker' => $this->params->marker(),
+                'sortKey' => $this->params->sortKey(),
+            ],
         ];
     }
 
     public function postNodeGroupTemplate()
     {
         return [
-                'path'    => 'node-group-templates',
-                'method'  => 'POST',
-                'params'  => [
-                    'pluginName'            => $this->params->pluginName(),
-                    'hadoopVersion'         => $this->params->hadoopVersion(),
-                    'nodeProcesses'         => $this->params->nodeProcesses(),
-                    'name'                  => $this->isRequired($this->params->name('nodeGroupTemplate')),
-                    'flavorId'              => $this->params->flavorId(),
-                    'description'           => $this->params->description(),
-                    'availabilityZone'      => $this->params->availabilityZone(),
-                    'imageId'               => $this->params->imageId(),
-                    'floatingIpPool'        => $this->params->floatingIpPool(),
-                    'useAutoconfig'         => $this->params->useAutoconfig(),
-                    'isProxyGateway'        => $this->params->isProxyGateway(),
-                    'isPublic'              => $this->params->isPublic(),
-                    'isProtected'           => $this->params->isProtected()
-                ]
+            'path' => 'node-group-templates',
+            'method' => 'POST',
+            'params' => [
+                'pluginName' => $this->params->pluginName(),
+                'hadoopVersion' => $this->params->hadoopVersion(),
+                'nodeProcesses' => $this->params->nodeProcesses(),
+                'name' => $this->isRequired($this->params->name('nodeGroupTemplate')),
+                'flavorId' => $this->params->flavorId(),
+                'description' => $this->params->description(),
+                'availabilityZone' => $this->params->availabilityZone(),
+                'imageId' => $this->params->imageId(),
+                'floatingIpPool' => $this->params->floatingIpPool(),
+                'useAutoconfig' => $this->params->useAutoconfig(),
+                'isProxyGateway' => $this->params->isProxyGateway(),
+                'isPublic' => $this->params->isPublic(),
+                'isProtected' => $this->params->isProtected(),
+            ],
         ];
     }
+
     public function getNodeGroupTemplate()
     {
         return [
-                'method' => 'GET',
-                'path'   => 'node-group-templates/{id}',
-                'params' => [
-                        'id'     => $this->params->urlId('nodeGroupTemplate')
-                ]
+            'method' => 'GET',
+            'path' => 'node-group-templates/{id}',
+            'params' => [
+                'id' => $this->params->urlId('nodeGroupTemplate'),
+            ],
         ];
     }
+
     public function deleteNodeGroupTemplate()
     {
         return [
-                'method' => 'DELETE',
-                'path'   => 'node-group-templates/{id}',
-                'params' => ['id' => $this->params->urlId('nodeGroupTemplate')]
+            'method' => 'DELETE',
+            'path' => 'node-group-templates/{id}',
+            'params' => ['id' => $this->params->urlId('nodeGroupTemplate')],
         ];
     }
 
     public function putNodeGroupTemplate()
     {
         return [
-                'method'  => 'PUT',
-                'path'    => 'node-group-templates/{id}',
-                'params'  => [
-                        'id'                     => $this->params->urlId('nodeGroupTemplate'),
-                        'name'                   => $this->params->name('nodeGroupTemplate'),
-                        'description'            => $this->params->description(),
-                        'availabilityZone'       => $this->params->availabilityZone(),
-                        'imageId'                => $this->params->imageId(),
-                        'floatingIpPool'         => $this->params->floatingIpPool(),
-                        'useAutoconfig'          => $this->params->useAutoconfig(),
-                        'isProxyGateway'         => $this->params->isProxyGateway(),
-                        'isPublic'               => $this->params->isPublic(),
-                        'isProtected'           => $this->params->isProtected()
-                ]
+            'method' => 'PUT',
+            'path' => 'node-group-templates/{id}',
+            'params' => [
+                'id' => $this->params->urlId('nodeGroupTemplate'),
+                'name' => $this->params->name('nodeGroupTemplate'),
+                'description' => $this->params->description(),
+                'availabilityZone' => $this->params->availabilityZone(),
+                'imageId' => $this->params->imageId(),
+                'floatingIpPool' => $this->params->floatingIpPool(),
+                'useAutoconfig' => $this->params->useAutoconfig(),
+                'isProxyGateway' => $this->params->isProxyGateway(),
+                'isPublic' => $this->params->isPublic(),
+                'isProtected' => $this->params->isProtected(),
+            ],
         ];
     }
 
-    
     public function getJobBinaries(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'job-binaries',
-                'params' => [
-                        'limit'        => $this->params->limit(),
-                        'marker'       => $this->params->marker(),
-                        'sortKey'      => $this->params->sortKey(),
-                        'sortDir'      => $this->params->sortDir()
-                ]
+            'method' => 'GET',
+            'path' => 'job-binaries',
+            'params' => [
+                'limit' => $this->params->limit(),
+                'marker' => $this->params->marker(),
+                'sortKey' => $this->params->sortKey(),
+                'sortDir' => $this->params->sortDir(),
+            ],
         ];
     }
 
     public function getJobBinary(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'job-binaries/{id}',
-                'params' => ['id'=> $this->params->urlId('binary')]
+            'method' => 'GET',
+            'path' => 'job-binaries/{id}',
+            'params' => ['id' => $this->params->urlId('binary')],
         ];
     }
 
     public function postJobBinary(): array
     {
         return [
-                'path'    => 'job-binaries',
-                'method'  => 'POST',
-                'params'  => [
-                        'url'             => $this->params->url(),
-                        'name'            => $this->params->name('job_binary'),
-                        'description'     => $this->params->description(),
-                        'extra'           => $this->params->extra()
-                ]
+            'path' => 'job-binaries',
+            'method' => 'POST',
+            'params' => [
+                'url' => $this->params->url(),
+                'name' => $this->params->name('job_binary'),
+                'description' => $this->params->description(),
+                'extra' => $this->params->extra(),
+            ],
         ];
     }
 
     public function deleteJobBinary(): array
     {
         return [
-                'method' => 'DELETE',
-                'path'   => 'job-binaries/{id}',
-                'params' => ['id'=> $this->params->urlId('job_binary')]
+            'method' => 'DELETE',
+            'path' => 'job-binaries/{id}',
+            'params' => ['id' => $this->params->urlId('job_binary')],
         ];
     }
 
     public function putJobBinary(): array
     {
         return [
-                'method'  => 'PUT',
-                'path'    => 'job-binaries/{id}',
-                'params'  => [
-                        'id'          => $this->params->urlId('job_binary'),
-                        'url'         => $this->params->url(),
-                        'isPublic'    => $this->params->isPublic(),
-                        'name'        => $this->params->name('job_binary'),
-                        'isProtected' => $this->params->isProtected(),
-                        'description' => $this->params->description()
-                ],
+            'method' => 'PUT',
+            'path' => 'job-binaries/{id}',
+            'params' => [
+                'id' => $this->params->urlId('job_binary'),
+                'url' => $this->params->url(),
+                'isPublic' => $this->params->isPublic(),
+                'name' => $this->params->name('job_binary'),
+                'isProtected' => $this->params->isProtected(),
+                'description' => $this->params->description(),
+            ],
         ];
     }
 
     public function getJobBinaryData(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'job-binaries/{id}/data',
-                'params' => ['id'=> $this->params->urlId('job_binary')]
+            'method' => 'GET',
+            'path' => 'job-binaries/{id}/data',
+            'params' => ['id' => $this->params->urlId('job_binary')],
         ];
     }
 
-    
     public function putJobBinaryInternal(): array
     {
         return [
-    'method' => 'PUT',
-    'path'   => 'job-binary-internals/{name}',
-    'params' => [
-      'name'        => $this->params->urlId('job_binary_internal'),
-      'data'        => $this->params->data(),
-      'contentType' => $this->params->contentType()
-    ]
-  ];
+            'method' => 'PUT',
+            'path' => 'job-binary-internals/{name}',
+            'params' => [
+                'name' => $this->params->urlId('job_binary_internal'),
+                'data' => $this->params->data(),
+                'contentType' => $this->params->contentType(),
+            ],
+        ];
     }
 
     public function getJobBinaryInternalData(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'job-binary-internals/{id}/data',
-                'params' => [
-                    'id' => $this->params->urlId('job_binary_internal')
-                ]
+            'method' => 'GET',
+            'path' => 'job-binary-internals/{id}/data',
+            'params' => [
+                'id' => $this->params->urlId('job_binary_internal'),
+            ],
         ];
     }
 
     public function getJobBinaryInternal(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'job-binary-internals/{id}',
-                'params' => [
-                    'id' => $this->params->urlId('job_binary_internal')
-                ]
+            'method' => 'GET',
+            'path' => 'job-binary-internals/{id}',
+            'params' => [
+                'id' => $this->params->urlId('job_binary_internal'),
+            ],
         ];
     }
 
     public function getJobBinaryInternals(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'job-binary-internals',
-                'params' => [
-                    'limit'   => $this->params->limit(),
-                    'marker'  => $this->params->marker(),
-                    'sortKey' => $this->params->sortKey()
-                ]
+            'method' => 'GET',
+            'path' => 'job-binary-internals',
+            'params' => [
+                'limit' => $this->params->limit(),
+                'marker' => $this->params->marker(),
+                'sortKey' => $this->params->sortKey(),
+            ],
         ];
     }
 
     public function deleteJobBinaryInternal(): array
     {
         return [
-                'method' => 'DELETE',
-                'path'   => 'job-binary-internals/{id}',
-                'params' => [
-                    'id' => $this->params->urlId('job_binary_internal')
-                ]
+            'method' => 'DELETE',
+            'path' => 'job-binary-internals/{id}',
+            'params' => [
+                'id' => $this->params->urlId('job_binary_internal'),
+            ],
         ];
     }
 
     public function patchJobBinaryInternal(): array
     {
         return [
-                'method' => 'PATCH',
-                'path'   => 'job-binary-internals/{id}',
-                'params' => [
-                    'id'          => $this->params->urlId('job_binary_internal'),
-                    'name'        => $this->params->name('job_binary_internal'),
-                    'isProtected' => $this->params->isProtected(),
-                    'isPublic'    => $this->params->isPublic()
-            ]
+            'method' => 'PATCH',
+            'path' => 'job-binary-internals/{id}',
+            'params' => [
+                'id' => $this->params->urlId('job_binary_internal'),
+                'name' => $this->params->name('job_binary_internal'),
+                'isProtected' => $this->params->isProtected(),
+                'isPublic' => $this->params->isPublic(),
+            ],
         ];
     }
 
-    
     public function postJob(): array
     {
         return [
-                'path'    => 'jobs',
-                'method'  => 'POST',
-                'params'  => [
-                        'description'         => $this->params->description(),
-                        'mains'               => [
-                            'type'            => params:: ARRAY_TYPE,
-                            'description'     => 'The list of the job object and their properties.',
-                            'required'        => false
-                        ],
-                        'libs'                => [
-                            'type'            => params::ARRAY_TYPE,
-                            'description'     => 'The list of the job object properties.',
-                            'required'        => false
-                        ],
-                        'type'                => [
-                            'type'            => params:: STRING_TYPE,
-                            'description'     => 'The type of the data source object.',
-                            'required'        => true
-                        ],
-                        'name'                => $this->isRequired($this->params->name('job'))
-                ]
+            'path' => 'jobs',
+            'method' => 'POST',
+            'params' => [
+                'description' => $this->params->description(),
+                'mains' => [
+                    'type' => params:: ARRAY_TYPE,
+                    'description' => 'The list of the job object and their properties.',
+                    'required' => false,
+                ],
+                'libs' => [
+                    'type' => params::ARRAY_TYPE,
+                    'description' => 'The list of the job object properties.',
+                    'required' => false,
+                ],
+                'type' => [
+                    'type' => params:: STRING_TYPE,
+                    'description' => 'The type of the data source object.',
+                    'required' => true,
+                ],
+                'name' => $this->isRequired($this->params->name('job')),
+            ],
         ];
     }
+
     public function getJobs(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'jobs',
-                'params' => [
-                        'limit'        => $this->params->limit(),
-                        'marker'       => $this->params->marker(),
-                        'sortBy'       => $this->params->sortkey()
-                ]
+            'method' => 'GET',
+            'path' => 'jobs',
+            'params' => [
+                'limit' => $this->params->limit(),
+                'marker' => $this->params->marker(),
+                'sortBy' => $this->params->sortkey(),
+            ],
         ];
     }
 
     public function getJob(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'jobs/{id}',
-                'params' => [
-                        'id'  => $this->params->urlId('jobs')
-                ]
+            'method' => 'GET',
+            'path' => 'jobs/{id}',
+            'params' => [
+                'id' => $this->params->urlId('jobs'),
+            ],
         ];
     }
 
     public function deleteJob(): array
     {
         return [
-                'method' => 'DELETE',
-                'path'   => 'jobs/{id}',
-                'params' => ['id' => $this->params->urlId('jobs')]
+            'method' => 'DELETE',
+            'path' => 'jobs/{id}',
+            'params' => ['id' => $this->params->urlId('jobs')],
         ];
     }
 
     public function patchJob(): array
     {
         return [
-                'method'  => 'PATCH',
-                'path'    => 'jobs/{id}',
-                'params'  => [
-                        'id'          => $this->params->urlId('jobs'),
-                        'name'        => $this->params->name('job'),
-                        'isProtected' => $this->params->isProtected(),
-                        'isPublic'    => $this->params->isPublic(),
-                        'description' => $this->params->description()
-                ]
+            'method' => 'PATCH',
+            'path' => 'jobs/{id}',
+            'params' => [
+                'id' => $this->params->urlId('jobs'),
+                'name' => $this->params->name('job'),
+                'isProtected' => $this->params->isProtected(),
+                'isPublic' => $this->params->isPublic(),
+                'description' => $this->params->description(),
+            ],
         ];
     }
 
     public function executeJob(): array
     {
         return [
-                'method'  => 'POST',
-                'path'    => 'jobs/{id}/execute',
-                'params'  => [
-                        'id'             => $this->params->urlId('jobs'),
-                        'isProtected'    => $this->params->isProtected(),
-                        'isPublic'       => $this->params->isPublic(),
-                        'clusterId'      => [
-                            'type'       => params::STRING_TYPE,
-                            'required'   => true,
-                            'sentAs'     => 'cluster_id'
+            'method' => 'POST',
+            'path' => 'jobs/{id}/execute',
+            'params' => [
+                'id' => $this->params->urlId('jobs'),
+                'isProtected' => $this->params->isProtected(),
+                'isPublic' => $this->params->isPublic(),
+                'clusterId' => [
+                    'type' => params::STRING_TYPE,
+                    'required' => true,
+                    'sentAs' => 'cluster_id',
+                ],
+                'inputId' => [
+                    'type' => params::STRING_TYPE,
+                    'required' => false,
+                    'sentAs' => 'input_id',
+                ],
+                'outputId' => [
+                    'type' => params::STRING_TYPE,
+                    'required' => false,
+                    'sentAs' => 'output_id',
+                ],
+                'jobConfigs' => [
+                    'type' => params::OBJECT_TYPE,
+                    'required' => true,
+                    'sentAs' => 'job_configs',
+                    'items' => [
+                        'properties' => [
+                            'configs' => [
+                                'type' => params::OBJECT_TYPE,
+                                'required' => true,
+                            ],
+                            'args' => [
+                                'type' => params::ARRAY_TYPE,
+                                'required' => false,
+                            ],
+                            'params' => [
+                                'type' => params::OBJECT_TYPE,
+                                'required' => false,
+                            ],
                         ],
-                        'inputId'        => [
-                            'type'       => params::STRING_TYPE,
-                            'required'   => false,
-                            'sentAs'     => 'input_id'
-                        ],
-                        'outputId'       => [
-                            'type'       => params::STRING_TYPE,
-                            'required'   => false,
-                            'sentAs'     => 'output_id'
-                        ],
-                        'jobConfigs'     => [
-                            'type'       => params::OBJECT_TYPE,
-                            'required'   => true,
-                            'sentAs'     => 'job_configs',
-                            'items'      => [
-
-                                'properties'       => [
-
-                                    'configs'      => [
-                                        'type'     => params::OBJECT_TYPE,
-                                        'required' => true
-                                    ],
-                                    'args'         => [
-                                        'type'     => params::ARRAY_TYPE,
-                                        'required' => false
-                                    ],
-                                    'params' => [
-                                        'type'     => params::OBJECT_TYPE,
-                                        'required' => false
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
+                    ],
+                ],
+            ],
         ];
     }
-
 
     public function getJobExecutions(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'job-executions',
-                'params' => [
-                        'limit'        => $this->params->limit(),
-                        'marker'       => $this->params->marker(),
-                        'sortBy'       => $this->params->sortkey()
-                ]
+            'method' => 'GET',
+            'path' => 'job-executions',
+            'params' => [
+                'limit' => $this->params->limit(),
+                'marker' => $this->params->marker(),
+                'sortBy' => $this->params->sortkey(),
+            ],
         ];
     }
 
     public function getJobExecution(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'job-executions/{id}',
-                'params' => [
-                        'id'           => $this->params->urlId('jobs')
-                ]
+            'method' => 'GET',
+            'path' => 'job-executions/{id}',
+            'params' => [
+                'id' => $this->params->urlId('jobs'),
+            ],
         ];
     }
 
     public function deleteJobExecution(): array
     {
         return [
-                'method' => 'DELETE',
-                'path'   => 'job-executions/{id}',
-                'params' => ['id' => $this->params->urlId('job-executions')]
+            'method' => 'DELETE',
+            'path' => 'job-executions/{id}',
+            'params' => ['id' => $this->params->urlId('job-executions')],
         ];
     }
 
     public function patchJobExecution(): array
     {
         return [
-                'method'  => 'PATCH',
-                'path'    => 'job-executions/{id}',
-                'params'  => [
-                        'id'          => $this->params->urlId('job-executions'),
-                        'isPublic'    => $this->params->isPublic(),
-                        'isProtected' => $this->params->isProtected()
-                ]
+            'method' => 'PATCH',
+            'path' => 'job-executions/{id}',
+            'params' => [
+                'id' => $this->params->urlId('job-executions'),
+                'isPublic' => $this->params->isPublic(),
+                'isProtected' => $this->params->isProtected(),
+            ],
         ];
     }
 
@@ -649,6 +658,7 @@ class Api extends AbstractApi
     {
         $definition = $this->getJobExecution();
         $definition['path'] .= '/refresh-status';
+
         return $definition;
     }
 
@@ -656,79 +666,74 @@ class Api extends AbstractApi
     {
         $definition = $this->getJobExecution();
         $definition['path'] .= '/cancel';
+
         return $definition;
     }
-
 
     public function getPlugin(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'plugins/{name}',
-                'params' => [
-                        'name'    => $this->params->urlId('plugin')
-                ]
+            'method' => 'GET',
+            'path' => 'plugins/{name}',
+            'params' => [
+                'name' => $this->params->urlId('plugin'),
+            ],
         ];
     }
 
     public function getPluginVersion(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'plugins/{name}/{versions}',
-                'params' => [
-                        'name'          => $this->params->urlId('plugin'),
-                        'versions'      => $this->params->version()
-                ]
+            'method' => 'GET',
+            'path' => 'plugins/{name}/{versions}',
+            'params' => [
+                'name' => $this->params->urlId('plugin'),
+                'versions' => $this->params->version(),
+            ],
         ];
     }
 
     public function patchPlugin(): array
     {
         return [
-                'method'  => 'PATCH',
-                'path'    => 'plugins/{name}',
-                'params' => [
-                        'name'          => $this->params->urlId('plugin'),
-                        'pluginLabels' =>  $this->params->pluginLabels(),
-                        'versionLabels' => $this->params->versionlabels()
-
-
-                ]
+            'method' => 'PATCH',
+            'path' => 'plugins/{name}',
+            'params' => [
+                'name' => $this->params->urlId('plugin'),
+                'pluginLabels' => $this->params->pluginLabels(),
+                'versionLabels' => $this->params->versionlabels(),
+            ],
         ];
     }
 
     public function getPlugins(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'plugins',
-                'params' => [
-
-
-                ]
+            'method' => 'GET',
+            'path' => 'plugins',
+            'params' => [
+            ],
         ];
     }
 
-    
     public function getImages(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'images',
-                'params' => [
-
-                ]
+            'method' => 'GET',
+            'path' => 'images',
+            'params' => [
+            ],
         ];
     }
+
     public function getImage(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'images/{id}',
-                'params' => [
-                    'id'           => $this->params->urlId('image')
-                ]
+            'method' => 'GET',
+            'path' => 'images/{id}',
+            'params' => [
+                'id' => $this->params->urlId('image'),
+            ],
         ];
     }
 
@@ -736,12 +741,12 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'POST',
-            'path'   => 'images/{id}',
+            'path' => 'images/{id}',
             'params' => [
-                'id'                  => $this->params->urlId('image'),
-                'username'            => $this->params->name('image'),
-                'description'         => $this->params->description()
-            ]
+                'id' => $this->params->urlId('image'),
+                'username' => $this->params->name('image'),
+                'description' => $this->params->description(),
+            ],
         ];
     }
 
@@ -749,31 +754,31 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'POST',
-            'path'   => 'images/{id}/tag',
+            'path' => 'images/{id}/tag',
             'params' => [
-                'id'        => $this->params->urlId('image'),
-                'tags'      =>[
-                            'type'               => params::ARRAY_TYPE,
-                            'description'        => 'tags array for image',
-                            'required'           => false
-                        ]
-            ]
+                'id' => $this->params->urlId('image'),
+                'tags' => [
+                    'type' => params::ARRAY_TYPE,
+                    'description' => 'tags array for image',
+                    'required' => false,
+                ],
+            ],
         ];
     }
 
     public function unPostImageTag(): array
     {
         return [
-                'method' => 'POST',
-                'path'   => 'images/{id}/untag',
-                'params' => [
-                        'id'          => $this->params->urlId('image'),
-                        'tags'        => [
-                                'type'              => params::ARRAY_TYPE,
-                                'description'       => 'tags array for image',
-                                'required'          => false
-                        ]
-                ]
+            'method' => 'POST',
+            'path' => 'images/{id}/untag',
+            'params' => [
+                'id' => $this->params->urlId('image'),
+                'tags' => [
+                    'type' => params::ARRAY_TYPE,
+                    'description' => 'tags array for image',
+                    'required' => false,
+                ],
+            ],
         ];
     }
 
@@ -781,86 +786,81 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'POST',
-            'path'   => 'images/{id}/untag',
+            'path' => 'images/{id}/untag',
             'params' => [
-                'id'          => $this->params->urlId('image'),
-                'tags'        => [
-                            'type'              => params::ARRAY_TYPE,
-                            'description'       => 'tags array for image',
-                            'required'          => false
-                        ]
-            ]
+                'id' => $this->params->urlId('image'),
+                'tags' => [
+                    'type' => params::ARRAY_TYPE,
+                    'description' => 'tags array for image',
+                    'required' => false,
+                ],
+            ],
         ];
     }
 
     public function deleteImage(): array
     {
         return [
-                'method' => 'DELETE',
-                'path'   => 'images/{id}',
-                'params' => [
-                    'id' => $this->params->urlId('image')]
+            'method' => 'DELETE',
+            'path' => 'images/{id}',
+            'params' => [
+                'id' => $this->params->urlId('image'),
+            ],
         ];
     }
 
-
-    public function getJobTypes(): array
+    public function getJobTypes(String $path): array
     {
         return [
                 'method' => 'GET',
-                'path'   => 'job-types',
+                'path' => 'job-types?'.$path,
                 'params' => [
-                    'plugin'    => $this->params->plugin_filter(),
-                    'version'   => $this->params->version_filter(),
-                    'type'      => $this->params->type(),
-                    'hints'     => $this->params->hints()
-                ]
+                    'plugin' => $this->params->plugin_filter(),
+                    'version' => $this->params->version_filter(),
+                    'type' => $this->params->type(),
+                    'hints' => $this->params->hints(),
+                ],
         ];
     }
-
 
     public function getNodeGroups(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'clusters',
-                'params' => [
-
-                ]
+            'method' => 'GET',
+            'path' => 'clusters',
+            'params' => [
+            ],
         ];
     }
 
     public function getNodeGroup(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'clusters',
-                'params' => [
-
-                ]
+            'method' => 'GET',
+            'path' => 'clusters',
+            'params' => [
+            ],
         ];
     }
 
-    //---------------job-configs--------------------------//
     public function getJobConfigs(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'job-executions',
-                'params' => [
-
-                ]
+            'method' => 'GET',
+            'path' => 'job-executions',
+            'params' => [
+            ],
         ];
     }
 
     public function getJobConfig(): array
     {
         return [
-                'method' => 'GET',
-                'path'   => 'job-executions/{id}',
-                'params' => [
-                        'id' => $this->params->urlId('jobConfigs')
-                ]
+            'method' => 'GET',
+            'path' => 'job-executions/{id}',
+            'params' => [
+                'id' => $this->params->urlId('jobConfigs'),
+            ],
         ];
     }
 }

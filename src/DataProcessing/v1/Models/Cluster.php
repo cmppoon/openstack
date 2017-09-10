@@ -1,11 +1,23 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace OpenStack\DataProcessing\v1\Models;
 
 use OpenStack\Common\Resource\Creatable;
 use OpenStack\Common\Resource\Deletable;
-use OpenStack\Common\Resource\OperatorResource;
 use OpenStack\Common\Resource\Listable;
+use OpenStack\Common\Resource\OperatorResource;
 use OpenStack\Common\Resource\Retrievable;
 use OpenStack\Common\Transport\Utils;
 
@@ -44,27 +56,27 @@ class Cluster extends OperatorResource implements Listable, Retrievable, Creatab
     protected $resourcesKey = 'clusters';
 
     protected $aliases = [
-            'is_transient'                  => 'isTransient',
-            'user_keypair_id'               => 'userKeypairId',
-            'updated_at'                    => 'updatedAt',
-            'provision_progress'            => 'provisionProgress',
-            'use_autoconfig'                => 'useAutoconfig',
-            'node_groups'                   => 'nodeGroups',
-            'management_public_key'         => 'managementPublicKey',
-            'trust_id'                      => 'trustId',
-            'cluster_configs'               => 'clusterConfigs',
-            'default_image_id'              => 'defaultImageId',
-            'domain_name'                   => 'domainName',
-            'neutron_management_network'    => 'neutronManagementNetwork',
-            'plugin_name'                   => 'pluginName',
-            'anti_affinity'                 => 'antiAffinity',
-            'is_public'                     => 'isPublic',
-            'status_description'            => 'statusDescription',
-            'hadoop_version'                => 'hadoopVersion',
-            'cluster_template_id'           => 'clusterTemplateId',
-            'tenant_id'                     => 'tenantId',
-            'created_at'                    => 'createdAt',
-            'is_protected'                  => 'isProtected'
+            'is_transient' => 'isTransient',
+            'user_keypair_id' => 'userKeypairId',
+            'updated_at' => 'updatedAt',
+            'provision_progress' => 'provisionProgress',
+            'use_autoconfig' => 'useAutoconfig',
+            'node_groups' => 'nodeGroups',
+            'management_public_key' => 'managementPublicKey',
+            'trust_id' => 'trustId',
+            'cluster_configs' => 'clusterConfigs',
+            'default_image_id' => 'defaultImageId',
+            'domain_name' => 'domainName',
+            'neutron_management_network' => 'neutronManagementNetwork',
+            'plugin_name' => 'pluginName',
+            'anti_affinity' => 'antiAffinity',
+            'is_public' => 'isPublic',
+            'status_description' => 'statusDescription',
+            'hadoop_version' => 'hadoopVersion',
+            'cluster_template_id' => 'clusterTemplateId',
+            'tenant_id' => 'tenantId',
+            'created_at' => 'createdAt',
+            'is_protected' => 'isProtected',
     ];
 
     public function retrieve()
@@ -75,7 +87,8 @@ class Cluster extends OperatorResource implements Listable, Retrievable, Creatab
 
     public function create(array $userOptions): Creatable
     {
-        ($userOptions['multiple'] == true) ? $response=$this->execute($this->api->postClusters(), $userOptions) : $response=$this->execute($this->api->postCluster(), $userOptions);
+        ($userOptions['multiple'] === true) ? $response = $this->execute($this->api->postClusters(), $userOptions) : $response = $this->execute($this->api->postCluster(), $userOptions);
+
         return $this->populateFromResponse($response);
     }
 
@@ -86,19 +99,21 @@ class Cluster extends OperatorResource implements Listable, Retrievable, Creatab
 
     public function update()
     {
-        $response = $this->execute($this->api->patchCluster(), $this->getAttrs(['id', 'name', 'isPublic', 'isProtected','description']));
+        $response = $this->execute($this->api->patchCluster(), $this->getAttrs(['id', 'name', 'isPublic', 'isProtected', 'description']));
         $this->populateFromResponse($response);
     }
 
     public function scale(array $userOptions)
     {
         $response = $this->execute($this->api->putCluster(), array_merge($this->getAttrs(['id']), $userOptions));
+
         return $this->populateFromResponse($response);
     }
 
     public function getNodeGroups(array $options = []): array
     {
         $response = $this->execute($this->api->getNodeGroups(), $options);
+
         return Utils::jsonDecode($response);
     }
 }

@@ -1,11 +1,23 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace OpenStack\DataProcessing\v1\Models;
 
 use OpenStack\Common\Resource\Creatable;
 use OpenStack\Common\Resource\Deletable;
-use OpenStack\Common\Resource\OperatorResource;
 use OpenStack\Common\Resource\Listable;
+use OpenStack\Common\Resource\OperatorResource;
 use OpenStack\Common\Resource\Retrievable;
 
 class DataSource extends OperatorResource implements Listable, Retrievable, Creatable, Deletable
@@ -25,16 +37,17 @@ class DataSource extends OperatorResource implements Listable, Retrievable, Crea
     protected $resourcesKey = 'data_sources';
 
     protected $aliases = [
-            'tenant_id'               =>    'tenantId',
-            'created_at'              =>    'createdAt',
-            'updated_at'              =>    'updatedAt',
-            'is_protected'            =>    'isProtected',
-            'is_public'               =>    'isPublic'
+        'tenant_id' => 'tenantId',
+        'created_at' => 'createdAt',
+        'updated_at' => 'updatedAt',
+        'is_protected' => 'isProtected',
+        'is_public' => 'isPublic',
     ];
 
     public function create(array $userOptions): Creatable
     {
         $response = $this->execute($this->api->postDataSource(), $userOptions);
+
         return $this->populateFromResponse($response);
     }
 

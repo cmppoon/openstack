@@ -1,11 +1,23 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace OpenStack\DataProcessing\v1\Models;
 
 use OpenStack\Common\Resource\Creatable;
 use OpenStack\Common\Resource\Deletable;
-use OpenStack\Common\Resource\OperatorResource;
 use OpenStack\Common\Resource\Listable;
+use OpenStack\Common\Resource\OperatorResource;
 use OpenStack\Common\Resource\Retrievable;
 use Psr\Http\Message\StreamInterface;
 
@@ -24,12 +36,12 @@ class JobBinaryInternal extends OperatorResource implements Listable, Retrievabl
     protected $resourcesKey = 'binaries';
 
     protected $aliases = [
-    'tenant_id'    => 'tenantId',
-    'created_at'   => 'createdAt',
-    'updated_at'   => 'updatedAt',
-    'is_protected' => 'isProtected',
-    'is_public'    => 'isPublic'
-  ];
+        'tenant_id' => 'tenantId',
+        'created_at' => 'createdAt',
+        'updated_at' => 'updatedAt',
+        'is_protected' => 'isProtected',
+        'is_public' => 'isPublic',
+    ];
 
     public function retrieve()
     {
@@ -40,9 +52,10 @@ class JobBinaryInternal extends OperatorResource implements Listable, Retrievabl
     public function create(array $userOptions): Creatable
     {
         $options = array_merge($userOptions, [
-      'contentType' => 'application/octet-stream'
+      'contentType' => 'application/octet-stream',
     ]);
-        $response=$this->execute($this->api->putJobBinaryInternal(), $options);
+        $response = $this->execute($this->api->putJobBinaryInternal(), $options);
+
         return $this->populateFromResponse($response);
     }
 
@@ -51,16 +64,16 @@ class JobBinaryInternal extends OperatorResource implements Listable, Retrievabl
         $this->execute($this->api->deleteJobBinaryInternal(), $this->getAttrs(['id']));
     }
 
-  
     public function update()
     {
-        $response = $this->execute($this->api->patchJobBinaryInternal(), $this->getAttrs(['id','name','isProtected','isPublic']));
+        $response = $this->execute($this->api->patchJobBinaryInternal(), $this->getAttrs(['id', 'name', 'isProtected', 'isPublic']));
         $this->populateFromResponse($response);
     }
 
     public function downloadData(): StreamInterface
     {
         $response = $this->executeWithState($this->api->getJobBinaryInternalData());
+
         return $response->getBody();
     }
 }

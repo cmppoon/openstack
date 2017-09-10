@@ -1,4 +1,16 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace OpenStack\DataProcessing\v1;
 
@@ -28,6 +40,7 @@ class Service extends AbstractService
     {
         $cluster = $this->model(Cluster::class);
         $cluster->populateFromArray($options);
+
         return $cluster;
     }
 
@@ -50,6 +63,7 @@ class Service extends AbstractService
     {
         $source = $this->model(DataSource::class);
         $source->populateFromArray($options);
+
         return $source;
     }
 
@@ -67,8 +81,10 @@ class Service extends AbstractService
     {
         $clusterTemplate = $this->model(ClusterTemplate::class);
         $clusterTemplate->populateFromArray($options);
+
         return $clusterTemplate;
     }
+
     public function listClusterTemplates(array $options = [], callable $mapFn = null): \Generator
     {
         return $this->model(ClusterTemplate::class)->enumerate($this->api->getClusterTemplates(), $options, $mapFn);
@@ -78,6 +94,7 @@ class Service extends AbstractService
     {
         $nodeGroupTemplate = $this->model(NodeGroupTemplate::class);
         $nodeGroupTemplate->populateFromArray($options);
+
         return $nodeGroupTemplate;
     }
 
@@ -100,6 +117,7 @@ class Service extends AbstractService
     {
         $binary = $this->model(JobBinary::class);
         $binary->populateFromArray($options);
+
         return $binary;
     }
 
@@ -112,6 +130,7 @@ class Service extends AbstractService
     {
         $jobBinaryInternal = $this->model(JobBinaryInternal::class);
         $jobBinaryInternal->populateFromArray($options);
+
         return $jobBinaryInternal;
     }
 
@@ -122,10 +141,11 @@ class Service extends AbstractService
 
     public function createJobBinaryInternal(StreamInterface $stream): JobBinaryInternal
     {
-        $options=[
-          'name' => $stream->getMetadata('uri'),
-          'data' => $stream
+        $options = [
+            'name' => $stream->getMetadata('uri'),
+            'data' => $stream,
         ];
+
         return $this->model(JobBinaryInternal::class)->create($options);
     }
 
@@ -134,21 +154,24 @@ class Service extends AbstractService
         return $this->model(Job::class)->create($options);
     }
 
-    public function getJob(array $options = []):Job
+    public function getJob(array $options = []): Job
     {
         $Job = $this->model(Job::class);
         $Job->populateFromArray($options);
+
         return $Job;
     }
+
     public function listJobs(array $options = [], callable $mapFn = null): \Generator
     {
         return $this->model(Job::class)->enumerate($this->api->getJobs(), $options, $mapFn);
     }
 
-    public function getJobExecution(array $options = []):JobExecution
+    public function getJobExecution(array $options = []): JobExecution
     {
         $JobExecution = $this->model(JobExecution::class);
-        $JobExecution ->populateFromArray($options);
+        $JobExecution->populateFromArray($options);
+
         return $JobExecution;
     }
 
@@ -165,7 +188,8 @@ class Service extends AbstractService
     public function getPlugin(array $options = []): Plugin
     {
         $plugin = $this->model(Plugin::class);
-        $plugin -> populateFromArray($options);
+        $plugin->populateFromArray($options);
+
         return $plugin;
     }
 
@@ -177,7 +201,8 @@ class Service extends AbstractService
     public function getImage(array $options = []): Image
     {
         $image = $this->model(Image::class);
-        $image -> populateFromArray($options);
+        $image->populateFromArray($options);
+
         return $image;
     }
 
@@ -191,27 +216,23 @@ class Service extends AbstractService
         return $this->model(Job::class)->getJobTypes($options);
     }
 
-    public function listJobTypes2(array $options = [], callable $mapFn = null): \Generator
-    {
-        return $this->model(Job::class)->enumerate($this->api->getJobTypes(), $options, $mapFn);
-    }
-
     public function listNodeGroups(array $options = [], callable $mapFn = null): \Generator
     {
         return $this->model(NodeGroup::class)->enumerate($this->api->getNodeGroups(), $options, $mapFn);
     }
-    
+
     public function getNodeGroup(array $options = [], callable $mapFn = null): array
     {
         $nodeGroups = $this->model(NodeGroup::class)->enumerate($this->api->getNodeGroup(), $options, $mapFn);
         foreach ($nodeGroups as $nodeGroup) {
             $nodegroups = $nodeGroup->nodeGroups;
             foreach ($nodegroups as $nodegroup) {
-                if ($nodegroup['id'] == $options['id']) {
+                if ($nodegroup['id'] === $options['id']) {
                     return $nodegroup;
                 }
             }
         }
+
         return [];
     }
 
@@ -219,11 +240,12 @@ class Service extends AbstractService
     {
         return $this->model(JobConfig::class)->enumerate($this->api->getJobConfigs(), $options, $mapFn);
     }
-    
+
     public function getJobConfig(array $options = []): JobConfig
     {
         $jobConfig = $this->model(JobConfig::class);
-        $jobConfig -> populateFromArray($options);
+        $jobConfig->populateFromArray($options);
+
         return $jobConfig;
     }
 }
