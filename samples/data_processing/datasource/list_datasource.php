@@ -9,14 +9,14 @@ $openstack = new OpenStack([
     'user'    => [
         'name'     => '{userName}',
         'password' => '{password}',
-        'domain'   => [ 'name' => '{userDomain}' ]
+        'domain'   => ['name' => '{userDomain}'],
     ],
-    'scope' => [
-        'project'     => [
+    'scope'   => [
+        'project'  => [
              'name'   => '{projectName}',
-             'domain' => [ 'name' => '{projectDomain}' ]
-        ]
-    ]
+             'domain' => ['name' => '{projectDomain}'],
+        ],
+    ],
 ]);
 
 $sahara = $openstack->dataProcessingV1(['region' => '{region}']);
@@ -25,10 +25,9 @@ $options = [
     'limit'   => '{limit}',
     'marker'  => '{marker}',
     'sortKey' => '{sortKey}'
-]
+];
 
 $sources = $sahara->listDataSources($options);
 foreach ($sources as $source) {
     print_r($source);
 }
-?>

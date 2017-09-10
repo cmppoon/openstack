@@ -1,17 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-/*
- * This file is part of PHP CS Fixer.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
-
 namespace OpenStack\DataProcessing\v1;
 
 use OpenStack\Common\Api\AbstractParams;
@@ -22,8 +10,8 @@ class Params extends AbstractParams
     public function urlId(string $type): array
     {
         return array_merge(parent::idPath($type), [
-            'required' => true,
-            'location' => self::URL,
+            'required'   => true,
+            'location'   => self::URL,
             'documented' => false,
         ]);
     }
@@ -31,26 +19,26 @@ class Params extends AbstractParams
     public function url(): array
     {
         return [
-            'type' => self::STRING_TYPE,
+            'type'     => self::STRING_TYPE,
             'required' => true,
-            'sentAs' => 'url',
+            'sentAs'   => 'url',
         ];
     }
 
     public function description(): array
     {
         return [
-            'type' => self::STRING_TYPE,
+            'type'     => self::STRING_TYPE,
             'required' => false,
-            'sentAs' => 'description',
+            'sentAs'   => 'description',
         ];
     }
 
     public function isPublic(): array
     {
         return [
-            'type' => self::BOOL_TYPE,
-            'sentAs' => 'is_public',
+            'type'     => self::BOOL_TYPE,
+            'sentAs'   => 'is_public',
             'location' => self::JSON,
         ];
     }
@@ -58,9 +46,9 @@ class Params extends AbstractParams
     public function pluginName(): array
     {
         return [
-            'type' => self::STRING_TYPE,
-            'required' => true,
-            'sentAs' => 'plugin_name',
+            'type'        => self::STRING_TYPE,
+            'required'    => true,
+            'sentAs'      => 'plugin_name',
             'description' => 'The plugin name of cluster',
         ];
     }
@@ -68,9 +56,9 @@ class Params extends AbstractParams
     public function hadoopVersion(): array
     {
         return [
-            'type' => self::STRING_TYPE,
-            'required' => true,
-            'sentAs' => 'hadoop_version',
+            'type'        => self::STRING_TYPE,
+            'required'    => true,
+            'sentAs'      => 'hadoop_version',
             'description' => 'The hadoopversion of cluster',
         ];
     }
@@ -78,9 +66,9 @@ class Params extends AbstractParams
     public function clusterTemplateId(): array
     {
         return [
-            'type' => self::STRING_TYPE,
-            'required' => true,
-            'sentAs' => 'cluster_template_id',
+            'type'        => self::STRING_TYPE,
+            'required'    => true,
+            'sentAs'      => 'cluster_template_id',
             'description' => 'The cluster template id',
         ];
     }
@@ -88,9 +76,9 @@ class Params extends AbstractParams
     public function defaultImageId(): array
     {
         return [
-            'type' => self::STRING_TYPE,
-            'required' => true,
-            'sentAs' => 'default_image_id',
+            'type'        => self::STRING_TYPE,
+            'required'    => true,
+            'sentAs'      => 'default_image_id',
             'description' => 'The default image id',
         ];
     }
@@ -98,9 +86,9 @@ class Params extends AbstractParams
     public function userKeypairId(): array
     {
         return [
-            'type' => self::STRING_TYPE,
-            'required' => true,
-            'sentAs' => 'user_keypair_id',
+            'type'        => self::STRING_TYPE,
+            'required'    => true,
+            'sentAs'      => 'user_keypair_id',
             'description' => 'The user keypair id',
         ];
     }
@@ -108,9 +96,9 @@ class Params extends AbstractParams
     public function neutronManagementNetwork(): array
     {
         return [
-            'type' => self::STRING_TYPE,
-            'required' => true,
-            'sentAs' => 'neutron_management_network',
+            'type'        => self::STRING_TYPE,
+            'required'    => true,
+            'sentAs'      => 'neutron_management_network',
             'description' => 'The neutron management network',
         ];
     }
@@ -118,9 +106,9 @@ class Params extends AbstractParams
     public function count(): array
     {
         return [
-            'type' => self::INT_TYPE,
-            'required' => true,
-            'sentAs' => 'count',
+            'type'        => self::INT_TYPE,
+            'required'    => true,
+            'sentAs'      => 'count',
             'description' => 'Numbers of cluster to be created',
         ];
     }
@@ -128,9 +116,9 @@ class Params extends AbstractParams
     public function clusterConfigs(): array
     {
         return [
-            'type' => self::OBJECT_TYPE,
-            'required' => false,
-            'sentAs' => 'cluster_configs',
+            'type'        => self::OBJECT_TYPE,
+            'required'    => false,
+            'sentAs'      => 'cluster_configs',
             'description' => 'Configuration of clusters to be created',
         ];
     }
@@ -138,19 +126,19 @@ class Params extends AbstractParams
     public function addNodeGroups(): array
     {
         return [
-            'type' => self::ARRAY_TYPE,
+            'type'   => self::ARRAY_TYPE,
             'sentAs' => 'add_node_groups',
-            'items' => [
-                'type' => self::OBJECT_TYPE,
+            'items'  => [
+                'type'       => self::OBJECT_TYPE,
                 'properties' => [
-                    'count' => [
+                    'count'  => [
                         'type' => self::INTEGER_TYPE,
                     ],
-                    'name' => [
+                    'name'   => [
                         'type' => self::STRING_TYPE,
                     ],
                     'nodeGroupTemplateId' => [
-                        'type' => self::STRING_TYPE,
+                        'type'   => self::STRING_TYPE,
                         'sentAs' => 'node_group_template_id',
                     ],
                 ],
@@ -161,7 +149,7 @@ class Params extends AbstractParams
     public function nodeGroupTemplateId(): array
     {
         return [
-            'type' => self::STRING_TYPE,
+            'type'   => self::STRING_TYPE,
             'sentAs' => 'node_group_template_id',
         ];
     }
@@ -169,15 +157,15 @@ class Params extends AbstractParams
     public function resizeNodeGroups(): array
     {
         return [
-            'type' => self::ARRAY_TYPE,
+            'type'   => self::ARRAY_TYPE,
             'sentAs' => 'resize_node_groups',
-            'items' => [
-                'type' => self::OBJECT_TYPE,
+            'items'  => [
+                'type'       => self::OBJECT_TYPE,
                 'properties' => [
-                    'count' => [
+                    'count'  => [
                         'type' => self::INTEGER_TYPE,
                     ],
-                    'name' => [
+                    'name'   => [
                         'type' => self::STRING_TYPE,
                     ],
                 ],
@@ -188,9 +176,9 @@ class Params extends AbstractParams
     public function dataSourceType(): array
     {
         return [
-            'type' => self::STRING_TYPE,
-            'required' => true,
-            'sentAs' => 'type',
+            'type'        => self::STRING_TYPE,
+            'required'    => true,
+            'sentAs'      => 'type',
             'description' => 'The type of the data source object',
         ];
     }
@@ -198,9 +186,9 @@ class Params extends AbstractParams
     public function dataSourceName(): array
     {
         return [
-            'type' => self::STRING_TYPE,
-            'required' => true,
-            'sentAs' => 'name',
+            'type'        => self::STRING_TYPE,
+            'required'    => true,
+            'sentAs'      => 'name',
             'description' => 'The name of the data source object',
         ];
     }
@@ -208,15 +196,15 @@ class Params extends AbstractParams
     public function nodeGroups(): array
     {
         return [
-            'type' => self::ARRAY_TYPE,
-            'sentAs' => 'node_groups',
-            'required' => false,
+            'type'        => self::ARRAY_TYPE,
+            'sentAs'      => 'node_groups',
+            'required'    => false,
             'description' => 'List of nodeGroups',
-            'items' => [
-                'type' => self::OBJECT_TYPE,
+            'items'       => [
+                'type'       => self::OBJECT_TYPE,
                 'properties' => [
-                    'name' => $this->name('node-group-template'),
-                    'count' => $this->count(),
+                    'name'                => $this->name('node-group-template'),
+                    'count'               => $this->count(),
                     'nodeGroupTemplateId' => $this->nodeGroupTemplateId(),
                 ],
             ],
@@ -226,36 +214,36 @@ class Params extends AbstractParams
     public function shares(): array
     {
         return [
-            'type' => self::ARRAY_TYPE,
+            'type'       => self::ARRAY_TYPE,
             'desciption' => 'shares',
-            'required' => false,
+            'required'   => false,
         ];
     }
 
     public function domainName(): array
     {
         return [
-            'type' => self::STRING_TYPE,
+            'type'     => self::STRING_TYPE,
             'required' => false,
-            'sentAs' => 'domain_name',
+            'sentAs'   => 'domain_name',
         ];
     }
 
     public function antiAffinity(): array
     {
         return [
-            'type' => self::ARRAY_TYPE,
+            'type'     => self::ARRAY_TYPE,
             'required' => false,
-            'sentAs' => 'anti_affinity',
+            'sentAs'   => 'anti_affinity',
         ];
     }
 
     public function flavorId(): array
     {
         return [
-            'type' => self::STRING_TYPE,
-            'required' => true,
-            'sentAs' => 'flavor_id',
+            'type'        => self::STRING_TYPE,
+            'required'    => true,
+            'sentAs'      => 'flavor_id',
             'description' => 'flavor id of node group template to be created',
         ];
     }
@@ -263,9 +251,9 @@ class Params extends AbstractParams
     public function nodeProcesses(): array
     {
         return [
-            'type' => self::ARRAY_TYPE,
-            'required' => true,
-            'sentAs' => 'node_processes',
+            'type'        => self::ARRAY_TYPE,
+            'required'    => true,
+            'sentAs'      => 'node_processes',
             'description' => '	The list of the processes performed by the node.',
         ];
     }
@@ -273,9 +261,9 @@ class Params extends AbstractParams
     public function availabilityZone(): array
     {
         return [
-            'type' => self::STRING_TYPE,
-            'required' => false,
-            'sentAs' => 'availability_zone',
+            'type'        => self::STRING_TYPE,
+            'required'    => false,
+            'sentAs'      => 'availability_zone',
             'description' => 'The availability of the node in the cluster.',
         ];
     }
@@ -283,9 +271,9 @@ class Params extends AbstractParams
     public function imageId(): array
     {
         return [
-            'type' => self::STRING_TYPE,
-            'required' => false,
-            'sentAs' => 'image_id',
+            'type'        => self::STRING_TYPE,
+            'required'    => false,
+            'sentAs'      => 'image_id',
             'description' => 'The UUID of the image',
         ];
     }
@@ -293,9 +281,9 @@ class Params extends AbstractParams
     public function floatingIpPool(): array
     {
         return [
-            'type' => self::STRING_TYPE,
-            'required' => false,
-            'sentAs' => 'floating_ip_pool',
+            'type'        => self::STRING_TYPE,
+            'required'    => false,
+            'sentAs'      => 'floating_ip_pool',
             'description' => 'The UUID of the pool in the template',
         ];
     }
@@ -303,9 +291,9 @@ class Params extends AbstractParams
     public function useAutoconfig(): array
     {
         return [
-            'type' => self::BOOL_TYPE,
-            'required' => false,
-            'sentAs' => 'use_autoconfig',
+            'type'        => self::BOOL_TYPE,
+            'required'    => false,
+            'sentAs'      => 'use_autoconfig',
             'description' => 'If set to true, the cluster is auto configured.',
         ];
     }
@@ -313,9 +301,9 @@ class Params extends AbstractParams
     public function isProxyGateway(): array
     {
         return [
-            'type' => self::BOOL_TYPE,
-            'required' => false,
-            'sentAs' => 'is_proxy_gateway',
+            'type'        => self::BOOL_TYPE,
+            'required'    => false,
+            'sentAs'      => 'is_proxy_gateway',
             'description' => 'If set to true, the node is the proxy gateway.',
         ];
     }
@@ -323,9 +311,9 @@ class Params extends AbstractParams
     public function isProtected(): array
     {
         return [
-            'type' => self::BOOL_TYPE,
-            'required' => false,
-            'sentAs' => 'is_protected',
+            'type'        => self::BOOL_TYPE,
+            'required'    => false,
+            'sentAs'      => 'is_protected',
             'description' => 'If set to true, the object is protected.',
         ];
     }
@@ -333,13 +321,13 @@ class Params extends AbstractParams
     public function extra(): array
     {
         return [
-            'type' => self::OBJECT_TYPE,
-            'required' => true,
+            'type'       => self::OBJECT_TYPE,
+            'required'   => true,
             'properties' => [
                 'password' => [
                     'type' => self::STRING_TYPE,
                 ],
-                'user' => [
+                'user'     => [
                     'type' => self::STRING_TYPE,
                 ],
             ],
@@ -349,10 +337,10 @@ class Params extends AbstractParams
     public function version(): array
     {
         return [
-            'type' => self::STRING_TYPE,
-            'required' => true,
-            'location' => self::URL,
-            'sentAs' => 'versions',
+            'type'        => self::STRING_TYPE,
+            'required'    => true,
+            'location'    => self::URL,
+            'sentAs'      => 'versions',
             'description' => 'The version of plugin',
         ];
     }
@@ -360,12 +348,12 @@ class Params extends AbstractParams
     public function pluginLabels(): array
     {
         return [
-            'type' => self::OBJECT_TYPE,
+            'type'     => self::OBJECT_TYPE,
             'required' => false,
-            'sentAs' => 'plugin_labels',
-            'items' => [
+            'sentAs'   => 'plugin_labels',
+            'items'    => [
                 'type' => self::OBJECT_TYPE,
-                'properties' => [
+                'properties'  => [
                     'enabled' => $this->enable(),
                 ],
             ],
@@ -375,12 +363,12 @@ class Params extends AbstractParams
     public function versionLabels(): array
     {
         return [
-            'type' => self::OBJECT_TYPE,
+            'type'     => self::OBJECT_TYPE,
             'required' => false,
-            'sentAs' => 'version_labels',
-            'items' => [
+            'sentAs'   => 'version_labels',
+            'items'    => [
                 'type' => self::OBJECT_TYPE,
-                'properties' => [
+                'properties'  => [
                     'enabled' => $this->enable(),
                 ],
             ],
@@ -390,11 +378,11 @@ class Params extends AbstractParams
     public function pluginVersion(): array
     {
         return [
-            'type' => self::OBJECT_TYPE,
+            'type'     => self::OBJECT_TYPE,
             'required' => false,
-            'items' => [
+            'items'    => [
                 'type' => self::OBJECT_TYPE,
-                'properties' => [
+                'properties'  => [
                     'enabled' => $this->enable(),
                 ],
             ],
@@ -404,12 +392,12 @@ class Params extends AbstractParams
     public function enable(): array
     {
         return [
-            'type' => self::OBJECT_TYPE,
+            'type'     => self::OBJECT_TYPE,
             'required' => false,
-            'items' => [
+            'items'    => [
                 'properties' => [
                     'status' => [
-                        'type' => self::BOOL_TYPE,
+                        'type'     => self::BOOL_TYPE,
                         'required' => false,
                     ],
                 ],
@@ -420,9 +408,9 @@ class Params extends AbstractParams
     public function title(): array
     {
         return [
-            'type' => self::STRING_TYPE,
-            'required' => false,
-            'sentAs' => 'title',
+            'type'        => self::STRING_TYPE,
+            'required'    => false,
+            'sentAs'      => 'title',
             'description' => 'The title of plugin',
         ];
     }
@@ -430,10 +418,10 @@ class Params extends AbstractParams
     public function version_filter(): array
     {
         return [
-            'type' => self::STRING_TYPE,
-            'location' => self::URL,
-            'required' => false,
-            'sentAs' => 'version',
+            'type'        => self::STRING_TYPE,
+            'location'    => self::URL,
+            'required'    => false,
+            'sentAs'      => 'version',
             'description' => 'The versions of plugin',
         ];
     }
@@ -441,10 +429,10 @@ class Params extends AbstractParams
     public function plugin_filter(): array
     {
         return [
-            'type' => self::STRING_TYPE,
-            'location' => self::URL,
-            'required' => false,
-            'sentAs' => 'plugin',
+            'type'        => self::STRING_TYPE,
+            'location'    => self::URL,
+            'required'    => false,
+            'sentAs'      => 'plugin',
             'description' => 'Filters the response of job types by a plugin name',
         ];
     }
@@ -452,9 +440,9 @@ class Params extends AbstractParams
     public function type(): array
     {
         return [
-            'type' => self::STRING_TYPE,
-            'required' => false,
-            'sentAs' => 'type',
+            'type'        => self::STRING_TYPE,
+            'required'    => false,
+            'sentAs'      => 'type',
             'description' => 'The type of the data source object.',
         ];
     }
@@ -462,10 +450,10 @@ class Params extends AbstractParams
     public function hints(): array
     {
         return [
-            'type' => self::BOOL_TYPE,
-            'location' => self::URL,
-            'required' => false,
-            'sentAs' => 'hints',
+            'type'        => self::BOOL_TYPE,
+            'location'    => self::URL,
+            'required'    => false,
+            'sentAs'      => 'hints',
             'description' => 'Includes configuration hints in the response.',
         ];
     }
@@ -473,9 +461,9 @@ class Params extends AbstractParams
     public function data(): array
     {
         return [
-            'location' => self::RAW,
-            'type' => StreamInterface::class,
-            'required' => true,
+            'location'   => self::RAW,
+            'type'       => StreamInterface::class,
+            'required'   => true,
             'documented' => false,
         ];
     }
@@ -484,8 +472,8 @@ class Params extends AbstractParams
     {
         return [
             'location' => self::HEADER,
-            'type' => self::STRING_TYPE,
-            'sentAs' => 'Content-Type',
+            'type'     => self::STRING_TYPE,
+            'sentAs'   => 'Content-Type',
         ];
     }
 }

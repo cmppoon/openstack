@@ -1,17 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-/*
- * This file is part of PHP CS Fixer.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
-
 namespace OpenStack\DataProcessing\v1\Models;
 
 use OpenStack\Common\Resource\Deletable;
@@ -56,21 +44,21 @@ class JobExecution extends OperatorResource implements Listable, Retrievable, De
     protected $resourcesKey = 'job_executions';
 
     protected $aliases = [
-                'job_configs' => 'jobConfigs',
-                'is_protected' => 'isProtected',
-                'input_id' => 'inputId',
-                'job_id' => 'jobId',
-                'cluster_id' => 'clusterId',
-                'created_at' => 'createdAt',
-                'end_time' => 'endTime',
-                'output_id' => 'outputId',
-                'is_public' => 'isPublic',
-                'updated_at' => 'updatedAt',
-                'reutrn_code' => 'returnCode',
+                'job_configs'      => 'jobConfigs',
+                'is_protected'     => 'isProtected',
+                'input_id'         => 'inputId',
+                'job_id'           => 'jobId',
+                'cluster_id'       => 'clusterId',
+                'created_at'       => 'createdAt',
+                'end_time'         => 'endTime',
+                'output_id'        => 'outputId',
+                'is_public'        => 'isPublic',
+                'updated_at'       => 'updatedAt',
+                'reutrn_code'      => 'returnCode',
                 'data_source_urls' => 'dataSourceUrls',
-                'tenant_id' => 'tenantId',
-                'start_time' => 'startTime',
-                'oozie_job_id' => 'oozieJobId',
+                'tenant_id'        => 'tenantId',
+                'start_time'       => 'startTime',
+                'oozie_job_id'     => 'oozieJobId',
     ];
 
     public function retrieve()

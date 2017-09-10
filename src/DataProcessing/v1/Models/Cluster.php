@@ -1,17 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-/*
- * This file is part of PHP CS Fixer.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
-
 namespace OpenStack\DataProcessing\v1\Models;
 
 use OpenStack\Common\Resource\Creatable;
@@ -56,27 +44,27 @@ class Cluster extends OperatorResource implements Listable, Retrievable, Creatab
     protected $resourcesKey = 'clusters';
 
     protected $aliases = [
-            'is_transient' => 'isTransient',
-            'user_keypair_id' => 'userKeypairId',
-            'updated_at' => 'updatedAt',
-            'provision_progress' => 'provisionProgress',
-            'use_autoconfig' => 'useAutoconfig',
-            'node_groups' => 'nodeGroups',
-            'management_public_key' => 'managementPublicKey',
-            'trust_id' => 'trustId',
-            'cluster_configs' => 'clusterConfigs',
-            'default_image_id' => 'defaultImageId',
-            'domain_name' => 'domainName',
+            'is_transient'               => 'isTransient',
+            'user_keypair_id'            => 'userKeypairId',
+            'updated_at'                 => 'updatedAt',
+            'provision_progress'         => 'provisionProgress',
+            'use_autoconfig'             => 'useAutoconfig',
+            'node_groups'                => 'nodeGroups',
+            'management_public_key'      => 'managementPublicKey',
+            'trust_id'                   => 'trustId',
+            'cluster_configs'            => 'clusterConfigs',
+            'default_image_id'           => 'defaultImageId',
+            'domain_name'                => 'domainName',
             'neutron_management_network' => 'neutronManagementNetwork',
-            'plugin_name' => 'pluginName',
-            'anti_affinity' => 'antiAffinity',
-            'is_public' => 'isPublic',
-            'status_description' => 'statusDescription',
-            'hadoop_version' => 'hadoopVersion',
-            'cluster_template_id' => 'clusterTemplateId',
-            'tenant_id' => 'tenantId',
-            'created_at' => 'createdAt',
-            'is_protected' => 'isProtected',
+            'plugin_name'                => 'pluginName',
+            'anti_affinity'              => 'antiAffinity',
+            'is_public'                  => 'isPublic',
+            'status_description'         => 'statusDescription',
+            'hadoop_version'             => 'hadoopVersion',
+            'cluster_template_id'        => 'clusterTemplateId',
+            'tenant_id'                  => 'tenantId',
+            'created_at'                 => 'createdAt',
+            'is_protected'               => 'isProtected',
     ];
 
     public function retrieve()

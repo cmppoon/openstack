@@ -1,17 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-/*
- * This file is part of PHP CS Fixer.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
-
 namespace OpenStack\DataProcessing\v1;
 
 use OpenStack\Common\Api\AbstractApi;
@@ -27,10 +15,10 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'clusters',
+            'path'   => 'clusters',
             'params' => [
-                'limit' => $this->params->limit(),
-                'marker' => $this->params->marker(),
+                'limit'   => $this->params->limit(),
+                'marker'  => $this->params->marker(),
                 'sortKey' => $this->params->sortKey(),
             ],
         ];
@@ -40,10 +28,10 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'clusters/{id}',
+            'path'   => 'clusters/{id}',
             'params' => [
-                'id' => $this->params->urlId('cluster'),
-                'limit' => $this->params->limit(),
+                'id'     => $this->params->urlId('cluster'),
+                'limit'  => $this->params->limit(),
                 'marker' => $this->params->marker(),
             ],
         ];
@@ -53,7 +41,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'DELETE',
-            'path' => 'clusters/{id}',
+            'path'   => 'clusters/{id}',
             'params' => ['id' => $this->params->urlId('cluster')],
         ];
     }
@@ -62,11 +50,11 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'PATCH',
-            'path' => 'clusters/{id}',
+            'path'   => 'clusters/{id}',
             'params' => [
-                'id' => $this->params->urlId('cluster'),
-                'isPublic' => $this->params->isPublic(),
-                'name' => $this->params->name('cluster'),
+                'id'          => $this->params->urlId('cluster'),
+                'isPublic'    => $this->params->isPublic(),
+                'name'        => $this->params->name('cluster'),
                 'isProtected' => $this->params->isProtected(),
                 'description' => $this->params->description(),
             ],
@@ -76,19 +64,19 @@ class Api extends AbstractApi
     public function postCluster(): array
     {
         return [
-            'path' => 'clusters',
+            'path'   => 'clusters',
             'method' => 'POST',
             'params' => [
-                'pluginName' => $this->params->pluginName(),
-                'hadoopVersion' => $this->params->hadoopVersion(),
-                'clusterTemplateId' => $this->params->clusterTemplateId(),
-                'defaultImageId' => $this->params->defaultImageId(),
-                'userKeypairId' => $this->notRequired($this->params->userKeyPairId()),
-                'name' => $this->isRequired($this->params->name('cluster')),
+                'pluginName'               => $this->params->pluginName(),
+                'hadoopVersion'            => $this->params->hadoopVersion(),
+                'clusterTemplateId'        => $this->params->clusterTemplateId(),
+                'defaultImageId'           => $this->params->defaultImageId(),
+                'userKeypairId'            => $this->notRequired($this->params->userKeyPairId()),
+                'name'                     => $this->isRequired($this->params->name('cluster')),
                 'neutronManagementNetwork' => $this->params->neutronManagementNetwork(),
-                'description' => $this->params->description(),
-                'isPublic' => $this->params->isPublic(),
-                'isProtected' => $this->params->isProtected(),
+                'description'              => $this->params->description(),
+                'isPublic'                 => $this->params->isPublic(),
+                'isProtected'              => $this->params->isProtected(),
             ],
         ];
     }
@@ -98,7 +86,7 @@ class Api extends AbstractApi
         $definition = $this->postCluster();
         $definition['path'] .= '/multiple';
         $definition['params'] = array_merge($definition['params'], [
-            'count' => $this->params->count(),
+            'count'          => $this->params->count(),
             'clusterConfigs' => $this->params->clusterConfigs(),
         ]);
 
@@ -108,11 +96,11 @@ class Api extends AbstractApi
     public function putCluster(): array
     {
         return [
-            'path' => 'clusters/{id}',
+            'path'   => 'clusters/{id}',
             'method' => 'PUT',
             'params' => [
-                'id' => $this->params->urlId('cluster'),
-                'addNodeGroups' => $this->params->addNodeGroups(),
+                'id'               => $this->params->urlId('cluster'),
+                'addNodeGroups'    => $this->params->addNodeGroups(),
                 'resizeNodeGroups' => $this->params->resizeNodeGroups(),
             ],
         ];
@@ -121,13 +109,13 @@ class Api extends AbstractApi
     public function postDataSource(): array
     {
         return [
-            'path' => 'data-sources',
+            'path'   => 'data-sources',
             'method' => 'POST',
             'params' => [
                 'description' => $this->params->description(),
-                'url' => $this->params->url(),
-                'type' => $this->params->dataSourceType(),
-                'name' => $this->params->dataSourceName(),
+                'url'         => $this->params->url(),
+                'type'        => $this->params->dataSourceType(),
+                'name'        => $this->params->dataSourceName(),
             ],
         ];
     }
@@ -136,7 +124,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'DELETE',
-            'path' => 'data-sources/{id}',
+            'path'   => 'data-sources/{id}',
             'params' => ['id' => $this->params->urlId('datasource')],
         ];
     }
@@ -145,7 +133,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'data-sources/{id}',
+            'path'   => 'data-sources/{id}',
             'params' => [
                 'id' => $this->params->urlId('datasource'),
             ],
@@ -156,10 +144,10 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'data-sources',
+            'path'   => 'data-sources',
             'params' => [
-                'limit' => $this->params->limit(),
-                'marker' => $this->params->marker(),
+                'limit'   => $this->params->limit(),
+                'marker'  => $this->params->marker(),
                 'sortKey' => $this->params->sortKey(),
             ],
         ];
@@ -169,15 +157,15 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'PUT',
-            'path' => 'data-sources/{id}',
+            'path'   => 'data-sources/{id}',
             'params' => [
-                'id' => $this->params->urlId('datasource'),
-                'isPublic' => $this->params->isPublic(),
+                'id'          => $this->params->urlId('datasource'),
+                'isPublic'    => $this->params->isPublic(),
                 'isProtected' => $this->params->isProtected(),
-                'name' => $this->params->dataSourceName(),
+                'name'        => $this->params->dataSourceName(),
                 'description' => $this->params->description(),
-                'url' => $this->params->url(),
-                'type' => $this->params->dataSourceType(),
+                'url'         => $this->params->url(),
+                'type'        => $this->params->dataSourceType(),
             ],
         ];
     }
@@ -185,23 +173,23 @@ class Api extends AbstractApi
     public function postClusterTemplate(): array
     {
         return [
-            'path' => 'cluster-templates',
+            'path'   => 'cluster-templates',
             'method' => 'POST',
             'params' => [
-                'pluginName' => $this->params->pluginName(),
-                'hadoopVersion' => $this->params->hadoopVersion(),
-                'name' => $this->isRequired($this->params->name('cluster-template')),
-                'nodeGroups' => $this->params->nodeGroups(),
+                'pluginName'               => $this->params->pluginName(),
+                'hadoopVersion'            => $this->params->hadoopVersion(),
+                'name'                     => $this->isRequired($this->params->name('cluster-template')),
+                'nodeGroups'               => $this->params->nodeGroups(),
                 'neutronManagementNetwork' => $this->notRequired($this->params->neutronManagementNetwork()),
-                'description' => $this->params->description(),
-                'shares' => $this->params->shares(),
-                'clusterConfigs' => $this->params->clusterConfigs(),
-                'defaultImageId' => $this->notRequired($this->params->defaultImageId()),
-                'domainName' => $this->params->domainName(),
-                'isProtected' => $this->params->isProtected(),
-                'useAutoconfig' => $this->params->useAutoconfig(),
-                'antiAffinity' => $this->params->antiAffinity(),
-                'isPublic' => $this->params->isPublic(),
+                'description'              => $this->params->description(),
+                'shares'                   => $this->params->shares(),
+                'clusterConfigs'           => $this->params->clusterConfigs(),
+                'defaultImageId'           => $this->notRequired($this->params->defaultImageId()),
+                'domainName'               => $this->params->domainName(),
+                'isProtected'              => $this->params->isProtected(),
+                'useAutoconfig'            => $this->params->useAutoconfig(),
+                'antiAffinity'             => $this->params->antiAffinity(),
+                'isPublic'                 => $this->params->isPublic(),
             ],
         ];
     }
@@ -210,9 +198,9 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'cluster-templates',
+            'path'   => 'cluster-templates',
             'params' => [
-                'limit' => $this->params->limit(),
+                'limit'  => $this->params->limit(),
                 'marker' => $this->params->marker(),
                 'sortBy' => $this->params->sortkey(),
             ],
@@ -223,7 +211,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'cluster-templates/{id}',
+            'path'   => 'cluster-templates/{id}',
             'params' => [
                 'id' => $this->params->urlId('cluster-templates'),
             ],
@@ -234,7 +222,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'DELETE',
-            'path' => 'cluster-templates/{id}',
+            'path'   => 'cluster-templates/{id}',
             'params' => ['id' => $this->params->urlId('cluster-template')],
         ];
     }
@@ -243,23 +231,23 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'PUT',
-            'path' => 'cluster-templates/{id}',
+            'path'   => 'cluster-templates/{id}',
             'params' => [
                 'id' => $this->params->urlId('cluster-template'),
-                'nodeGroups' => $this->params->nodeGroups(),
+                'nodeGroups'               => $this->params->nodeGroups(),
                 'neutronManagementNetwork' => $this->notRequired($this->params->neutronManagementNetwork()),
-                'description' => $this->params->description(),
-                'shares' => $this->params->shares(),
-                'clusterConfigs' => $this->params->clusterConfigs(),
-                'defaultImageId' => $this->notRequired($this->params->defaultImageId()),
-                'pluginName' => $this->notRequired($this->params->pluginName()),
-                'domainName' => $this->params->domainName(),
-                'isProtected' => $this->params->isProtected(),
-                'useAutoconfig' => $this->params->useAutoconfig(),
-                'antiAffinity' => $this->params->antiAffinity(),
-                'isPublic' => $this->params->isPublic(),
-                'hadoopVersion' => $this->notRequired($this->params->hadoopVersion()),
-                'name' => $this->params->name('cluster-template'),
+                'description'              => $this->params->description(),
+                'shares'                   => $this->params->shares(),
+                'clusterConfigs'           => $this->params->clusterConfigs(),
+                'defaultImageId'           => $this->notRequired($this->params->defaultImageId()),
+                'pluginName'               => $this->notRequired($this->params->pluginName()),
+                'domainName'               => $this->params->domainName(),
+                'isProtected'              => $this->params->isProtected(),
+                'useAutoconfig'            => $this->params->useAutoconfig(),
+                'antiAffinity'             => $this->params->antiAffinity(),
+                'isPublic'                 => $this->params->isPublic(),
+                'hadoopVersion'            => $this->notRequired($this->params->hadoopVersion()),
+                'name'                     => $this->params->name('cluster-template'),
             ],
         ];
     }
@@ -268,10 +256,10 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'node-group-templates',
+            'path'   => 'node-group-templates',
             'params' => [
-                'limit' => $this->params->limit(),
-                'marker' => $this->params->marker(),
+                'limit'   => $this->params->limit(),
+                'marker'  => $this->params->marker(),
                 'sortKey' => $this->params->sortKey(),
             ],
         ];
@@ -280,22 +268,22 @@ class Api extends AbstractApi
     public function postNodeGroupTemplate()
     {
         return [
-            'path' => 'node-group-templates',
+            'path'   => 'node-group-templates',
             'method' => 'POST',
             'params' => [
-                'pluginName' => $this->params->pluginName(),
-                'hadoopVersion' => $this->params->hadoopVersion(),
-                'nodeProcesses' => $this->params->nodeProcesses(),
-                'name' => $this->isRequired($this->params->name('nodeGroupTemplate')),
-                'flavorId' => $this->params->flavorId(),
-                'description' => $this->params->description(),
+                'pluginName'       => $this->params->pluginName(),
+                'hadoopVersion'    => $this->params->hadoopVersion(),
+                'nodeProcesses'    => $this->params->nodeProcesses(),
+                'name'             => $this->isRequired($this->params->name('nodeGroupTemplate')),
+                'flavorId'         => $this->params->flavorId(),
+                'description'      => $this->params->description(),
                 'availabilityZone' => $this->params->availabilityZone(),
-                'imageId' => $this->params->imageId(),
-                'floatingIpPool' => $this->params->floatingIpPool(),
-                'useAutoconfig' => $this->params->useAutoconfig(),
-                'isProxyGateway' => $this->params->isProxyGateway(),
-                'isPublic' => $this->params->isPublic(),
-                'isProtected' => $this->params->isProtected(),
+                'imageId'          => $this->params->imageId(),
+                'floatingIpPool'   => $this->params->floatingIpPool(),
+                'useAutoconfig'    => $this->params->useAutoconfig(),
+                'isProxyGateway'   => $this->params->isProxyGateway(),
+                'isPublic'         => $this->params->isPublic(),
+                'isProtected'      => $this->params->isProtected(),
             ],
         ];
     }
@@ -304,7 +292,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'node-group-templates/{id}',
+            'path'   => 'node-group-templates/{id}',
             'params' => [
                 'id' => $this->params->urlId('nodeGroupTemplate'),
             ],
@@ -315,7 +303,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'DELETE',
-            'path' => 'node-group-templates/{id}',
+            'path'   => 'node-group-templates/{id}',
             'params' => ['id' => $this->params->urlId('nodeGroupTemplate')],
         ];
     }
@@ -324,18 +312,18 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'PUT',
-            'path' => 'node-group-templates/{id}',
+            'path'   => 'node-group-templates/{id}',
             'params' => [
-                'id' => $this->params->urlId('nodeGroupTemplate'),
-                'name' => $this->params->name('nodeGroupTemplate'),
-                'description' => $this->params->description(),
+                'id'               => $this->params->urlId('nodeGroupTemplate'),
+                'name'             => $this->params->name('nodeGroupTemplate'),
+                'description'      => $this->params->description(),
                 'availabilityZone' => $this->params->availabilityZone(),
-                'imageId' => $this->params->imageId(),
-                'floatingIpPool' => $this->params->floatingIpPool(),
-                'useAutoconfig' => $this->params->useAutoconfig(),
-                'isProxyGateway' => $this->params->isProxyGateway(),
-                'isPublic' => $this->params->isPublic(),
-                'isProtected' => $this->params->isProtected(),
+                'imageId'          => $this->params->imageId(),
+                'floatingIpPool'   => $this->params->floatingIpPool(),
+                'useAutoconfig'    => $this->params->useAutoconfig(),
+                'isProxyGateway'   => $this->params->isProxyGateway(),
+                'isPublic'         => $this->params->isPublic(),
+                'isProtected'      => $this->params->isProtected(),
             ],
         ];
     }
@@ -344,10 +332,10 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'job-binaries',
+            'path'   => 'job-binaries',
             'params' => [
-                'limit' => $this->params->limit(),
-                'marker' => $this->params->marker(),
+                'limit'   => $this->params->limit(),
+                'marker'  => $this->params->marker(),
                 'sortKey' => $this->params->sortKey(),
                 'sortDir' => $this->params->sortDir(),
             ],
@@ -358,7 +346,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'job-binaries/{id}',
+            'path'   => 'job-binaries/{id}',
             'params' => ['id' => $this->params->urlId('binary')],
         ];
     }
@@ -366,13 +354,13 @@ class Api extends AbstractApi
     public function postJobBinary(): array
     {
         return [
-            'path' => 'job-binaries',
+            'path'   => 'job-binaries',
             'method' => 'POST',
             'params' => [
-                'url' => $this->params->url(),
-                'name' => $this->params->name('job_binary'),
+                'url'         => $this->params->url(),
+                'name'        => $this->params->name('job_binary'),
                 'description' => $this->params->description(),
-                'extra' => $this->params->extra(),
+                'extra'       => $this->params->extra(),
             ],
         ];
     }
@@ -381,7 +369,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'DELETE',
-            'path' => 'job-binaries/{id}',
+            'path'   => 'job-binaries/{id}',
             'params' => ['id' => $this->params->urlId('job_binary')],
         ];
     }
@@ -390,12 +378,12 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'PUT',
-            'path' => 'job-binaries/{id}',
+            'path'   => 'job-binaries/{id}',
             'params' => [
-                'id' => $this->params->urlId('job_binary'),
-                'url' => $this->params->url(),
-                'isPublic' => $this->params->isPublic(),
-                'name' => $this->params->name('job_binary'),
+                'id'          => $this->params->urlId('job_binary'),
+                'url'         => $this->params->url(),
+                'isPublic'    => $this->params->isPublic(),
+                'name'        => $this->params->name('job_binary'),
                 'isProtected' => $this->params->isProtected(),
                 'description' => $this->params->description(),
             ],
@@ -406,7 +394,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'job-binaries/{id}/data',
+            'path'   => 'job-binaries/{id}/data',
             'params' => ['id' => $this->params->urlId('job_binary')],
         ];
     }
@@ -415,10 +403,10 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'PUT',
-            'path' => 'job-binary-internals/{name}',
+            'path'   => 'job-binary-internals/{name}',
             'params' => [
-                'name' => $this->params->urlId('job_binary_internal'),
-                'data' => $this->params->data(),
+                'name'        => $this->params->urlId('job_binary_internal'),
+                'data'        => $this->params->data(),
                 'contentType' => $this->params->contentType(),
             ],
         ];
@@ -428,7 +416,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'job-binary-internals/{id}/data',
+            'path'   => 'job-binary-internals/{id}/data',
             'params' => [
                 'id' => $this->params->urlId('job_binary_internal'),
             ],
@@ -439,7 +427,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'job-binary-internals/{id}',
+            'path'   => 'job-binary-internals/{id}',
             'params' => [
                 'id' => $this->params->urlId('job_binary_internal'),
             ],
@@ -450,10 +438,10 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'job-binary-internals',
+            'path'   => 'job-binary-internals',
             'params' => [
-                'limit' => $this->params->limit(),
-                'marker' => $this->params->marker(),
+                'limit'   => $this->params->limit(),
+                'marker'  => $this->params->marker(),
                 'sortKey' => $this->params->sortKey(),
             ],
         ];
@@ -463,7 +451,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'DELETE',
-            'path' => 'job-binary-internals/{id}',
+            'path'   => 'job-binary-internals/{id}',
             'params' => [
                 'id' => $this->params->urlId('job_binary_internal'),
             ],
@@ -474,12 +462,12 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'PATCH',
-            'path' => 'job-binary-internals/{id}',
+            'path'   => 'job-binary-internals/{id}',
             'params' => [
-                'id' => $this->params->urlId('job_binary_internal'),
-                'name' => $this->params->name('job_binary_internal'),
+                'id'          => $this->params->urlId('job_binary_internal'),
+                'name'        => $this->params->name('job_binary_internal'),
                 'isProtected' => $this->params->isProtected(),
-                'isPublic' => $this->params->isPublic(),
+                'isPublic'    => $this->params->isPublic(),
             ],
         ];
     }
@@ -487,24 +475,24 @@ class Api extends AbstractApi
     public function postJob(): array
     {
         return [
-            'path' => 'jobs',
+            'path'   => 'jobs',
             'method' => 'POST',
             'params' => [
                 'description' => $this->params->description(),
-                'mains' => [
-                    'type' => params:: ARRAY_TYPE,
+                'mains'       => [
+                    'type'        => params:: ARRAY_TYPE,
                     'description' => 'The list of the job object and their properties.',
-                    'required' => false,
+                    'required'    => false,
                 ],
-                'libs' => [
-                    'type' => params::ARRAY_TYPE,
+                'libs'        => [
+                    'type'        => params::ARRAY_TYPE,
                     'description' => 'The list of the job object properties.',
-                    'required' => false,
+                    'required'    => false,
                 ],
-                'type' => [
-                    'type' => params:: STRING_TYPE,
+                'type'        => [
+                    'type'        => params:: STRING_TYPE,
                     'description' => 'The type of the data source object.',
-                    'required' => true,
+                    'required'    => true,
                 ],
                 'name' => $this->isRequired($this->params->name('job')),
             ],
@@ -515,9 +503,9 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'jobs',
+            'path'   => 'jobs',
             'params' => [
-                'limit' => $this->params->limit(),
+                'limit'  => $this->params->limit(),
                 'marker' => $this->params->marker(),
                 'sortBy' => $this->params->sortkey(),
             ],
@@ -528,7 +516,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'jobs/{id}',
+            'path'   => 'jobs/{id}',
             'params' => [
                 'id' => $this->params->urlId('jobs'),
             ],
@@ -539,7 +527,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'DELETE',
-            'path' => 'jobs/{id}',
+            'path'   => 'jobs/{id}',
             'params' => ['id' => $this->params->urlId('jobs')],
         ];
     }
@@ -548,12 +536,12 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'PATCH',
-            'path' => 'jobs/{id}',
+            'path'   => 'jobs/{id}',
             'params' => [
-                'id' => $this->params->urlId('jobs'),
-                'name' => $this->params->name('job'),
+                'id'          => $this->params->urlId('jobs'),
+                'name'        => $this->params->name('job'),
                 'isProtected' => $this->params->isProtected(),
-                'isPublic' => $this->params->isPublic(),
+                'isPublic'    => $this->params->isPublic(),
                 'description' => $this->params->description(),
             ],
         ];
@@ -563,42 +551,42 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'POST',
-            'path' => 'jobs/{id}/execute',
+            'path'   => 'jobs/{id}/execute',
             'params' => [
-                'id' => $this->params->urlId('jobs'),
+                'id'          => $this->params->urlId('jobs'),
                 'isProtected' => $this->params->isProtected(),
-                'isPublic' => $this->params->isPublic(),
-                'clusterId' => [
-                    'type' => params::STRING_TYPE,
+                'isPublic'    => $this->params->isPublic(),
+                'clusterId'   => [
+                    'type'     => params::STRING_TYPE,
                     'required' => true,
-                    'sentAs' => 'cluster_id',
+                    'sentAs'   => 'cluster_id',
                 ],
-                'inputId' => [
-                    'type' => params::STRING_TYPE,
+                'inputId'     => [
+                    'type'     => params::STRING_TYPE,
                     'required' => false,
-                    'sentAs' => 'input_id',
+                    'sentAs'   => 'input_id',
                 ],
-                'outputId' => [
-                    'type' => params::STRING_TYPE,
+                'outputId'    => [
+                    'type'     => params::STRING_TYPE,
                     'required' => false,
-                    'sentAs' => 'output_id',
+                    'sentAs'   => 'output_id',
                 ],
-                'jobConfigs' => [
-                    'type' => params::OBJECT_TYPE,
+                'jobConfigs'  => [
+                    'type'     => params::OBJECT_TYPE,
                     'required' => true,
-                    'sentAs' => 'job_configs',
-                    'items' => [
-                        'properties' => [
-                            'configs' => [
-                                'type' => params::OBJECT_TYPE,
+                    'sentAs'   => 'job_configs',
+                    'items'    => [
+                        'properties'       => [
+                            'configs'      => [
+                                'type'     => params::OBJECT_TYPE,
                                 'required' => true,
                             ],
-                            'args' => [
-                                'type' => params::ARRAY_TYPE,
+                            'args'         => [
+                                'type'     => params::ARRAY_TYPE,
                                 'required' => false,
                             ],
-                            'params' => [
-                                'type' => params::OBJECT_TYPE,
+                            'params'       => [
+                                'type'     => params::OBJECT_TYPE,
                                 'required' => false,
                             ],
                         ],
@@ -612,9 +600,9 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'job-executions',
+            'path'   => 'job-executions',
             'params' => [
-                'limit' => $this->params->limit(),
+                'limit'  => $this->params->limit(),
                 'marker' => $this->params->marker(),
                 'sortBy' => $this->params->sortkey(),
             ],
@@ -625,7 +613,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'job-executions/{id}',
+            'path'   => 'job-executions/{id}',
             'params' => [
                 'id' => $this->params->urlId('jobs'),
             ],
@@ -636,7 +624,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'DELETE',
-            'path' => 'job-executions/{id}',
+            'path'   => 'job-executions/{id}',
             'params' => ['id' => $this->params->urlId('job-executions')],
         ];
     }
@@ -645,10 +633,10 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'PATCH',
-            'path' => 'job-executions/{id}',
+            'path'   => 'job-executions/{id}',
             'params' => [
-                'id' => $this->params->urlId('job-executions'),
-                'isPublic' => $this->params->isPublic(),
+                'id'          => $this->params->urlId('job-executions'),
+                'isPublic'    => $this->params->isPublic(),
                 'isProtected' => $this->params->isProtected(),
             ],
         ];
@@ -658,7 +646,6 @@ class Api extends AbstractApi
     {
         $definition = $this->getJobExecution();
         $definition['path'] .= '/refresh-status';
-
         return $definition;
     }
 
@@ -666,7 +653,6 @@ class Api extends AbstractApi
     {
         $definition = $this->getJobExecution();
         $definition['path'] .= '/cancel';
-
         return $definition;
     }
 
@@ -674,7 +660,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'plugins/{name}',
+            'path'   => 'plugins/{name}',
             'params' => [
                 'name' => $this->params->urlId('plugin'),
             ],
@@ -685,9 +671,9 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'plugins/{name}/{versions}',
+            'path'   => 'plugins/{name}/{versions}',
             'params' => [
-                'name' => $this->params->urlId('plugin'),
+                'name'     => $this->params->urlId('plugin'),
                 'versions' => $this->params->version(),
             ],
         ];
@@ -697,10 +683,10 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'PATCH',
-            'path' => 'plugins/{name}',
+            'path'   => 'plugins/{name}',
             'params' => [
-                'name' => $this->params->urlId('plugin'),
-                'pluginLabels' => $this->params->pluginLabels(),
+                'name'          => $this->params->urlId('plugin'),
+                'pluginLabels'  => $this->params->pluginLabels(),
                 'versionLabels' => $this->params->versionlabels(),
             ],
         ];
@@ -710,7 +696,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'plugins',
+            'path'   => 'plugins',
             'params' => [
             ],
         ];
@@ -720,7 +706,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'images',
+            'path'   => 'images',
             'params' => [
             ],
         ];
@@ -730,7 +716,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'images/{id}',
+            'path'   => 'images/{id}',
             'params' => [
                 'id' => $this->params->urlId('image'),
             ],
@@ -741,10 +727,10 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'POST',
-            'path' => 'images/{id}',
+            'path'   => 'images/{id}',
             'params' => [
-                'id' => $this->params->urlId('image'),
-                'username' => $this->params->name('image'),
+                'id'          => $this->params->urlId('image'),
+                'username'    => $this->params->name('image'),
                 'description' => $this->params->description(),
             ],
         ];
@@ -754,13 +740,13 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'POST',
-            'path' => 'images/{id}/tag',
+            'path'   => 'images/{id}/tag',
             'params' => [
-                'id' => $this->params->urlId('image'),
+                'id'   => $this->params->urlId('image'),
                 'tags' => [
-                    'type' => params::ARRAY_TYPE,
+                    'type'        => params::ARRAY_TYPE,
                     'description' => 'tags array for image',
-                    'required' => false,
+                    'required'    => false,
                 ],
             ],
         ];
@@ -770,13 +756,13 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'POST',
-            'path' => 'images/{id}/untag',
+            'path'   => 'images/{id}/untag',
             'params' => [
-                'id' => $this->params->urlId('image'),
+                'id'   => $this->params->urlId('image'),
                 'tags' => [
-                    'type' => params::ARRAY_TYPE,
+                    'type'        => params::ARRAY_TYPE,
                     'description' => 'tags array for image',
-                    'required' => false,
+                    'required'    => false,
                 ],
             ],
         ];
@@ -786,13 +772,13 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'POST',
-            'path' => 'images/{id}/untag',
+            'path'   => 'images/{id}/untag',
             'params' => [
-                'id' => $this->params->urlId('image'),
+                'id'   => $this->params->urlId('image'),
                 'tags' => [
-                    'type' => params::ARRAY_TYPE,
+                    'type'        => params::ARRAY_TYPE,
                     'description' => 'tags array for image',
-                    'required' => false,
+                    'required'    => false,
                 ],
             ],
         ];
@@ -802,7 +788,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'DELETE',
-            'path' => 'images/{id}',
+            'path'   => 'images/{id}',
             'params' => [
                 'id' => $this->params->urlId('image'),
             ],
@@ -813,12 +799,12 @@ class Api extends AbstractApi
     {
         return [
                 'method' => 'GET',
-                'path' => 'job-types?'.$path,
+                'path'   => 'job-types?'.$path,
                 'params' => [
-                    'plugin' => $this->params->plugin_filter(),
+                    'plugin'  => $this->params->plugin_filter(),
                     'version' => $this->params->version_filter(),
-                    'type' => $this->params->type(),
-                    'hints' => $this->params->hints(),
+                    'type'    => $this->params->type(),
+                    'hints'   => $this->params->hints(),
                 ],
         ];
     }
@@ -827,7 +813,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'clusters',
+            'path'   => 'clusters',
             'params' => [
             ],
         ];
@@ -837,7 +823,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'clusters',
+            'path'   => 'clusters',
             'params' => [
             ],
         ];
@@ -847,7 +833,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'job-executions',
+            'path'   => 'job-executions',
             'params' => [
             ],
         ];
@@ -857,7 +843,7 @@ class Api extends AbstractApi
     {
         return [
             'method' => 'GET',
-            'path' => 'job-executions/{id}',
+            'path'   => 'job-executions/{id}',
             'params' => [
                 'id' => $this->params->urlId('jobConfigs'),
             ],

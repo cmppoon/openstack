@@ -1,17 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-/*
- * This file is part of PHP CS Fixer.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
-
 namespace OpenStack\DataProcessing\v1\Models;
 
 use OpenStack\Common\Resource\Creatable;
@@ -55,30 +43,30 @@ class NodeGroupTemplate extends OperatorResource implements Listable, Retrievabl
     protected $resourcesKey = 'node_group_templates';
 
     protected $aliases = [
-        'volume_local_to_instance' => 'volumeLocalToInstance',
-        'availability_zone' => 'availabilityZone',
-        'updated_at' => 'updatedAt',
-        'use_autoconfig' => 'useAutoconfig',
-        'volumes_per_node' => 'volumesPerNode',
-        'security_groups' => 'securityGroups',
-        'node_configs' => 'nodeConfigs',
-        'auto_security_group' => 'autoSecurityGroup',
+        'volume_local_to_instance'  => 'volumeLocalToInstance',
+        'availability_zone'         => 'availabilityZone',
+        'updated_at'                => 'updatedAt',
+        'use_autoconfig'            => 'useAutoconfig',
+        'volumes_per_node'          => 'volumesPerNode',
+        'security_groups'           => 'securityGroups',
+        'node_configs'              => 'nodeConfigs',
+        'auto_security_group'       => 'autoSecurityGroup',
         'volumes_availability_zone' => 'volumesAvailabilityZone',
-        'volume_mount_prefix' => 'volumeMountPrefix',
-        'plugin_name' => 'pluginName',
-        'floating_ip_pool' => 'floatingIpPool',
-        'is_default' => 'isDefault',
-        'image_id' => 'imageId',
-        'volumes_size' => 'volumesSize',
-        'is_proxy_gateway' => 'isProxyGateway',
-        'is_public' => 'isPublic',
-        'hadoop_version' => 'hadoopVersion',
-        'tenant_id' => 'tenantId',
-        'created_at' => 'createdAt',
-        'volume_type' => 'volumeType',
-        'is_protected' => 'isProtected',
-        'node_processes' => 'nodeProcesses',
-        'flavor_id' => 'flavorId',
+        'volume_mount_prefix'       => 'volumeMountPrefix',
+        'plugin_name'               => 'pluginName',
+        'floating_ip_pool'          => 'floatingIpPool',
+        'is_default'                => 'isDefault',
+        'image_id'                  => 'imageId',
+        'volumes_size'              => 'volumesSize',
+        'is_proxy_gateway'          => 'isProxyGateway',
+        'is_public'                 => 'isPublic',
+        'hadoop_version'            => 'hadoopVersion',
+        'tenant_id'                 => 'tenantId',
+        'created_at'                => 'createdAt',
+        'volume_type'               => 'volumeType',
+        'is_protected'              => 'isProtected',
+        'node_processes'            => 'nodeProcesses',
+        'flavor_id'                 => 'flavorId',
     ];
 
     public function retrieve()
