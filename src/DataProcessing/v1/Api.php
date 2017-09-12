@@ -768,22 +768,6 @@ class Api extends AbstractApi
         ];
     }
 
-    public function postImageUntag(): array
-    {
-        return [
-            'method' => 'POST',
-            'path'   => 'images/{id}/untag',
-            'params' => [
-                'id'   => $this->params->urlId('image'),
-                'tags' => [
-                    'type'        => params::ARRAY_TYPE,
-                    'description' => 'tags array for image',
-                    'required'    => false,
-                ],
-            ],
-        ];
-    }
-
     public function deleteImage(): array
     {
         return [
