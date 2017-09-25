@@ -162,10 +162,10 @@ class Api extends AbstractApi
                 'id'          => $this->params->urlId('datasource'),
                 'isPublic'    => $this->params->isPublic(),
                 'isProtected' => $this->params->isProtected(),
-                'name'        => $this->params->dataSourceName(),
+                'name'        => $this->notRequired($this->params->dataSourceName()),
                 'description' => $this->params->description(),
-                'url'         => $this->params->url(),
-                'type'        => $this->params->dataSourceType(),
+                'url'         => $this->notRequired($this->params->url()),
+                'type'        => $this->notRequired($this->params->dataSourceType()),
             ],
         ];
     }
@@ -381,9 +381,9 @@ class Api extends AbstractApi
             'path'   => 'job-binaries/{id}',
             'params' => [
                 'id'          => $this->params->urlId('job_binary'),
-                'url'         => $this->params->url(),
+                'url'         => $this->notRequired($this->params->url()),
                 'isPublic'    => $this->params->isPublic(),
-                'name'        => $this->params->name('job_binary'),
+                'name'        => $this->notRequired($this->params->name('job_binary')),
                 'isProtected' => $this->params->isProtected(),
                 'description' => $this->params->description(),
             ],

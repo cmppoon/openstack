@@ -24,8 +24,7 @@ $sahara = $openstack->dataProcessingV1(['region' => '{region}']);
 $image = $sahara->getImage(['id' => '{imageId}']);
 
 $options = [
-    'id'   => '{imageId}',
-    'tags' => ['centos', '6.8'],
+    'tags' => ['tag1', 'tag2'],
 ];
 
 $image->removeTags($options);

@@ -22,8 +22,7 @@ $openstack = new OpenStack([
 $sahara = $openstack->dataProcessingV1(['region' => '{region}']);
 
 $options = [
-    'id'   => '{imageId}',
-    'tags' => ['centos', '6.8'],
+    'tags' => ['tag1', 'tag2'],
 ];
 
 $image = $sahara->getImage(['id' => '{imageId}']);

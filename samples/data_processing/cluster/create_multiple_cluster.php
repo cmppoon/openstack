@@ -22,7 +22,6 @@ $openstack = new OpenStack([
 $sahara = $openstack->dataProcessingV1(['region' => '{region}']);
 
 $options = [
-    'multiple'                 => '{createMultipleOrnot}',
     'pluginName'               => '{pluginName}',
     'hadoopVersion'            => '{hadoopVersion}',
     'clusterTemplateId'        => '{clusterTemplateId}',
