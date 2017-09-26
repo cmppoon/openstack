@@ -170,7 +170,7 @@ class Service extends AbstractService
 
     public function runJob(array $options = [])
     {
-        $this->getJob($options)->executeJob($options);
+        return $this->getJob($options)->executeJob($options);
     }
 
     public function getPlugin(array $options = []): Plugin
